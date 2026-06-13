@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COGOS — Cognitive Operating System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#080810;--bg2:#0d0d1a;--panel:#0f0f1e;--panel2:#12121f;
+    --border:#1e1e3a;--border-bright:#2a2a5a;
+    --cyan:#00f5ff;--cyan-dim:#00b8c4;--purple:#8b5cf6;--green:#00ff88;--orange:#ff6b35;--red:#ff3366;--yellow:#ffd700;
+    --text:#e6e6f4;--text-dim:#8a8ab8;--text-faint:#4a4a78;
+    --fd:'Orbitron',monospace;--fb:'Space Grotesk',sans-serif;--fm:'Space Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100vh;overflow-x:hidden;line-height:1.5}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:linear-gradient(rgba(40,40,90,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(40,40,90,.07) 1px,transparent 1px);
+    background-size:42px 42px;mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 40%,transparent 100%)}
+  ::selection{background:var(--cyan);color:#000}
+  button{font-family:var(--fb);cursor:pointer;border:none;background:none;color:inherit}
+  button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+  input,textarea,select{font-family:var(--fb);background:var(--bg2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:11px 13px;font-size:14px;width:100%}
+  textarea{resize:vertical;line-height:1.6}
+  input:focus,textarea:focus,select:focus{border-color:var(--cyan-dim)}
+  .mono{font-family:var(--fm)}
+
+  .app{position:relative;z-index:1;display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+  .sidebar{border-right:1px solid var(--border);background:linear-gradient(180deg,var(--bg2),var(--bg));padding:22px 16px;position:sticky;top:0;height:100vh;overflow-y:auto}
+  .brand{font-family:var(--fd);font-weight:900;font-size:24px;letter-spacing:3px;color:var(--cyan);text-shadow:0 0 18px var(--cyan-dim)}
+  .brand-sub{font-family:var(--fm);font-size:9px;color:var(--text-faint);letter-spacing:2px;margin-top:3px}
+  .streak{margin-top:16px;font-family:var(--fm);font-size:11px;color:var(--orange);background:rgba(255,107,53,.08);border:1px solid rgba(255,107,53,.25);border-radius:7px;padding:7px 10px;text-align:center}
+  .navgroup{margin-top:22px}
+  .navgroup-label{font-family:var(--fm);font-size:9px;letter-spacing:2px;color:var(--text-faint);margin:0 0 8px 6px}
+  .navitem{display:flex;align-items:center;gap:11px;padding:9px 11px;border-radius:8px;font-size:13.5px;color:var(--text-dim);border:1px solid transparent;margin-bottom:2px;transition:.15s;width:100%;text-align:left}
+  .navitem:hover{background:var(--panel);color:var(--text)}
+  .navitem.active{background:rgba(0,245,255,.08);border-color:rgba(0,245,255,.3);color:var(--cyan)}
+  .navitem .ic{width:16px;text-align:center;opacity:.85}
+
+  .main{padding:30px 38px 80px;max-width:1080px}
+  .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px;flex-wrap:wrap;gap:12px}
+  .page-title{font-family:var(--fd);font-size:22px;font-weight:700;letter-spacing:1px}
+  .page-sub{font-family:var(--fm);font-size:11px;color:var(--text-dim);margin-top:4px}
+  .topbar .meta{font-family:var(--fm);font-size:11px;color:var(--text-dim);text-align:right}
+
+  .screen{display:none}
+  .screen.active{display:block;animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.screen.active{animation:none}}
+
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:13px;padding:22px}
+  .panel+.panel{margin-top:18px}
+  .panel-h{font-family:var(--fm);font-size:11px;letter-spacing:2px;color:var(--cyan-dim);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .panel-h::before{content:'';width:6px;height:6px;background:var(--cyan);border-radius:50%;box-shadow:0 0 8px var(--cyan)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:820px){.grid2{grid-template-columns:1fr}}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:9px;font-family:var(--fm);font-size:12px;letter-spacing:1px;font-weight:700;border:1px solid var(--border-bright);background:var(--panel2);color:var(--text);transition:.15s}
+  .btn:hover{border-color:var(--cyan-dim);box-shadow:0 0 0 1px var(--cyan-dim)}
+  .btn-primary{background:linear-gradient(135deg,var(--cyan),var(--purple));color:#04040c;border:none}
+  .btn-primary:hover{box-shadow:0 0 22px rgba(0,245,255,.4)}
+  .btn-green{background:linear-gradient(135deg,var(--green),#00c469);color:#04040c;border:none}
+  .btn-green:hover{box-shadow:0 0 22px rgba(0,255,136,.35)}
+  .btn-ghost{background:transparent}
+  .btn-danger{border-color:rgba(255,51,102,.4);color:var(--red)}
+  .btn-danger:hover{background:rgba(255,51,102,.1);box-shadow:none;border-color:var(--red)}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap}
+  .btn-full{width:100%}
+
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{font-family:var(--fm);font-size:10px;letter-spacing:1px;padding:5px 10px;border-radius:20px;border:1px solid var(--border-bright);color:var(--text-dim);background:var(--bg2)}
+  .chip.cyan{color:var(--cyan);border-color:rgba(0,245,255,.35)}
+  .chip.purple{color:var(--purple);border-color:rgba(139,92,246,.35)}
+  .chip.green{color:var(--green);border-color:rgba(0,255,136,.35)}
+  .chip.orange{color:var(--orange);border-color:rgba(255,107,53,.35)}
+  .chip.red{color:var(--red);border-color:rgba(255,51,102,.4)}
+
+  .kpi-row{display:flex;gap:14px;flex-wrap:wrap}
+  .kpi{flex:1;min-width:120px;background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:15px}
+  .kpi-label{font-family:var(--fm);font-size:9px;letter-spacing:1.5px;color:var(--text-faint)}
+  .kpi-val{font-family:var(--fd);font-size:26px;font-weight:700;margin-top:6px;color:var(--cyan)}
+  .kpi-val.purple{color:var(--purple)}.kpi-val.green{color:var(--green)}.kpi-val.orange{color:var(--orange)}
+
+  /* METRIC CARD + DELTA METER */
+  .metric{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+  .metric.flag{border-color:rgba(255,51,102,.4)}
+  .metric-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+  .metric-name{font-family:var(--fm);font-size:12px;letter-spacing:1px;color:var(--text)}
+  .metric-now{font-family:var(--fd);font-size:26px;font-weight:700}
+  .metric-sub{font-family:var(--fm);font-size:10px;color:var(--text-faint);margin-bottom:12px}
+  .meter{position:relative;height:12px;background:#06060d;border:1px solid var(--border);border-radius:7px;overflow:hidden;margin-bottom:10px}
+  .meter-center{position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--border-bright);z-index:2}
+  .meter-fill{position:absolute;top:0;bottom:0;border-radius:3px;z-index:1;transition:.5s}
+  .metric-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .metric-stats{font-family:var(--fm);font-size:10.5px;color:var(--text-dim);display:flex;gap:12px;flex-wrap:wrap}
+  .metric-stats b{color:var(--text)}
+  .delta-pos{color:var(--green)}.delta-neg{color:var(--red)}.delta-zero{color:var(--text-faint)}
+  .trend-up{color:var(--green)}.trend-down{color:var(--red)}.trend-flat{color:var(--text-faint)}
+  .sparksvg{display:block}
+
+  .stat-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .stat-name{font-family:var(--fm);font-size:11px;color:var(--text-dim);width:160px;flex-shrink:0;letter-spacing:.5px}
+  .stat-track{flex:1;height:7px;background:var(--bg2);border-radius:5px;overflow:hidden}
+  .stat-fill{height:100%;border-radius:5px;transition:width .6s ease}
+  .stat-val{font-family:var(--fm);font-size:13px;font-weight:700;width:42px;text-align:right}
+
+  .brief-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  .brief-headline{font-family:var(--fd);font-size:21px;font-weight:600;line-height:1.35;margin-bottom:14px}
+  .brief-hook{font-size:15.5px;color:var(--text);line-height:1.7;border-left:2px solid var(--purple);padding-left:16px;margin-bottom:20px}
+  .anchor{background:linear-gradient(135deg,rgba(0,245,255,.06),rgba(139,92,246,.06));border:1px solid rgba(0,245,255,.2);border-radius:11px;padding:18px}
+  .anchor-label{font-family:var(--fm);font-size:10px;letter-spacing:2px;color:var(--cyan);margin-bottom:8px}
+  .anchor-q{font-size:17px;font-weight:500;line-height:1.5}
+
+  .promptbox{background:#06060d;border:1px solid var(--border);border-radius:10px;padding:15px;font-family:var(--fm);font-size:12px;color:var(--text-dim);white-space:pre-wrap;max-height:240px;overflow:auto;line-height:1.6}
+  .step{display:flex;gap:13px;margin-bottom:13px;align-items:flex-start}
+  .step-n{font-family:var(--fd);font-size:13px;font-weight:700;color:var(--cyan);background:rgba(0,245,255,.1);border:1px solid rgba(0,245,255,.3);border-radius:7px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-t{font-size:13.5px;color:var(--text-dim);padding-top:4px}
+  .step-t b{color:var(--text)}
+  .hint{font-size:12px;color:var(--text-faint);margin-top:6px;line-height:1.5}
+
+  .log-item{background:var(--panel);border:1px solid var(--border);border-radius:11px;overflow:hidden;margin-bottom:12px}
+  .log-head{display:flex;align-items:center;gap:14px;padding:15px 18px;cursor:pointer}
+  .log-head:hover{background:var(--panel2)}
+  .log-day{font-family:var(--fd);font-size:13px;font-weight:700;color:var(--cyan);flex-shrink:0;width:54px}
+  .log-q{flex:1;font-size:14px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .log-dom{font-family:var(--fm);font-size:10px;color:var(--text-dim);flex-shrink:0}
+  .log-caret{color:var(--text-faint);transition:.2s;flex-shrink:0}
+  .log-item.open .log-caret{transform:rotate(90deg);color:var(--cyan)}
+  .log-body{display:none;padding:0 18px 18px;border-top:1px solid var(--border)}
+  .log-item.open .log-body{display:block;animation:fade .25s}
+  .log-section{margin-top:14px}
+  .log-section-l{font-family:var(--fm);font-size:10px;letter-spacing:1.5px;color:var(--text-faint);margin-bottom:6px}
+  .log-answer{background:var(--bg2);border-radius:9px;padding:13px;font-size:14px;line-height:1.65;white-space:pre-wrap}
+  .log-answer.empty{color:var(--text-faint);font-style:italic}
+
+  .empty{text-align:center;padding:46px 20px;color:var(--text-dim)}
+  .empty-ic{font-size:34px;margin-bottom:12px;opacity:.5}
+  .empty-t{font-size:15px;margin-bottom:6px}
+  .empty-s{font-size:13px;color:var(--text-faint);max-width:380px;margin:0 auto 18px}
+
+  .radar-wrap{display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+  .legend{display:flex;gap:14px;font-family:var(--fm);font-size:10px;color:var(--text-dim);margin-top:10px}
+  .legend span{display:flex;align-items:center;gap:6px}
+  .legend i{width:14px;height:0;border-top:2px solid;display:inline-block}
+
+  .overlay{display:none;position:fixed;inset:0;background:rgba(2,2,8,.82);backdrop-filter:blur(5px);z-index:200;align-items:center;justify-content:center;padding:20px}
+  .overlay.open{display:flex;animation:fade .2s}
+  .modal{background:var(--panel);border:1px solid var(--border-bright);border-radius:14px;padding:26px;width:100%;max-width:560px;max-height:88vh;overflow-y:auto}
+  .modal-h{font-family:var(--fd);font-size:17px;font-weight:700;margin-bottom:6px}
+  .modal-sub{font-size:13px;color:var(--text-dim);margin-bottom:18px}
+  .modal-x{float:right;font-size:20px;color:var(--text-faint);cursor:pointer;line-height:1}
+  .modal-x:hover{color:var(--red)}
+  label.fl{font-family:var(--fm);font-size:10px;letter-spacing:1px;color:var(--text-dim);display:block;margin:14px 0 6px}
+
+  .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--cyan);color:#04040c;font-family:var(--fm);font-size:12px;font-weight:700;padding:12px 22px;border-radius:9px;z-index:300;opacity:0;transition:.3s;box-shadow:0 8px 30px rgba(0,245,255,.4);max-width:90vw;text-align:center}
+  .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+  .toast.err{background:var(--red);box-shadow:0 8px 30px rgba(255,51,102,.4);color:#fff}
+  .toast.gold{background:var(--yellow);box-shadow:0 8px 30px rgba(255,215,0,.4)}
+
+  .boot{min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px}
+  .boot-logo{font-family:var(--fd);font-weight:900;font-size:54px;letter-spacing:8px;color:var(--cyan);text-shadow:0 0 40px var(--cyan-dim)}
+  .boot-desc{max-width:460px;color:var(--text-dim);font-size:15px;line-height:1.7;margin:14px 0 26px}
+
+  @media(max-width:760px){
+    .app{grid-template-columns:1fr}
+    .sidebar{position:relative;height:auto;border-right:none;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+    .navgroup{margin-top:0;display:flex;gap:4px;flex-wrap:wrap}.navgroup-label{display:none}
+    .navitem{width:auto;padding:7px 10px}.streak{margin-top:0}
+    .main{padding:22px 18px 70px}
+  }
+</style>
+</head>
+<body>
+
+<div id="boot" style="display:none">
+  <div class="main" style="max-width:none">
+    <div class="boot">
+      <div class="boot-logo">COGOS</div>
+      <div class="mono" style="font-size:11px;color:var(--text-faint);letter-spacing:3px">COGNITIVE OPERATING SYSTEM — v3.0</div>
+      <div class="boot-desc">A performance-tracking system for how you think. Grade your reasoning, log it daily, and watch each cognitive dimension move against your baseline over time.</div>
+      <div style="width:100%;max-width:340px">
+        <label class="fl">OPERATOR NAME / CALLSIGN</label>
+        <input id="onboard-name" placeholder="e.g. ANCHIT" maxlength="24">
+        <button class="btn btn-primary btn-full" style="margin-top:16px" onclick="createProfile()">⚡ INITIALIZE OPERATOR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="app" id="app" style="display:none">
+  <aside class="sidebar">
+    <div class="brand">COGOS</div>
+    <div class="brand-sub">COGNITIVE OS · v3.0</div>
+    <div class="streak" id="side-streak">🔥 0 DAY STREAK</div>
+    <div class="navgroup">
+      <div class="navgroup-label">DAILY</div>
+      <button class="navitem" data-screen="brief" onclick="nav('brief')"><span class="ic">◎</span> Today's Brief</button>
+      <button class="navitem" data-screen="gauntlet" onclick="nav('gauntlet')"><span class="ic">◆</span> Gauntlet</button>
+      <button class="navitem" data-screen="log" onclick="nav('log')"><span class="ic">≡</span> Brief Log</button>
+    </div>
+    <div class="navgroup">
+      <div class="navgroup-label">MEASUREMENT</div>
+      <button class="navitem" data-screen="metrics" onclick="nav('metrics')"><span class="ic">▰</span> Metrics &amp; Delta</button>
+      <button class="navitem" data-screen="character" onclick="nav('character')"><span class="ic">◈</span> Character</button>
+      <button class="navitem" data-screen="dash" onclick="nav('dash')"><span class="ic">⬡</span> Dashboard</button>
+    </div>
+    <div class="navgroup">
+      <div class="navgroup-label">SETUP</div>
+      <button class="navitem" data-screen="launcher" onclick="nav('launcher')"><span class="ic">▷</span> Session Block</button>
+      <button class="navitem" data-screen="baseline" onclick="nav('baseline')"><span class="ic">▣</span> Baseline</button>
+      <button class="navitem" data-screen="settings" onclick="nav('settings')"><span class="ic">⚙</span> Settings</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div><div class="page-title" id="pg-title">DASHBOARD</div><div class="page-sub" id="pg-sub">—</div></div>
+      <div class="meta"><div id="tb-name">—</div><div id="tb-date" style="color:var(--text-faint)">—</div></div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <section class="screen" id="screen-dash">
+      <div class="panel">
+        <div class="panel-h">OPERATOR STATUS</div>
+        <div class="kpi-row">
+          <div class="kpi"><div class="kpi-label">DESIGNATION</div><div class="kpi-val" id="d-rank" style="font-size:18px">—</div></div>
+          <div class="kpi"><div class="kpi-label">DAY</div><div class="kpi-val purple" id="d-day">1</div></div>
+          <div class="kpi"><div class="kpi-label">DAYS LOGGED</div><div class="kpi-val green" id="d-logged">0</div></div>
+          <div class="kpi"><div class="kpi-label">DATA POINTS</div><div class="kpi-val orange" id="d-points">0</div></div>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="panel"><div class="panel-h">TODAY</div><div id="d-today"></div></div>
+        <div class="panel"><div class="panel-h">MOVEMENT vs BASELINE</div><div id="d-deltas"></div></div>
+      </div>
+    </section>
+
+    <!-- BRIEF -->
+    <section class="screen" id="screen-brief"><div id="brief-content"></div></section>
+
+    <!-- GAUNTLET -->
+    <section class="screen" id="screen-gauntlet">
+      <div class="panel">
+        <div class="panel-h">QUESTION GAUNTLET → QUESTION PRECISION</div>
+        <p style="font-size:14px;color:var(--text-dim);margin-bottom:16px;line-height:1.7">Given a tangled problem, find the single sharpest follow-up <i>question</i>. Generate the prompt, run it in Claude, then log the four scores Claude returns.</p>
+        <div class="btn-row"><button class="btn btn-primary" onclick="genGauntlet()">⚔️ GENERATE GAUNTLET PROMPT</button></div>
+        <div id="gauntlet-prompt-wrap" style="display:none;margin-top:16px">
+          <div class="promptbox" id="gauntlet-prompt"></div>
+          <div class="btn-row" style="margin-top:10px"><button class="btn" onclick="copyEl('gauntlet-prompt','Gauntlet prompt copied')">⧉ COPY PROMPT</button></div>
+        </div>
+        <div style="margin-top:22px"><div class="panel-h" style="margin-bottom:12px">LOG SCORES</div>
+          <div class="grid2">
+            <div><label class="fl">DIRECTIONALITY (1-10)</label><input type="number" min="1" max="10" step="0.5" id="g-dir"></div>
+            <div><label class="fl">SPECIFICITY (1-10)</label><input type="number" min="1" max="10" step="0.5" id="g-spec"></div>
+            <div><label class="fl">ASSUMPTION TESTED (1-10)</label><input type="number" min="1" max="10" step="0.5" id="g-assum"></div>
+            <div><label class="fl">INSIGHT POTENTIAL (1-10)</label><input type="number" min="1" max="10" step="0.5" id="g-ins"></div>
+          </div>
+          <button class="btn btn-green btn-full" style="margin-top:14px" onclick="logGauntlet()">✓ LOG → QUESTION PRECISION</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOG -->
+    <section class="screen" id="screen-log">
+      <div class="panel">
+        <div class="panel-h">BRIEF LOG — EVERY QUESTION YOU'VE ANSWERED</div>
+        <input id="log-search" placeholder="Filter by domain, headline, or text…" oninput="renderLog()" style="margin-bottom:16px">
+        <div id="log-list"></div>
+      </div>
+    </section>
+
+    <!-- METRICS -->
+    <section class="screen" id="screen-metrics">
+      <div class="panel">
+        <div class="panel-h">DELTA METERS — CURRENT vs BASELINE</div>
+        <p class="hint" style="margin:0 0 16px">Current = rolling average of your last 5 scores. Baseline ratchets up after 3 consecutive scores above it. Δ resets when the baseline rises — your floor moved.</p>
+        <div id="metrics-list"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-h">RATCHET LOG — LOCKED-IN GAINS</div>
+        <div id="ratchet-list"></div>
+      </div>
+      <div class="grid2">
+        <div class="panel">
+          <div class="panel-h">LOG PRESSURE BRIEF</div>
+          <p class="hint" style="margin:-6px 0 12px">Phase-3 style: defend your thinking to a skeptic. Feeds Pressure Clarity, Bridging, Assumption Surfacing.</p>
+          <div class="grid2">
+            <div><label class="fl">STRUCTURE (→PC)</label><input type="number" min="1" max="10" step="0.5" id="p-struct"></div>
+            <div><label class="fl">CLAIM CONFIDENCE (→PC)</label><input type="number" min="1" max="10" step="0.5" id="p-conf"></div>
+            <div><label class="fl">ANALOGY USE (→CB)</label><input type="number" min="1" max="10" step="0.5" id="p-anal"></div>
+            <div><label class="fl">ASSUMPTION SURFACING (→AS)</label><input type="number" min="1" max="10" step="0.5" id="p-assum"></div>
+          </div>
+          <button class="btn btn-green btn-full" style="margin-top:14px" onclick="logPressure()">✓ LOG PRESSURE BRIEF</button>
+        </div>
+        <div class="panel">
+          <div class="panel-h">MANUAL SCORE ENTRY</div>
+          <p class="hint" style="margin:-6px 0 12px">Log a single graded dimension from any exercise Claude scored.</p>
+          <label class="fl">DIMENSION</label>
+          <select id="m-dim">
+            <option value="pl">Pattern Library</option><option value="qp">Question Precision</option>
+            <option value="pc">Pressure Clarity</option><option value="cb">Cross-Domain Bridging</option>
+            <option value="as">Assumption Surfacing</option>
+          </select>
+          <label class="fl">SCORE (1-10)</label><input type="number" min="1" max="10" step="0.5" id="m-val">
+          <label class="fl">NOTE (optional)</label><input id="m-note" placeholder="what Claude flagged">
+          <button class="btn btn-green btn-full" style="margin-top:14px" onclick="logManual()">✓ LOG SCORE</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHARACTER -->
+    <section class="screen" id="screen-character">
+      <div class="panel">
+        <div class="panel-h">CHARACTER SHEET — GROWTH vs ORIGIN</div>
+        <div class="radar-wrap">
+          <div id="radar-host"></div>
+          <div style="flex:1;min-width:240px"><div id="c-stats"></div>
+            <div class="legend"><span><i style="border-color:var(--cyan)"></i>Current</span><span><i style="border-color:var(--text-faint);border-top-style:dashed"></i>Origin baseline</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-h">PROGRESSION</div>
+        <div class="kpi-row">
+          <div class="kpi"><div class="kpi-label">LEVEL</div><div class="kpi-val" id="c-level">1</div></div>
+          <div class="kpi"><div class="kpi-label">RANK</div><div class="kpi-val" id="c-rank" style="font-size:15px">INITIATE</div></div>
+          <div class="kpi"><div class="kpi-label">TOTAL XP</div><div class="kpi-val purple" id="c-xp">0</div></div>
+          <div class="kpi"><div class="kpi-label">DOMAINS HIT</div><div class="kpi-val green" id="c-domains">0 / 12</div></div>
+        </div>
+        <div style="margin-top:16px"><div class="stat-row"><div class="stat-name">XP TO NEXT LEVEL</div><div class="stat-track"><div class="stat-fill" id="c-xpbar" style="background:linear-gradient(90deg,var(--cyan),var(--purple))"></div></div><div class="stat-val mono" id="c-xptxt">—</div></div></div>
+      </div>
+    </section>
+
+    <!-- LAUNCHER -->
+    <section class="screen" id="screen-launcher">
+      <div class="panel">
+        <div class="panel-h">MIGRATION-PROOF SESSION BLOCK</div>
+        <p style="font-size:14px;color:var(--text-dim);margin-bottom:16px;line-height:1.7">Paste at the start of any Claude chat so it grades you with consistent calibration, regardless of account.</p>
+        <div class="promptbox" id="context-block"></div>
+        <div class="btn-row" style="margin-top:12px">
+          <button class="btn btn-primary" onclick="copyEl('context-block','Session block copied')">⧉ COPY BLOCK</button>
+          <button class="btn" onclick="renderLauncher()">↻ REFRESH</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BASELINE -->
+    <section class="screen" id="screen-baseline">
+      <div class="panel">
+        <div class="panel-h">BASELINE DIAGNOSTIC</div>
+        <p style="font-size:14px;color:var(--text-dim);margin-bottom:16px;line-height:1.7">Done once — it sets your <b>origin</b> (fixed) and your first <b>baseline</b> (ratchets up). Enter the five scores Claude gave you. <span id="baseline-status" class="mono"></span></p>
+        <div class="btn-row" style="margin-bottom:18px"><button class="btn" onclick="genBaseline()">⚡ GENERATE BASELINE PROMPT</button></div>
+        <div id="baseline-prompt-wrap" style="display:none;margin-bottom:20px">
+          <div class="promptbox" id="baseline-prompt"></div>
+          <div class="btn-row" style="margin-top:10px"><button class="btn" onclick="copyEl('baseline-prompt','Baseline prompt copied')">⧉ COPY PROMPT</button></div>
+        </div>
+        <div class="grid2">
+          <div><label class="fl">PATTERN LIBRARY (1-10)</label><input type="number" min="0" max="10" step="0.5" id="b-pl"></div>
+          <div><label class="fl">QUESTION PRECISION (1-10)</label><input type="number" min="0" max="10" step="0.5" id="b-qp"></div>
+          <div><label class="fl">PRESSURE CLARITY (1-10)</label><input type="number" min="0" max="10" step="0.5" id="b-pc"></div>
+          <div><label class="fl">CROSS-DOMAIN BRIDGING (1-10)</label><input type="number" min="0" max="10" step="0.5" id="b-cb"></div>
+          <div><label class="fl">ASSUMPTION SURFACING (1-10)</label><input type="number" min="0" max="10" step="0.5" id="b-as"></div>
+        </div>
+        <button class="btn btn-green btn-full" style="margin-top:16px" onclick="setBaseline()">⚡ SET BASELINE + INITIALIZE</button>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="screen" id="screen-settings">
+      <div class="panel"><div class="panel-h">SETTINGS</div>
+        <label class="fl">OPERATOR NAME</label><input id="set-name">
+        <button class="btn" style="margin-top:12px" onclick="saveName()">SAVE NAME</button>
+      </div>
+      <div class="panel"><div class="panel-h">DATA — BACK THIS UP</div>
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.6">Data lives only in this browser. Switch browser/device or clear history and it's gone. Export regularly.</p>
+        <div class="btn-row"><button class="btn" onclick="exportProfile()">↓ EXPORT BACKUP</button><button class="btn" onclick="importProfile()">↑ IMPORT BACKUP</button></div>
+      </div>
+      <div class="panel"><div class="panel-h" style="color:var(--red)">DANGER ZONE</div>
+        <button class="btn btn-danger" onclick="resetAll()">⚠ RESET ALL DATA</button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="overlay" id="modal-paste">
+  <div class="modal">
+    <span class="modal-x" onclick="closeModal('modal-paste')">✕</span>
+    <div class="modal-h">PASTE CLAUDE'S BRIEF</div>
+    <div class="modal-sub">Paste the full JSON Claude returned. Code fences or extra text are fine — the JSON is extracted automatically.</div>
+    <textarea id="paste-input" rows="10" placeholder='{ "domain": "...", "headline": "...", ... }'></textarea>
+    <button class="btn btn-primary btn-full" style="margin-top:14px" onclick="parseBrief()">⚡ STORE BRIEF</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== CONFIG / CONSTANTS =====
+const STATS=[
+  {key:'pl',name:'PATTERN LIBRARY'},{key:'qp',name:'QUESTION PRECISION'},
+  {key:'pc',name:'PRESSURE CLARITY'},{key:'cb',name:'CROSS-DOMAIN BRIDGING'},{key:'as',name:'ASSUMPTION SURFACING'}
+];
+const RANKS=[{lvl:1,title:'INITIATE',xp:0},{lvl:2,title:'ANALYST',xp:500},{lvl:3,title:'STRATEGIST',xp:1200},{lvl:4,title:'TACTICIAN',xp:2500},{lvl:5,title:'ARCHITECT',xp:4500},{lvl:6,title:'ORACLE',xp:7000},{lvl:7,title:'APEX',xp:10000}];
+const TITLES={dash:['DASHBOARD','operator overview'],brief:['TODAY\u2019S BRIEF','generate · answer · grade'],log:['BRIEF LOG','your full record'],gauntlet:['GAUNTLET','question precision drill'],metrics:['METRICS & DELTA','measurement core'],character:['CHARACTER','growth vs origin'],launcher:['SESSION BLOCK','portable context'],baseline:['BASELINE','anchor your stats'],settings:['SETTINGS','profile & data']};
+const KEY='cogos_profile';
+const WINDOW=5;       // rolling-average window for "current rating"
+const RATCHET_N=3;    // consecutive improving scores to ratchet baseline
+const RATCHET_MIN=0.3;// min avg improvement over baseline to ratchet
+let P=null;
+
+function defaultProfile(name){
+  return {v:3,name:(name||'OPERATOR').toUpperCase(),created:new Date().toISOString(),day:1,streak:0,lastCompleted:null,xp:0,
+    origin:null,baseline:null,stats:{pl:0,qp:0,pc:0,cb:0,as:0},
+    antiPattern:{domains:[],regions:[],eras:[]},
+    scores:[],ratchets:[],currentBrief:null,log:[]};
+}
+function load(){try{const r=localStorage.getItem(KEY);return r?JSON.parse(r):null}catch{return null}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){toast('Save failed — storage full or blocked',true)}}
+
+// ===== HELPERS =====
+function $(id){return document.getElementById(id)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function avgStat(){const s=P.stats;return (s.pl+s.qp+s.pc+s.cb+s.as)/5}
+function getRank(xp){let r=RANKS[0];for(const x of RANKS)if(xp>=x.xp)r=x;return r}
+function statColor(v){if(v>=7)return'var(--green)';if(v>=5)return'var(--cyan)';if(v>=3)return'var(--orange)';return'var(--red)'}
+function todayStr(){return new Date().toISOString().slice(0,10)}
+function fmtDate(iso){if(!iso)return'—';const d=new Date(iso);const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return `${d.getDate()} ${M[d.getMonth()]} ${d.getFullYear()}`}
+function dimScores(dim){return P.scores.filter(s=>s.dim===dim).map(s=>s.value)}
+function toast(msg,type){const t=$('toast');t.textContent=msg;t.className='toast show'+(type===true?' err':type==='gold'?' gold':'');clearTimeout(t._t);t._t=setTimeout(()=>t.className='toast',2800)}
+function copyEl(id,msg){copyText($(id).textContent,msg)}
+function copyText(txt,msg){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(()=>toast(msg||'Copied')).catch(()=>fallbackCopy(txt,msg))}else fallbackCopy(txt,msg)}
+function fallbackCopy(txt,msg){const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast(msg||'Copied')}catch{toast('Copy failed — select manually',true)}document.body.removeChild(ta)}
+function closeModal(id){$(id).classList.remove('open')}
+function openModal(id){$(id).classList.add('open')}
+
+// ===== MEASUREMENT CORE =====
+function recordScore(dim,value,source,note){
+  value=+(+value).toFixed(2);
+  if(!(value>=0&&value<=10))return false;
+  P.scores.push({date:new Date().toISOString(),day:P.day,dim,value,source:source||'manual',note:note||''});
+  recomputeStat(dim);
+  checkRatchet(dim);
+  return true;
+}
+function recomputeStat(dim){
+  const arr=dimScores(dim).slice(-WINDOW);
+  if(arr.length)P.stats[dim]=+(arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(2);
+}
+function checkRatchet(dim){
+  if(!P.baseline)return;
+  const arr=dimScores(dim);
+  if(arr.length<RATCHET_N)return;
+  const lastN=arr.slice(-RATCHET_N);
+  const base=P.baseline[dim];
+  if(lastN.every(v=>v>base)){
+    const avgN=lastN.reduce((a,b)=>a+b,0)/RATCHET_N;
+    if(avgN>=base+RATCHET_MIN){
+      const nb=+avgN.toFixed(1);
+      P.ratchets.unshift({date:new Date().toISOString(),day:P.day,dim,from:+base.toFixed(1),to:nb});
+      P.baseline[dim]=nb;
+      setTimeout(()=>toast(`⬆ ${dim.toUpperCase()} BASELINE RAISED ${base.toFixed(1)} → ${nb.toFixed(1)}`,'gold'),300);
+    }
+  }
+}
+function trendOf(dim){
+  const arr=dimScores(dim);
+  if(arr.length<2)return{dir:0,label:'new'};
+  const recent=arr.slice(-3),prior=arr.slice(-6,-3);
+  const ra=recent.reduce((a,b)=>a+b,0)/recent.length;
+  const pa=prior.length?prior.reduce((a,b)=>a+b,0)/prior.length:arr[0];
+  const d=ra-pa;
+  if(d>0.3)return{dir:1,label:'improving'};
+  if(d<-0.3)return{dir:-1,label:'declining'};
+  return{dir:0,label:'stable'};
+}
+function isRegressing(dim){
+  if(!P.baseline)return false;
+  const arr=dimScores(dim);
+  return arr.length>=3 && arr.slice(-3).every(v=>v<P.baseline[dim]);
+}
+
+// ===== NAV =====
+function nav(screen){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const el=$('screen-'+screen);if(el)el.classList.add('active');
+  document.querySelectorAll('.navitem').forEach(n=>n.classList.toggle('active',n.dataset.screen===screen));
+  const t=TITLES[screen]||['',''];$('pg-title').textContent=t[0];$('pg-sub').textContent=t[1];
+  try{
+    if(screen==='dash')renderDash();
+    else if(screen==='brief')renderBrief();
+    else if(screen==='log')renderLog();
+    else if(screen==='metrics')renderMetrics();
+    else if(screen==='character')renderCharacter();
+    else if(screen==='launcher')renderLauncher();
+    else if(screen==='baseline')renderBaseline();
+    else if(screen==='settings')renderSettings();
+  }catch(e){toast('Render error: '+e.message,true);console.error(e)}
+  try{window.scrollTo(0,0)}catch(e){}
+}
+
+// ===== ONBOARDING =====
+function createProfile(){
+  const name=$('onboard-name').value.trim();
+  P=defaultProfile(name);save();
+  $('boot').style.display='none';$('app').style.display='grid';
+  updateChrome();nav('baseline');toast('Operator initialized — set your baseline');
+}
+
+// ===== CHROME =====
+function updateChrome(){
+  if(!P)return;
+  $('tb-name').textContent=P.name;
+  const d=new Date();const days=['SUN','MON','TUE','WED','THU','FRI','SAT'];const M=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  $('tb-date').textContent=`${days[d.getDay()]} ${d.getDate()} ${M[d.getMonth()]} ${d.getFullYear()}`;
+  $('side-streak').textContent=`🔥 ${P.streak||0} DAY STREAK`;
+}
+
+// ===== DASHBOARD =====
+function renderDash(){
+  $('d-rank').textContent=getRank(P.xp).title;
+  $('d-day').textContent=P.day;$('d-logged').textContent=P.log.length;$('d-points').textContent=P.scores.length;
+  const host=$('d-today');
+  if(P.currentBrief){
+    const b=P.currentBrief;const answered=b.answer&&b.answer.trim();
+    host.innerHTML=`<div class="chips" style="margin-bottom:12px"><span class="chip cyan">${esc(b.domain)}</span><span class="chip">${esc(b.difficulty||'Medium')}</span></div>
+      <div style="font-weight:600;font-size:15px;line-height:1.4;margin-bottom:14px">${esc(b.headline)}</div>
+      <div class="chip ${answered?'green':'orange'}" style="margin-bottom:14px">${answered?'✓ ANSWERED':'⊘ NOT ANSWERED YET'}</div><br>
+      <button class="btn btn-primary" onclick="nav('brief')">OPEN TODAY\u2019S BRIEF →</button>`;
+  }else{
+    host.innerHTML=`<div style="color:var(--text-dim);font-size:14px;margin-bottom:14px;line-height:1.6">No brief generated for Day ${P.day} yet.</div>
+      <button class="btn btn-primary" onclick="nav('brief')">GENERATE TODAY\u2019S BRIEF →</button>`;
+  }
+  const dh=$('d-deltas');
+  if(!P.baseline){dh.innerHTML='<div style="color:var(--text-faint);font-size:13px">Set baseline to start tracking →</div>';return}
+  dh.innerHTML=STATS.map(s=>{
+    const cur=P.stats[s.key],base=P.baseline[s.key],d=+(cur-base).toFixed(1);
+    const cls=d>0?'delta-pos':d<0?'delta-neg':'delta-zero';const sign=d>0?'+':'';
+    return `<div class="stat-row"><div class="stat-name">${s.name}</div><div class="stat-track"><div class="stat-fill" style="width:${cur*10}%;background:${statColor(cur)}"></div></div><div class="stat-val mono ${cls}">${sign}${d.toFixed(1)}</div></div>`;
+  }).join('');
+}
+
+// ===== BRIEF =====
+function renderBrief(){
+  const host=$('brief-content');
+  if(!P.currentBrief){
+    host.innerHTML=`
+    <div class="panel">
+      <div class="panel-h">DAY ${P.day} — GENERATE BRIEF</div>
+      <div class="step"><div class="step-n">1</div><div class="step-t"><b>Generate the prompt</b>, copy it.</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t">Paste into <b>Claude</b> → it returns a JSON case study.</div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-t"><b>Store Brief</b>, paste the JSON back, and today's case appears here.</div></div>
+      <div class="grid2" style="margin:18px 0">
+        <div><label class="fl">DOMAIN</label><select id="force-domain">
+          <option value="">Auto (avoid recent)</option><option>Business &amp; Strategy</option><option>Urban Planning</option><option>Geopolitics</option>
+          <option>Science &amp; Tech</option><option>Crisis Management</option><option>Healthcare</option><option>Economics</option>
+          <option>Culture &amp; Society</option><option>Environment</option><option>Sports &amp; Performance</option><option>History</option><option>Infrastructure</option></select></div>
+        <div><label class="fl">DIFFICULTY</label><select id="force-diff"><option value="adaptive">Adaptive (recommended)</option><option>Easy</option><option>Medium</option><option>Hard</option><option>Expert</option></select></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="genBrief()">⚡ GENERATE PROMPT</button>
+        <button class="btn btn-green" onclick="openModal('modal-paste')">↓ STORE BRIEF (PASTE JSON)</button>
+      </div>
+      <div id="brief-prompt-wrap" style="display:none;margin-top:16px">
+        <div class="promptbox" id="brief-prompt"></div>
+        <div class="btn-row" style="margin-top:10px"><button class="btn" onclick="copyEl('brief-prompt','Prompt copied — paste in Claude')">⧉ COPY PROMPT</button></div>
+      </div>
+    </div>`;
+    return;
+  }
+  const b=P.currentBrief;const sc=b.scores;
+  host.innerHTML=`
+  <div class="panel">
+    <div class="panel-h">DAY ${P.day} BRIEF · ${esc(b.region||'—')} · ${esc(b.era||'—')}</div>
+    <div class="brief-meta"><span class="chip cyan">${esc(b.domain)}</span><span class="chip purple">${esc(b.difficulty||'Medium')}</span>${b.region?`<span class="chip">${esc(b.region)}</span>`:''}${b.era?`<span class="chip orange">${esc(b.era)}</span>`:''}</div>
+    <div class="brief-headline">${esc(b.headline)}</div>
+    <div class="brief-hook">${esc(b.hook)}</div>
+    <div class="anchor"><div class="anchor-label">⊹ ANCHOR QUESTION</div><div class="anchor-q">${esc(b.anchorQuestion)}</div></div>
+  </div>
+  <div class="panel">
+    <div class="panel-h">YOUR ANSWER</div>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px">Spend ~20 min. What's the core problem, and what would you investigate first? Saved to your Log forever.</p>
+    <textarea id="answer-input" rows="8" placeholder="The core problem is… The first thing I'd investigate is…">${esc(b.answer||'')}</textarea>
+    <div class="btn-row" style="margin-top:14px"><button class="btn" onclick="saveAnswer()">💾 SAVE ANSWER</button></div>
+  </div>
+  <div class="panel">
+    <div class="panel-h">GRADE THIS BRIEF → 3 STATS</div>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.6">Paste your answer to Claude, ask it to score these three (1-10), enter them here. ${sc?'<span class="chip green">✓ already logged this brief</span>':''}</p>
+    <div class="grid2">
+      <div><label class="fl">LEVER FOUND → PATTERN LIBRARY</label><input type="number" min="1" max="10" step="0.5" id="bs-pl" value="${sc?sc.pl:''}"></div>
+      <div><label class="fl">BRIDGE → CROSS-DOMAIN BRIDGING</label><input type="number" min="1" max="10" step="0.5" id="bs-cb" value="${sc?sc.cb:''}"></div>
+      <div><label class="fl">PREMISE CHECK → ASSUMPTION SURFACING</label><input type="number" min="1" max="10" step="0.5" id="bs-as" value="${sc?sc.as:''}"></div>
+    </div>
+    <button class="btn btn-green btn-full" style="margin-top:14px" onclick="logBriefScore()">✓ LOG BRIEF SCORE</button>
+  </div>
+  <div class="panel">
+    <div class="btn-row">
+      <button class="btn btn-green" onclick="completeDay()">✓ COMPLETE DAY ${P.day} → ARCHIVE & ADVANCE</button>
+      <button class="btn btn-ghost btn-danger" onclick="discardBrief()">DISCARD BRIEF</button>
+    </div>
+  </div>`;
+}
+function genBrief(){
+  const domain=$('force-domain').value,diff=$('force-diff').value;
+  const rd=(P.antiPattern.domains||[]).slice(-14),rr=(P.antiPattern.regions||[]).slice(-7),re=(P.antiPattern.eras||[]).slice(-7);
+  const date=todayStr();
+  const diffLine=diff==='adaptive'?`Medium-leaning (operator is on day ${P.day}, stats avg ${avgStat().toFixed(1)}/10 — calibrate accordingly)`:diff;
+  const prompt=`You are generating a daily brief for COGOS, a cognitive training system. Generate a compelling case study brief following these exact specifications:
+
+ANTI-PATTERN CONSTRAINTS (do NOT use these in the brief):
+- Recently used domains: ${rd.join(', ')||'none'}
+- Recently used regions: ${rr.join(', ')||'none'}
+- Recently used eras: ${re.join(', ')||'none'}
+
+${domain?`FORCED DOMAIN: ${domain}`:'DOMAIN: Pick something NOT in the recently used list above'}
+DIFFICULTY: ${diffLine}
+
+The brief must be a REAL story — a real problem that was actually solved or is being solved. It should NOT be a famous overused example (no SpaceX, no Apple iPhone launch, no Amazon AWS). Find something surprising, specific, and instructive.
+
+FOR DATE: ${date}
+
+Respond ONLY with a valid JSON object in exactly this format (no markdown, no explanation, just the JSON):
+{
+  "forDate": "${date}",
+  "domain": "exact domain name",
+  "region": "geographic region",
+  "era": "Historical/Recent/Current",
+  "difficulty": "Easy/Medium/Hard/Expert",
+  "headline": "A punchy, specific 10-15 word headline describing the problem or situation",
+  "hook": "2-3 sentences that set the scene. What happened, who was involved, what was at stake. Make it visceral and specific — real numbers, real names, real consequences.",
+  "anchorQuestion": "A single question that opens the case. Specific enough to have a concrete direction but open enough to generate 20 minutes of thinking. Start with 'How', 'Why', or 'What made'."
+}`;
+  $('brief-prompt').textContent=prompt;$('brief-prompt-wrap').style.display='block';
+  copyText(prompt,'Prompt generated & copied — paste in Claude');
+}
+function extractJSON(text){let t=(text||'').trim().replace(/^```(?:json)?/i,'').replace(/```$/,'').trim();const a=t.indexOf('{'),z=t.lastIndexOf('}');if(a>=0&&z>a)t=t.slice(a,z+1);return JSON.parse(t)}
+function parseBrief(){
+  const raw=$('paste-input').value;if(!raw.trim()){toast('Paste the JSON first',true);return}
+  let obj;try{obj=extractJSON(raw)}catch(e){toast('Could not read JSON — check it copied fully',true);return}
+  if(!obj.headline||!obj.anchorQuestion||!obj.domain){toast('Missing fields (need domain, headline, anchorQuestion)',true);return}
+  P.currentBrief={domain:obj.domain||'—',region:obj.region||'',era:obj.era||'',difficulty:obj.difficulty||'Medium',headline:obj.headline,hook:obj.hook||'',anchorQuestion:obj.anchorQuestion,forDate:obj.forDate||todayStr(),answer:'',scores:null,storedAt:new Date().toISOString()};
+  save();$('paste-input').value='';closeModal('modal-paste');toast('Brief stored ✓');renderBrief();
+}
+function saveAnswer(){if(!P.currentBrief)return;P.currentBrief.answer=$('answer-input').value;save();toast('Answer saved')}
+function logBriefScore(){
+  if(!P.currentBrief)return;
+  if(!P.baseline){toast('Set your baseline first',true);return}
+  const pl=+$('bs-pl').value,cb=+$('bs-cb').value,as=+$('bs-as').value;
+  if(![pl,cb,as].every(v=>v>=1&&v<=10)){toast('Enter all three scores (1-10)',true);return}
+  recordScore('pl',pl,'brief');recordScore('cb',cb,'brief');recordScore('as',as,'brief');
+  P.currentBrief.scores={pl,cb,as};
+  P.xp=(P.xp||0)+20;save();
+  toast('Brief graded → PL/CB/AS updated (+20 XP)');renderBrief();
+}
+function discardBrief(){if(!confirm('Discard this brief without logging? Your answer will be lost.'))return;P.currentBrief=null;save();renderBrief();toast('Brief discarded')}
+function completeDay(){
+  if(!P.currentBrief)return;
+  const ans=$('answer-input')?$('answer-input').value:(P.currentBrief.answer||'');
+  if(!ans.trim()&&!confirm('No answer written. Archive this day anyway?'))return;
+  const b=P.currentBrief;b.answer=ans;
+  P.log.unshift({day:P.day,date:new Date().toISOString(),domain:b.domain,region:b.region,era:b.era,difficulty:b.difficulty,headline:b.headline,hook:b.hook,anchorQuestion:b.anchorQuestion,answer:ans,scores:b.scores||null});
+  if(b.domain)P.antiPattern.domains.push(b.domain);
+  if(b.region)P.antiPattern.regions.push(b.region);
+  if(b.era)P.antiPattern.eras.push(b.era);
+  P.lastCompleted=new Date().toISOString();P.streak=(P.streak||0)+1;P.xp=(P.xp||0)+100;P.day=(P.day||1)+1;P.currentBrief=null;
+  save();updateChrome();toast(`Day archived → +100 XP`);nav('log');
+}
+
+// ===== LOG =====
+function renderLog(){
+  const host=$('log-list');const q=($('log-search')?.value||'').toLowerCase();
+  let items=P.log||[];
+  if(q)items=items.filter(e=>(e.domain+' '+e.headline+' '+e.anchorQuestion+' '+(e.answer||'')).toLowerCase().includes(q));
+  if(!items.length){host.innerHTML=`<div class="empty"><div class="empty-ic">≡</div><div class="empty-t">${q?'No matching entries':'No briefs logged yet'}</div><div class="empty-s">${q?'Try a different search.':'Complete your first daily brief and it lands here — question, answer, and the grade you got.'}</div>${q?'':'<button class="btn btn-primary" onclick="nav(\'brief\')">GENERATE TODAY\u2019S BRIEF →</button>'}</div>`;return}
+  host.innerHTML=items.map((e,i)=>{
+    const ans=(e.answer||'').trim();
+    const grade=e.scores?`<div class="chips" style="margin-top:10px"><span class="chip cyan">PL ${e.scores.pl}</span><span class="chip orange">CB ${e.scores.cb}</span><span class="chip purple">AS ${e.scores.as}</span></div>`:'';
+    return `<div class="log-item" id="logitem-${i}">
+      <div class="log-head" onclick="toggleLog(${i})"><div class="log-day">DAY ${e.day}</div><div class="log-q">${esc(e.anchorQuestion)}</div><div class="log-dom">${esc(e.domain)}</div><div class="log-caret">▸</div></div>
+      <div class="log-body">
+        <div class="chips" style="margin-top:14px"><span class="chip">${esc(fmtDate(e.date))}</span><span class="chip cyan">${esc(e.domain)}</span>${e.region?`<span class="chip">${esc(e.region)}</span>`:''}${e.era?`<span class="chip orange">${esc(e.era)}</span>`:''}</div>
+        <div class="log-section"><div class="log-section-l">HEADLINE</div><div style="font-weight:600">${esc(e.headline)}</div></div>
+        ${e.hook?`<div class="log-section"><div class="log-section-l">CASE</div><div style="font-size:14px;color:var(--text-dim);line-height:1.6">${esc(e.hook)}</div></div>`:''}
+        <div class="log-section"><div class="log-section-l">ANCHOR QUESTION</div><div style="font-size:15px">${esc(e.anchorQuestion)}</div></div>
+        <div class="log-section"><div class="log-section-l">YOUR ANSWER</div><div class="log-answer ${ans?'':'empty'}">${ans?esc(ans):'(no answer recorded)'}</div></div>
+        ${grade?`<div class="log-section"><div class="log-section-l">GRADE</div>${grade}</div>`:''}
+      </div></div>`;
+  }).join('');
+}
+function toggleLog(i){$('logitem-'+i)?.classList.toggle('open')}
+
+// ===== GAUNTLET =====
+function genGauntlet(){
+  const prompt=`You are running a QUESTION GAUNTLET for COGOS. Present me 5 complex, multi-layered real-world problems, ONE AT A TIME. For each, I have 2 minutes to reply with my single best FOLLOW-UP QUESTION — not an answer, a question that cuts to the core.
+
+After all 5, score each question 1-10 on: Directionality, Specificity, Assumption Tested, Insight Potential. Give me the four averages. Be calibrated — a 7 is genuinely good, a 5 average. Do not inflate.
+
+Begin with Problem 1.`;
+  $('gauntlet-prompt').textContent=prompt;$('gauntlet-prompt-wrap').style.display='block';copyText(prompt,'Gauntlet prompt copied');
+}
+function logGauntlet(){
+  if(!P.baseline){toast('Set your baseline first',true);return}
+  const v=[+$('g-dir').value,+$('g-spec').value,+$('g-assum').value,+$('g-ins').value];
+  if(!v.every(x=>x>=1&&x<=10)){toast('Enter all four scores (1-10)',true);return}
+  const avg=+(v.reduce((a,b)=>a+b,0)/4).toFixed(2);
+  recordScore('qp',avg,'gauntlet');
+  P.xp=(P.xp||0)+30;save();
+  ['g-dir','g-spec','g-assum','g-ins'].forEach(id=>$(id).value='');
+  toast(`Gauntlet logged (avg ${avg.toFixed(1)}) → Question Precision +30 XP`);
+}
+
+// ===== METRICS =====
+function logPressure(){
+  if(!P.baseline){toast('Set your baseline first',true);return}
+  const st=+$('p-struct').value,cf=+$('p-conf').value,an=+$('p-anal').value,as=+$('p-assum').value;
+  if(![st,cf,an,as].every(v=>v>=1&&v<=10)){toast('Enter all four scores (1-10)',true);return}
+  const pc=+((st+cf)/2).toFixed(2);
+  recordScore('pc',pc,'pressure');recordScore('cb',an,'pressure');recordScore('as',as,'pressure');
+  P.xp=(P.xp||0)+25;save();
+  ['p-struct','p-conf','p-anal','p-assum'].forEach(id=>$(id).value='');
+  toast('Pressure brief logged → PC/CB/AS (+25 XP)');renderMetrics();
+}
+function logManual(){
+  if(!P.baseline){toast('Set your baseline first',true);return}
+  const dim=$('m-dim').value,val=+$('m-val').value,note=$('m-note').value.trim();
+  if(!(val>=1&&val<=10)){toast('Enter a score (1-10)',true);return}
+  recordScore(dim,val,'manual',note);P.xp=(P.xp||0)+5;save();
+  $('m-val').value='';$('m-note').value='';
+  toast(`${dim.toUpperCase()} logged (+5 XP)`);renderMetrics();
+}
+function deltaMeter(delta){
+  const max=3,pct=Math.max(-1,Math.min(1,delta/max)),w=Math.abs(pct)*50;
+  const left=pct>=0?50:50-w;const color=delta>0.05?'var(--green)':delta<-0.05?'var(--red)':'var(--text-faint)';
+  return `<div class="meter"><div class="meter-fill" style="left:${left}%;width:${w}%;background:${color}"></div><div class="meter-center"></div></div>`;
+}
+function spark(values){
+  if(values.length<2)return'<span class="mono" style="font-size:10px;color:var(--text-faint)">need 2+ points</span>';
+  const w=90,h=24,min=0,max=10;
+  const pts=values.slice(-14).map((v,i,a)=>{const x=a.length>1?i/(a.length-1)*w:0;const y=h-((v-min)/(max-min))*h;return x.toFixed(1)+','+Math.max(1,Math.min(h-1,y)).toFixed(1)}).join(' ');
+  return `<svg class="sparksvg" width="${w}" height="${h}"><polyline points="${pts}" fill="none" stroke="var(--cyan)" stroke-width="1.5"/></svg>`;
+}
+function renderMetrics(){
+  const host=$('metrics-list');
+  if(!P.baseline){host.innerHTML='<div class="empty"><div class="empty-ic">▰</div><div class="empty-t">No baseline yet</div><div class="empty-s">Set your baseline, then every graded score moves these meters.</div><button class="btn btn-primary" onclick="nav(\'baseline\')">SET BASELINE →</button></div>';$('ratchet-list').innerHTML='';return}
+  host.innerHTML=STATS.map(s=>{
+    const cur=P.stats[s.key],base=P.baseline[s.key],orig=P.origin[s.key];
+    const d=+(cur-base).toFixed(1),gain=+(cur-orig).toFixed(1),n=dimScores(s.key).length;
+    const tr=trendOf(s.key),reg=isRegressing(s.key);
+    const dcls=d>0?'delta-pos':d<0?'delta-neg':'delta-zero',dsign=d>0?'+':'';
+    const gcls=gain>0?'delta-pos':gain<0?'delta-neg':'delta-zero',gsign=gain>0?'+':'';
+    const arrow=tr.dir>0?'<span class="trend-up">▲</span>':tr.dir<0?'<span class="trend-down">▼</span>':'<span class="trend-flat">▬</span>';
+    return `<div class="metric ${reg?'flag':''}">
+      <div class="metric-top"><span class="metric-name">${s.name}${reg?' <span class="chip red" style="padding:2px 7px">REGRESSION</span>':''}</span><span class="metric-now" style="color:${statColor(cur)}">${cur.toFixed(1)}</span></div>
+      <div class="metric-sub">current rating · rolling avg of last ${Math.min(WINDOW,n)||0}</div>
+      ${deltaMeter(d)}
+      <div class="metric-foot">
+        <div class="metric-stats"><span>Δ base <b class="${dcls}">${dsign}${d.toFixed(1)}</b></span><span>base <b>${base.toFixed(1)}</b></span><span>origin <b>${orig.toFixed(1)}</b></span><span>since start <b class="${gcls}">${gsign}${gain.toFixed(1)}</b></span><span>n=<b>${n}</b></span><span>${arrow} ${tr.label}</span></div>
+        <div>${spark(dimScores(s.key))}</div>
+      </div></div>`;
+  }).join('');
+  const rl=$('ratchet-list');
+  if(!P.ratchets.length){rl.innerHTML='<div style="color:var(--text-faint);font-size:13px">No ratchets yet. Score above your baseline 3 sessions running in any dimension and the floor rises.</div>';return}
+  rl.innerHTML=P.ratchets.map(r=>{
+    const name=(STATS.find(s=>s.key===r.dim)||{}).name||r.dim;
+    return `<div class="stat-row"><div class="stat-name" style="width:auto;flex:1">⬆ ${name}</div><div class="mono" style="font-size:12px;color:var(--text-dim)">Day ${r.day}</div><div class="mono" style="font-size:13px;color:var(--green);width:110px;text-align:right">${r.from.toFixed(1)} → ${r.to.toFixed(1)}</div></div>`;
+  }).join('');
+}
+
+// ===== CHARACTER + RADAR =====
+function renderCharacter(){
+  const host=$('c-stats');
+  if(!P.baseline){host.innerHTML='<div style="color:var(--text-faint)">Set your baseline first.</div>';$('radar-host').innerHTML='';}
+  else{
+    host.innerHTML=STATS.map(s=>{const v=P.stats[s.key],g=+(v-P.origin[s.key]).toFixed(1);const gc=g>0?'delta-pos':g<0?'delta-neg':'delta-zero';const gs=g>0?'+':'';return `<div class="stat-row"><div class="stat-name">${s.name}</div><div class="stat-track"><div class="stat-fill" style="width:${v*10}%;background:${statColor(v)}"></div></div><div class="stat-val mono" style="color:${statColor(v)}">${v.toFixed(1)}</div><div class="mono ${gc}" style="font-size:10px;width:34px;text-align:right">${gs}${g.toFixed(1)}</div></div>`}).join('');
+    $('radar-host').innerHTML=radarSVG(230);
+  }
+  const rank=getRank(P.xp),idx=RANKS.indexOf(rank),next=RANKS[idx+1];
+  $('c-level').textContent=rank.lvl;$('c-rank').textContent=rank.title;$('c-xp').textContent=P.xp;
+  $('c-domains').textContent=`${new Set(P.log.map(e=>e.domain)).size} / 12`;
+  if(next){const span=next.xp-rank.xp,got=P.xp-rank.xp;$('c-xpbar').style.width=Math.min(100,got/span*100)+'%';$('c-xptxt').textContent=`${got}/${span}`}else{$('c-xpbar').style.width='100%';$('c-xptxt').textContent='MAX'}
+}
+function radarSVG(size){
+  const cx=size/2,cy=size/2,r=size/2-30,n=STATS.length;
+  const pt=(i,rad)=>{const a=-Math.PI/2+i*2*Math.PI/n;return[cx+rad*Math.cos(a),cy+rad*Math.sin(a)]};
+  let rings='';for(let g=1;g<=4;g++){const rr=r*g/4;let p='';for(let i=0;i<n;i++){const[x,y]=pt(i,rr);p+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' '}rings+=`<path d="${p}Z" fill="none" stroke="var(--border)" stroke-width="1"/>`}
+  let axes='',labels='';for(let i=0;i<n;i++){const[x,y]=pt(i,r);axes+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="var(--border)" stroke-width="1"/>`;const[lx,ly]=pt(i,r+16);labels+=`<text x="${lx}" y="${ly}" fill="var(--text-faint)" font-family="var(--fm)" font-size="9" text-anchor="middle" dominant-baseline="middle">${STATS[i].key.toUpperCase()}</text>`}
+  const poly=(getv)=>{let p='';for(let i=0;i<n;i++){const v=getv(i)/10;const[x,y]=pt(i,r*v);p+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' '}return p+'Z'};
+  const origin=poly(i=>P.origin[STATS[i].key]||0);
+  const cur=poly(i=>P.stats[STATS[i].key]||0);
+  let dots='';for(let i=0;i<n;i++){const v=(P.stats[STATS[i].key]||0)/10;const[x,y]=pt(i,r*v);dots+=`<circle cx="${x}" cy="${y}" r="3" fill="var(--cyan)"/>`}
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">${rings}${axes}<path d="${origin}" fill="none" stroke="var(--text-faint)" stroke-width="1.5" stroke-dasharray="4 4"/><path d="${cur}" fill="rgba(0,245,255,.14)" stroke="var(--cyan)" stroke-width="2"/>${dots}${labels}</svg>`;
+}
+
+// ===== LAUNCHER =====
+function renderLauncher(){
+  const s=P.stats;
+  const block=`[COGOS SESSION CONTEXT — paste at the start of a Claude session]
+Operator: ${P.name} · Day ${P.day} · Streak ${P.streak}
+Current rating (1-10): Pattern Library ${s.pl} · Question Precision ${s.qp} · Pressure Clarity ${s.pc} · Cross-Domain Bridging ${s.cb} · Assumption Surfacing ${s.as} (avg ${avgStat().toFixed(1)})
+
+SCORING CALIBRATION (keep consistent across sessions):
+- A 7 is genuinely good; a 5 is average. Do not inflate.
+- 7 in Question Precision = a SINGLE scalpel question that collapsed the premise.
+- 7 in Cross-Domain Bridging = explicitly mapped the problem to the same structural shape in a different field.
+- 7 in Pattern Library = named the non-obvious lever, not the surface.
+- 3-4 = surface read, missed the lever, or doubled down on a failed assumption.
+
+When you grade me, output a 1-10 per relevant dimension so I can log it. Train hardest where I'm weakest. Be unsentimental and concrete.`;
+  $('context-block').textContent=block;
+}
+
+// ===== BASELINE =====
+function renderBaseline(){
+  $('baseline-status').textContent=P.baseline?'✓ Baseline set — re-entering overwrites origin + baseline (score history kept).':'⊘ Not set yet.';
+  if(P.baseline){['pl','qp','pc','cb','as'].forEach(k=>{$('b-'+k).value=P.origin[k]})}
+}
+function genBaseline(){
+  const prompt=`You are running the COGOS BASELINE DIAGNOSTIC for ${P.name}. A one-time 3-phase assessment that sets my anchor stats.
+
+PHASE 1 — PATTERN SCAN: 10 case studies, one at a time, from 10 domains. For each, a 3-sentence real-world setup, then ask the core problem and what I'd investigate first. Score Pattern Recognition 1-10. Don't reveal until all 10 done.
+PHASE 2 — QUESTION GAUNTLET: 5 problems; my single best follow-up question each. Score Directionality, Specificity, Assumption Tested, Insight Potential (1-10).
+PHASE 3 — PRESSURE BRIEF: 3 scenarios; I explain my thinking to a skeptic. Score Structure, Analogy Use, Assumption Surfacing, Claim Confidence (1-10).
+
+At the end give 5 stats (1-10): Pattern Library, Question Precision, Pressure Clarity, Cross-Domain Bridging, Assumption Surfacing. Calibrated — 7 is genuinely good, 5 average. Don't inflate.
+
+Begin Phase 1, Case 1.`;
+  $('baseline-prompt').textContent=prompt;$('baseline-prompt-wrap').style.display='block';copyText(prompt,'Baseline prompt copied');
+}
+function setBaseline(){
+  const keys=['pl','qp','pc','cb','as'],out={};
+  for(const k of keys){const v=+$('b-'+k).value;if(!(v>=0&&v<=10)){toast('Enter all five scores (0-10)',true);return}out[k]=v}
+  P.origin={...out};P.baseline={...out};P.stats={...out};
+  save();updateChrome();toast('Baseline set ✓ — measurement initialized');nav('metrics');
+}
+
+// ===== SETTINGS =====
+function renderSettings(){$('set-name').value=P.name}
+function saveName(){const n=$('set-name').value.trim();if(!n){toast('Name cannot be empty',true);return}P.name=n.toUpperCase();save();updateChrome();toast('Name saved')}
+function exportProfile(){const blob=new Blob([JSON.stringify(P,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`cogos-${P.name.toLowerCase()}-day${P.day}.json`;a.click();URL.revokeObjectURL(url);toast('Backup exported')}
+function importProfile(){const inp=document.createElement('input');inp.type='file';inp.accept='.json';inp.onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{try{const o=JSON.parse(ev.target.result);if(!o.stats||!o.name)throw 0;P=o;migrate();save();updateChrome();nav('dash');toast('Profile imported')}catch{toast('Invalid backup file',true)}};r.readAsText(f)};inp.click()}
+function resetAll(){if(confirm('Permanently delete ALL progress? This cannot be undone.')){localStorage.removeItem(KEY);location.reload()}}
+
+// ===== MIGRATION + BOOT =====
+function migrate(){
+  P.log=P.log||[];P.scores=P.scores||[];P.ratchets=P.ratchets||[];
+  P.antiPattern=P.antiPattern||{domains:[],regions:[],eras:[]};
+  P.stats=P.stats||{pl:0,qp:0,pc:0,cb:0,as:0};
+  if(P.baseline&&!P.origin)P.origin={...P.baseline};
+  if(typeof P.xp!=='number')P.xp=0;if(typeof P.day!=='number')P.day=1;if(typeof P.streak!=='number')P.streak=0;
+}
+function boot(){
+  P=load();
+  if(!P){$('boot').style.display='block';$('app').style.display='none';return}
+  migrate();
+  $('boot').style.display='none';$('app').style.display='grid';
+  updateChrome();nav('dash');
+}
+window.addEventListener('error',e=>{toast('Error: '+e.message,true)});
+document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open')}));
+window.addEventListener('load',boot);
+</script>
+</body>
+</html>
