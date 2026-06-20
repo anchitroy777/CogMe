@@ -161,6 +161,84 @@
   .toast.err{background:var(--red);box-shadow:0 8px 30px rgba(255,51,102,.4);color:#fff}
   .toast.gold{background:var(--yellow);box-shadow:0 8px 30px rgba(255,215,0,.4)}
 
+  /* DOSSIER MODE */
+  .dossier-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .dossier-headline{font-family:var(--fd);font-size:20px;font-weight:600;line-height:1.35;margin-bottom:12px;color:var(--red)}
+  .dossier-setup{font-size:14.5px;color:var(--text-dim);line-height:1.7;margin-bottom:18px;border-left:2px solid var(--red);padding-left:14px}
+  .metrics-table{display:grid;grid-template-columns:1fr auto;gap:1px;background:var(--border);border-radius:9px;overflow:hidden;border:1px solid var(--border)}
+  .metric-row-label{background:var(--bg2);padding:11px 14px;font-size:13px;color:var(--text-dim)}
+  .metric-row-value{background:var(--bg2);padding:11px 14px;font-family:var(--fm);font-size:13px;font-weight:700;color:var(--text);text-align:right;white-space:nowrap}
+  .narrative-card{background:var(--bg2);border:1px solid var(--border-bright);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+  .narrative-label{font-family:var(--fm);font-size:10px;letter-spacing:1.5px;color:var(--red);margin-bottom:6px}
+  .narrative-text{font-size:13.5px;line-height:1.65;color:var(--text)}
+  .challenge-box{background:linear-gradient(135deg,rgba(255,51,102,.08),rgba(139,92,246,.06));border:1px solid rgba(255,51,102,.25);border-radius:11px;padding:18px}
+  .challenge-label{font-family:var(--fm);font-size:10px;letter-spacing:2px;color:var(--red);margin-bottom:8px}
+  .challenge-q{font-size:16px;font-weight:500;line-height:1.5}
+  .dossier-cadence{font-family:var(--fm);font-size:10px;color:var(--text-faint);margin-top:4px}
+
+  /* BOSS FIGHTS */
+  .boss-cadence{font-family:var(--fm);font-size:10px;color:var(--text-faint);margin-top:4px}
+  .boss-type-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:16px}
+  .boss-type-card{background:var(--bg2);border:1px solid var(--border-bright);border-radius:12px;padding:18px;cursor:pointer;transition:.15s;text-align:left}
+  .boss-type-card:hover{transform:translateY(-2px);border-color:var(--gold,#ffd700)}
+  .boss-type-ic{font-size:22px;margin-bottom:8px}
+  .boss-type-name{font-family:var(--fm);font-size:12px;font-weight:700;letter-spacing:1px;margin-bottom:6px}
+  .boss-type-desc{font-size:12.5px;color:var(--text-dim);line-height:1.6}
+  .boss-type-meta{font-family:var(--fm);font-size:9.5px;color:var(--text-faint);margin-top:10px}
+  .boss-banner{background:linear-gradient(135deg,rgba(255,215,0,.1),rgba(139,92,246,.08));border:1px solid rgba(255,215,0,.3);border-radius:11px;padding:16px 18px;margin-bottom:16px}
+  .boss-banner-t{font-family:var(--fm);font-size:11px;letter-spacing:1.5px;color:var(--yellow);margin-bottom:4px}
+  .boss-source-card{background:var(--bg2);border:1px solid var(--border-bright);border-radius:10px;padding:13px 15px;margin-bottom:9px;border-left:3px solid var(--cyan)}
+  .boss-source-n{font-family:var(--fm);font-size:9.5px;color:var(--text-faint);letter-spacing:1px;margin-bottom:5px}
+  .boss-source-name{font-weight:600;font-size:13.5px;margin-bottom:4px}
+  .boss-source-snip{font-size:12.5px;color:var(--text-dim);line-height:1.55}
+  .boss-timer{font-family:var(--fd);font-size:34px;font-weight:700;text-align:center;padding:14px;letter-spacing:2px}
+  .boss-timer.warn{color:var(--orange)}.boss-timer.crit{color:var(--red)}.boss-timer.ok{color:var(--cyan)}
+  .boss-pending-card{background:var(--bg2);border:1px solid rgba(255,215,0,.35);border-radius:11px;padding:15px 17px;margin-bottom:12px}
+  .boss-pending-meta{font-family:var(--fm);font-size:10px;color:var(--text-faint);margin-bottom:8px}
+  .boss-grade-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+  /* PATTERN TAGGING */
+  .tag-search-wrap{position:relative}
+  .tag-suggestions{position:absolute;top:100%;left:0;right:0;background:var(--panel2);border:1px solid var(--border-bright);border-radius:9px;margin-top:4px;max-height:220px;overflow-y:auto;z-index:50;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+  .tag-suggestion{padding:10px 13px;cursor:pointer;border-bottom:1px solid var(--border);font-size:13px}
+  .tag-suggestion:last-child{border-bottom:none}
+  .tag-suggestion:hover{background:var(--bg2)}
+  .tag-suggestion .tsg-name{font-weight:600;color:var(--text)}
+  .tag-suggestion .tsg-strip{font-size:11px;color:var(--text-faint);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .tag-chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+  .tag-chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--fm);font-size:11px;padding:6px 8px 6px 12px;border-radius:16px;border:1px solid var(--border-bright)}
+  .tag-chip-x{cursor:pointer;opacity:.6;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px}
+  .tag-chip-x:hover{opacity:1;background:rgba(255,51,102,.2)}
+
+  /* PATTERN HEATMAP */
+  .heat-summary{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+  .heat-cat-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+  .heat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+  .heat-cell{border-radius:9px;padding:10px 11px;cursor:pointer;transition:.15s;border:1px solid var(--border);min-height:64px;display:flex;flex-direction:column;justify-content:space-between}
+  .heat-cell:hover{transform:translateY(-2px)}
+  .heat-cell-name{font-size:10.5px;font-weight:600;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+  .heat-cell-count{font-family:var(--fm);font-size:9px;opacity:.75;margin-top:6px}
+  .heat-detail{margin-top:16px}
+  .rev-stats{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+  .rev-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:12px}
+  .rev-card.due{border-color:rgba(255,107,53,.35)}
+  .rev-type{font-family:var(--fm);font-size:9px;letter-spacing:1.5px;color:var(--text-faint);margin-bottom:8px}
+  .rev-type.pattern{color:var(--purple)}.rev-type.principle{color:var(--cyan)}.rev-type.reasoner{color:var(--orange)}
+  .rev-prompt{font-size:15px;line-height:1.6;color:var(--text);margin-bottom:14px}
+  .rev-answer{background:#06060d;border:1px solid var(--border-bright);border-radius:9px;padding:14px 16px;margin-bottom:14px;font-size:14px;line-height:1.7;color:var(--text-dim);display:none}
+  .rev-answer.shown{display:block;animation:fade .25s}
+  .rev-grade-row{display:none;gap:8px;flex-wrap:wrap}
+  .rev-grade-row.shown{display:flex}
+  .rev-grade-btn{flex:1;min-width:90px;padding:10px;border-radius:8px;font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:.5px;border:1px solid var(--border-bright);cursor:pointer;background:var(--panel2);color:var(--text)}
+  .rev-grade-btn.forgot{border-color:rgba(255,51,102,.4);color:var(--red)}
+  .rev-grade-btn.forgot:hover{background:rgba(255,51,102,.12)}
+  .rev-grade-btn.hard{border-color:rgba(255,107,53,.4);color:var(--orange)}
+  .rev-grade-btn.hard:hover{background:rgba(255,107,53,.12)}
+  .rev-grade-btn.good{border-color:rgba(0,255,136,.4);color:var(--green)}
+  .rev-grade-btn.good:hover{background:rgba(0,255,136,.12)}
+  .rev-grade-btn.easy{border-color:rgba(0,245,255,.4);color:var(--cyan)}
+  .rev-grade-btn.easy:hover{background:rgba(0,245,255,.12)}
+  .rev-box-indicator{font-family:var(--fm);font-size:9px;color:var(--text-faint);margin-top:10px}
   .boot{min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px}
   .boot-logo{font-family:var(--fd);font-weight:900;font-size:54px;letter-spacing:8px;color:var(--cyan);text-shadow:0 0 40px var(--cyan-dim)}
   .boot-desc{max-width:460px;color:var(--text-dim);font-size:15px;line-height:1.7;margin:14px 0 26px}
@@ -199,12 +277,16 @@
     <div class="navgroup">
       <div class="navgroup-label">DAILY</div>
       <button class="navitem" data-screen="brief" onclick="nav('brief')"><span class="ic">◎</span> Today's Brief</button>
+      <button class="navitem" data-screen="dossier" onclick="nav('dossier')"><span class="ic">▥</span> Dossier</button>
+      <button class="navitem" data-screen="bossfight" onclick="nav('bossfight')"><span class="ic">⚔</span> Boss Fights <span class="mono" id="nav-pending-badge" style="margin-left:auto;font-size:9px;color:var(--yellow)"></span></button>
       <button class="navitem" data-screen="gauntlet" onclick="nav('gauntlet')"><span class="ic">◆</span> Gauntlet</button>
+      <button class="navitem" data-screen="retrieval" onclick="nav('retrieval')"><span class="ic">⟲</span> Retrieval <span class="mono" id="nav-due-badge" style="margin-left:auto;font-size:9px;color:var(--orange)"></span></button>
       <button class="navitem" data-screen="log" onclick="nav('log')"><span class="ic">≡</span> Brief Log</button>
     </div>
     <div class="navgroup">
       <div class="navgroup-label">MEASUREMENT</div>
       <button class="navitem" data-screen="metrics" onclick="nav('metrics')"><span class="ic">▰</span> Metrics &amp; Delta</button>
+      <button class="navitem" data-screen="patterns" onclick="nav('patterns')"><span class="ic">▦</span> Pattern Coverage</button>
       <button class="navitem" data-screen="character" onclick="nav('character')"><span class="ic">◈</span> Character</button>
       <button class="navitem" data-screen="dash" onclick="nav('dash')"><span class="ic">⬡</span> Dashboard</button>
     </div>
@@ -242,6 +324,12 @@
     <!-- BRIEF -->
     <section class="screen" id="screen-brief"><div id="brief-content"></div></section>
 
+    <!-- DOSSIER -->
+    <section class="screen" id="screen-dossier"><div id="dossier-content"></div></section>
+
+    <!-- BOSS FIGHTS -->
+    <section class="screen" id="screen-bossfight"><div id="bossfight-content"></div></section>
+
     <!-- GAUNTLET -->
     <section class="screen" id="screen-gauntlet">
       <div class="panel">
@@ -261,6 +349,37 @@
           </div>
           <button class="btn btn-green btn-full" style="margin-top:14px" onclick="logGauntlet()">✓ LOG → QUESTION PRECISION</button>
         </div>
+      </div>
+    </section>
+
+    <!-- RETRIEVAL -->
+    <section class="screen" id="screen-retrieval">
+      <div class="panel">
+        <div class="panel-h">RETRIEVAL ENGINE — SPACED RECALL</div>
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.7">Forces active recall before showing the answer. Forgot resets the interval, Good/Easy push it further out. This is the fix for forgetting — material only sticks if you're forced to retrieve it, not just re-read it. Seed the 80-pattern library and the 29-mind Reasoner Archive below to build your queue.</p>
+        <div class="rev-stats">
+          <div class="kpi"><div class="kpi-label">DUE TODAY</div><div class="kpi-val orange" id="rev-due-count">0</div></div>
+          <div class="kpi"><div class="kpi-label">IN QUEUE</div><div class="kpi-val" id="rev-total-count">0</div></div>
+          <div class="kpi"><div class="kpi-label">MASTERED</div><div class="kpi-val green" id="rev-mastered-count">0</div></div>
+        </div>
+        <div class="btn-row" id="rev-seed-row" style="margin-bottom:6px"></div>
+      </div>
+      <div id="rev-list"></div>
+    </section>
+
+    <!-- PATTERNS / HEATMAP -->
+    <section class="screen" id="screen-patterns">
+      <div class="panel">
+        <div class="panel-h">PATTERN COVERAGE — LIVE DEPLOYMENT HEATMAP</div>
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.7">This tracks patterns you've actually <i>tagged on real briefs</i> — not just seen in the repository. Unlit cells are blind spots; the brief generator will start nudging toward them.</p>
+        <div class="heat-summary">
+          <div class="kpi"><div class="kpi-label">DEPLOYED</div><div class="kpi-val green" id="heat-deployed">0 / 80</div></div>
+          <div class="kpi"><div class="kpi-label">NEVER TAGGED</div><div class="kpi-val orange" id="heat-untouched">80</div></div>
+          <div class="kpi"><div class="kpi-label">MOST USED</div><div class="kpi-val" id="heat-most" style="font-size:14px">—</div></div>
+        </div>
+        <div class="heat-cat-filters" id="heat-filters"></div>
+        <div class="heat-grid" id="heat-grid"></div>
+        <div class="heat-detail" id="heat-detail"></div>
       </div>
     </section>
 
@@ -389,10 +508,10 @@
 <div class="overlay" id="modal-paste">
   <div class="modal">
     <span class="modal-x" onclick="closeModal('modal-paste')">✕</span>
-    <div class="modal-h">PASTE CLAUDE'S BRIEF</div>
+    <div class="modal-h" id="modal-paste-title">PASTE CLAUDE'S BRIEF</div>
     <div class="modal-sub">Paste the full JSON Claude returned. Code fences or extra text are fine — the JSON is extracted automatically.</div>
     <textarea id="paste-input" rows="10" placeholder='{ "domain": "...", "headline": "...", ... }'></textarea>
-    <button class="btn btn-primary btn-full" style="margin-top:14px" onclick="parseBrief()">⚡ STORE BRIEF</button>
+    <button class="btn btn-primary btn-full" style="margin-top:14px" onclick="dispatchPaste()" id="modal-paste-btn">⚡ STORE BRIEF</button>
   </div>
 </div>
 
@@ -400,12 +519,96 @@
 
 <script>
 // ===== CONFIG / CONSTANTS =====
+const COMPACT_PATTERNS=[
+{id:1,cat:'info',name:'Goodhart\'s Law',strip:'A measure adopted as a target loses its value as a measure. Agents optimize the number while abandoning the goal the number was tracking.',trigger:'Metric improved but nothing got better. Or: the measured thing can be produced without producing what measurement was supposed to track.'},
+{id:2,cat:'info',name:'Curse of Knowledge',strip:'Once you know something, you cannot accurately model what it is like not to know it. Experts systematically underestimate the gap between their model and a novice\'s starting point.',trigger:'Why don\'t people just understand this? Or: expert explanations consistently less effective than peer explanations of the same content.'},
+{id:3,cat:'info',name:'Tacit Knowledge Loss',strip:'Organizations depend on knowledge that exists in practice rather than documentation. When practitioners leave, the knowledge leaves with them and documented procedures are an inadequate substitute.',trigger:'We have the specs — why can\'t we reproduce it? Or: performance degrades after expert departure despite apparent knowledge transfer.'},
+{id:4,cat:'info',name:'Unknown Unknowns',strip:'Actors can only monitor risks they know to look for. Entire classes of hazard remain invisible because no one thought to define the risk category, let alone collect data on it.',trigger:'We ran every test we could think of. Or: catastrophic failure from a dimension no one was monitoring.'},
+{id:5,cat:'info',name:'Information Cascade',strip:'When individuals observe others\' choices and treat those choices as informative, rational actors stop using their own private information and copy observed behavior, amplifying and locking in early errors.',trigger:'Everyone\'s doing it, so there must be something to it. Or: majority view forming rapidly despite no new underlying information.'},
+{id:6,cat:'info',name:'Epistemic Closure',strip:'A decision-making system receives only confirming information and has no structural mechanism to surface disconfirming signals, producing confident decisions in systematically wrong directions.',trigger:'Our analysis shows no significant risk. Or: the people monitoring risk are the same people whose performance depends on there being no risk.'},
+{id:7,cat:'info',name:'Streetlight Effect',strip:'Actors search for answers where searching is easiest rather than where answers are most likely, producing confident conclusions from systematically incomplete data.',trigger:'We checked everything we have access to. Or: data analyzed is determined by collection convenience rather than analytical relevance.'},
+{id:8,cat:'info',name:'Filter Bubble',strip:'An information system optimizing for engagement amplifies emotionally resonant content, which correlates with confirmation of existing beliefs, progressively narrowing an actor\'s information environment.',trigger:'My feed only shows me things I agree with. Or: two people in the same society have radically different factual views of the same events.'},
+{id:9,cat:'info',name:'Reference Class Neglect',strip:'Humans systematically underweight the historical base rate for projects of a given type and overweight specific details of the current case, producing systematically optimistic forecasts.',trigger:'This time is different because... Or: cost and timeline estimates for a category of projects that consistently prove wildly optimistic.'},
+{id:10,cat:'info',name:'Signal vs Noise Collapse',strip:'When a signal is mixed with noise, actors responding to the mixture as if it were pure signal make interventions that address random variation rather than real underlying changes, producing erratic outcomes.',trigger:'We respond to every change in the number. Or: a system managed more tightly than the measurement precision of the instrument being used to manage it.'},
+{id:11,cat:'incentive',name:'Principal-Agent Problem',strip:'The person making decisions has different interests and information from the person bearing the consequences. Without adequate monitoring or aligned incentives, agents optimize for their own interests at the principal\'s expense.',trigger:'Why would they do that? They\'re supposed to be working for us. Or: consistent underperformance by professionals whose compensation does not depend on outcomes.'},
+{id:12,cat:'incentive',name:'Tragedy of the Commons',strip:'A shared resource is individually rational to overuse but collectively irrational. Without exclusion mechanisms, individually rational actors deplete a shared resource to exhaustion.',trigger:'Everyone\'s using it because it\'s free. Or: a shared resource declining despite each individual user behaving rationally.'},
+{id:13,cat:'incentive',name:'Moral Hazard',strip:'When an actor is insulated from the consequences of a risk, they take more risk than they would otherwise, because the downside is borne by the insurer rather than the risk-taker.',trigger:'They knew they\'d be bailed out. Or: behavior changes substantially once an actor becomes insulated against an outcome.'},
+{id:14,cat:'incentive',name:'Adverse Selection',strip:'In a market with information asymmetry, the parties who most want to transact are disproportionately those the other side should least want to trade with. High-quality participants exit; low-quality ones dominate.',trigger:'Only the bad risks want the insurance. Or: attempts to serve a population attract disproportionately the most costly members.'},
+{id:15,cat:'incentive',name:'Rent Seeking',strip:'Actors expend resources to capture existing value via political influence, regulatory barriers, or legal mechanisms rather than create new value. Privately rational and socially wasteful simultaneously.',trigger:'They\'re spending more on lobbying than on R&D. Or: an industry\'s profitability dramatically exceeds what competition would permit, protected by non-market mechanisms.'},
+{id:16,cat:'incentive',name:'Free Rider Problem',strip:'When a good is non-excludable and non-rival, rational actors consume it without contributing to its provision, producing systematic underfunding relative to aggregate value the good provides.',trigger:'Everyone benefits but no one wants to pay. Or: a public good existing but chronically underfunded despite high aggregate value.'},
+{id:17,cat:'incentive',name:'Stag Hunt / Coordination Failure',strip:'The optimal collective outcome requires everyone to cooperate, but cooperation is only rational if you believe others will cooperate. Defecting is safer under uncertainty even when collective cooperation leaves everyone better off.',trigger:'We\'d all benefit from a common standard, but no one will adopt it first. Or: an industry failing to coordinate on a mutually beneficial outcome because each player waits for others to move.'},
+{id:18,cat:'incentive',name:'Cobra Effect',strip:'A solution to a measurable symptom creates an incentive to manufacture more of that symptom in order to be solved. The intervention makes the problem worse.',trigger:'The more we fight it, the more of it there seems to be. Or: the metric measuring progress can be manufactured by the actors whose performance is being measured.'},
+{id:19,cat:'incentive',name:'Race to the Bottom',strip:'Competition among jurisdictions or actors on a cost dimension produces a descent toward the minimum — every actor loses the benefit they were competing against as the floor collapses.',trigger:'If we don\'t lower our standards, another jurisdiction will. Or: standards across competing entities converging toward the worst case rather than the best.'},
+{id:20,cat:'incentive',name:'Regulatory Capture',strip:'Agencies created to regulate an industry progressively come to represent the industry\'s interests rather than the public\'s, undermining the purpose for which they were created.',trigger:'The regulators all came from the industry they regulate. Or: a regulatory agency consistently ruling in favor of the regulated industry despite evidence of harm.'},
+{id:21,cat:'systems',name:'Reinforcing Feedback Loop',strip:'An output becomes an input that amplifies the output further. Small initial differences compound into large structural advantages or catastrophic collapses depending on direction.',trigger:'They got big because they were big. Or: an early advantage growing geometrically rather than arithmetically.'},
+{id:22,cat:'systems',name:'Time Delay and Bullwhip Effect',strip:'When feedback reaches upstream supply chain stages with a delay, each stage amplifies the demand signal to protect against stockout, producing massive oscillations in production entirely from the delay.',trigger:'We have huge inventory swings despite stable end demand. Or: production volatility far exceeding sales volatility.'},
+{id:23,cat:'systems',name:'Overshoot and Collapse',strip:'A population or system grows beyond the carrying capacity of its environment, erodes that capacity, and then collapses below the level that would have been sustainable had it grown more slowly.',trigger:'Growth was strong right up until it wasn\'t. Or: the resource base being consumed faster than it regenerates.'},
+{id:24,cat:'systems',name:'Tipping Points and Phase Transitions',strip:'A system that appears to change continuously suddenly flips state. The transition is not predictable from the gradual change; it requires monitoring the declining resilience of the current state.',trigger:'Everything seemed fine and then it just collapsed. Or: the rate of change appeared stable but the system suddenly shifted to a radically different state.'},
+{id:25,cat:'systems',name:'Suppressed Shock Fragility',strip:'Preventing small failures removes the system\'s adaptation mechanism. Catastrophic failure arrives when accumulated stress finally releases.',trigger:'Long period of stability followed by catastrophic failure. Or: the system has never been stress-tested.'},
+{id:26,cat:'systems',name:'Red Queen Effect',strip:'In a competitive environment, continuous improvement is required merely to maintain relative position. The effort produces no net advantage — it only prevents falling behind.',trigger:'We have to keep improving just to stay in the same place. Or: investment in a dimension keeps rising but competitive advantage on that dimension remains constant.'},
+{id:27,cat:'systems',name:'Dutch Disease',strip:'A resource boom appreciates a country\'s currency and draws labor and capital into the booming sector, causing the non-booming tradable sector to decline — leaving the economy vulnerable if the boom ends.',trigger:'The resource windfall is hurting our other industries. Or: a sudden inflow of foreign currency making exports uncompetitive.'},
+{id:28,cat:'systems',name:'Emergence',strip:'System-level properties arise from component interactions that cannot be predicted from or reduced to component-level behavior. The whole is genuinely different from the sum of its parts.',trigger:'How did that pattern emerge? Nobody designed it. Or: a macro-level phenomenon that appears intentional but has no central designer.'},
+{id:29,cat:'systems',name:'Hysteresis in Economic Systems',strip:'An economic system displaced from its original state does not return to that state when the original cause is removed. Skills atrophy, infrastructure deteriorates, and economic relationships permanently restructure during displacement.',trigger:'The recession is over but employment hasn\'t recovered. Or: the original conditions have returned but the outcome has not.'},
+{id:30,cat:'systems',name:'Minsky Moment',strip:'Stability breeds instability. Extended periods of stability encourage risk-taking and leverage buildup, creating fragility that converts the next shock from manageable disturbance into crisis.',trigger:'This time is different — the economy is more resilient now. Or: the prolonged absence of a crisis being cited as evidence that risks are low.'},
+{id:31,cat:'decision',name:'Sunk Cost Fallacy',strip:'Actors continue investment based on prior unrecoverable expenditure rather than future expected value, making decisions that would be rejected if evaluated purely on forward-looking terms.',trigger:'We\'ve come too far to stop now. Or: the primary argument for continuation is resources already spent, not expected return on future investment.'},
+{id:32,cat:'decision',name:'Availability Heuristic',strip:'People estimate the probability of an event based on how easily examples come to mind, systematically overestimating vivid or recent risks and underestimating mundane or abstract ones.',trigger:'After that news story, everyone\'s worried about X. Or: public concern about a risk dramatically out of proportion to its statistical probability.'},
+{id:33,cat:'decision',name:'Overconfidence and Calibration Failure',strip:'People\'s confidence in their judgments and predictions systematically exceeds the accuracy of those judgments. Expertise can worsen calibration by creating the illusion of predictive power.',trigger:'Our models showed this was extremely unlikely. Or: a professional forecast that proved dramatically wrong despite high expressed confidence.'},
+{id:34,cat:'decision',name:'Planning Fallacy',strip:'People systematically underestimate the time, cost, and risk of future actions while overestimating their benefits. The bias does not improve with experience and persists even when forecasters know about the fallacy.',trigger:'It always goes over budget, but this time we have better planning. Or: systematic underestimation across an entire category of projects despite awareness of the track record.'},
+{id:35,cat:'decision',name:'Base Rate Neglect',strip:'When given specific case information alongside statistical base rate information, people overweight the specific case and underweight the base rate, systematically misjudging probabilities.',trigger:'The test came back positive — they must have the disease. Or: a conclusion based on a specific indicator that ignores how common or rare the condition actually is.'},
+{id:36,cat:'decision',name:'Anchoring',strip:'People make estimates by starting from an initial value and adjusting, but adjustments are systematically insufficient. The anchor, even if arbitrary or irrelevant, dominates the final judgment.',trigger:'Well, the first number we heard was X, so let\'s start from there. Or: a negotiation or estimation process where the first number proposed dominates the outcome.'},
+{id:37,cat:'decision',name:'Scope Insensitivity',strip:'People\'s emotional response and willingness to pay does not scale with the magnitude of a problem. Saving 2,000 lives feels roughly as compelling as saving 200,000 lives when described separately.',trigger:'How can people not care more about this? The scale is enormous. Or: fundraising and policy support not scaling with the problem\'s actual size.'},
+{id:38,cat:'decision',name:'Groupthink',strip:'In cohesive groups with strong conformity pressure, members suppress dissent and self-censor alternative viewpoints to maintain harmony, reaching consensus on poor decisions any individual member might privately have questioned.',trigger:'Everyone in the room agreed. Or: a decision made by a highly competent group that an outside observer could have immediately identified as problematic.'},
+{id:39,cat:'decision',name:'Diffusion of Responsibility',strip:'As the number of observers increases, individual responsibility and likelihood of intervention decreases. Each person assumes someone else will act, and collective inaction results.',trigger:'Why didn\'t anyone do anything? said by many people who also did not do anything. Or: a problem observed by many but addressed by none.'},
+{id:40,cat:'decision',name:'Escalation of Commitment',strip:'Actors increase investment in a chosen course of action in response to negative feedback, to justify prior commitments, when the rational response would be to cut losses and redirect resources.',trigger:'"We\'ve committed to this direction." Or: each successive failure met with calls for more investment rather than reconsideration of the strategy.'},
+{id:41,cat:'stats',name:'Survivorship Bias',strip:'Analysis based only on entities that passed a selection filter produces systematically false conclusions because the failing entities — which share many characteristics with the survivors — are invisible.',trigger:'"We studied the successful ones and found these traits in common." Or: conclusions drawn from a sample whose inclusion criterion is the outcome variable.'},
+{id:42,cat:'stats',name:'Simpson\'s Paradox',strip:'A trend appearing in several different groups disappears or reverses when the groups are combined, because the groups have different sizes and different distributions of the confounding variable.',trigger:'"The aggregate data shows X, but every subgroup shows not-X." Or: a policy appearing to help overall while harming every specific group it was designed to help.'},
+{id:43,cat:'stats',name:'Regression to the Mean',strip:'Extreme observations are partly caused by random variation and will therefore be followed by less extreme observations on average, regardless of any intervention — creating an illusion of causal effect where there is none.',trigger:'"After we intervened, performance improved — the intervention must have worked." Or: apparent improvement after action taken on an extreme data point.'},
+{id:44,cat:'stats',name:'Ecological Fallacy',strip:'Conclusions about individuals are drawn from aggregate-level data, producing false inferences because the relationship between group averages may not exist between individuals within those groups.',trigger:'"Countries with higher X have higher Y — so X causes Y at the individual level." Or: a policy designed from population-level correlations that fails at the individual level.'},
+{id:45,cat:'stats',name:'Berkson\'s Paradox',strip:'When two independent traits both increase the probability of selection into a sample, a spurious negative correlation between them appears in the selected sample even when no real relationship exists in the general population.',trigger:'"In our data, X and Y are negatively correlated, but they shouldn\'t be." Or: a hospital-based study producing counterintuitive results about disease relationships.'},
+{id:46,cat:'stats',name:'P-Hacking and False Discovery Rate',strip:'When analysts conduct multiple statistical tests and selectively report significant results, the reported significance is illusory — the false positive rate is much higher than the stated p-value implies.',trigger:'"Our analysis found a statistically significant effect." Or: a scientific result that could not be replicated despite apparent methodological rigor.'},
+{id:47,cat:'stats',name:'Hawthorne Effect',strip:'Subjects who know they are being observed change their behavior in ways that contaminate the measurement, producing results reflecting the observation itself rather than the underlying phenomenon.',trigger:'"Performance improved during the study period." Or: results that dramatically fail to reproduce outside the study context.'},
+{id:48,cat:'stats',name:'Confounding Variables',strip:'An apparent causal relationship between two variables is produced by a third variable that causes both, making the observed correlation spurious — neither variable causes the other.',trigger:'"X correlates with Y — therefore X causes Y." Or: a correlation that produces an implausible causal story if taken at face value.'},
+{id:49,cat:'stats',name:'McNamara Fallacy',strip:'Actors first decide what can be measured, then measure it, then conclude unmeasured things do not matter — progressively focusing decision-making on measurable proxies while ignoring unmeasured realities of equal or greater importance.',trigger:'"If we can\'t measure it, we can\'t manage it." Or: decision-making that excludes important variables because they resist quantification.'},
+{id:50,cat:'stats',name:'Goodhart\'s Hierarchy',strip:'When a measure becomes a target, it corrupts upward: the target corrupts the strategy, which corrupts the goal, which corrupts the mission. Each level of corruption makes the next harder to detect.',trigger:'"The department is hitting its targets but the organization is failing." Or: success at every measured level accompanied by failure at the strategic level.'},
+{id:51,cat:'market',name:'Network Effects and Critical Mass',strip:'The value of a network to each user increases with total number of users. Below critical mass the network has no value; above it value compounds; the dynamic produces winner-take-all markets.',trigger:'"Why would I join if no one else is there?" Or: a market where a dominant player exists despite not being the best product.'},
+{id:52,cat:'market',name:'Innovator\'s Dilemma',strip:'Successful companies fail not because they do anything wrong by conventional metrics, but because they do everything right — while a disruptive innovation enters the low end of the market and moves upmarket.',trigger:'"They knew it was coming and did nothing." Or: an incumbent\'s rational decisions leading to its eventual displacement by an initially inferior product.'},
+{id:53,cat:'market',name:'Path Dependence and Lock-In',strip:'A technology or standard becomes dominant not because it is superior but because it was adopted early, and switching costs subsequently lock users into an inferior equilibrium.',trigger:'"Everyone uses X even though Y is better." Or: a standard persisting beyond any reasonable lifetime because switching costs are prohibitive.'},
+{id:54,cat:'market',name:'Creative Destruction',strip:'Economic progress occurs through continuous displacement of old industries by new ones, eliminating employment and capital in existing industries while creating new employment and value elsewhere — the process cannot occur without the destruction.',trigger:'"Technology is destroying jobs." Or: a formerly dominant industry losing employment despite the broader economy growing.'},
+{id:55,cat:'market',name:'Paradox of Thrift',strip:'When households and firms rationally increase saving in response to economic uncertainty, the aggregate reduction in spending reduces income, making everyone worse off and potentially reducing the ability to save.',trigger:'"Everyone is being sensible and the economy is still getting worse." Or: individually rational behavior producing collectively irrational outcomes at the macroeconomic level.'},
+{id:56,cat:'market',name:'Commoditization of Complements',strip:'Products that are complements become commoditized as a platform strategy — making complements cheap and abundant increases demand for the platform\'s core product, which the platform then extracts value from.',trigger:'"Why are they giving that away for free?" Or: a platform systematically investing in reducing the price of adjacent products in its ecosystem.'},
+{id:57,cat:'market',name:'First Mover Disadvantage',strip:'Being first to a market can be a liability when the pioneer bears the cost of market education and infrastructure building that benefits faster-moving followers who enter after the market is established.',trigger:'"They invented it but someone else commercialized it." Or: an incumbent being displaced by a follower despite earlier market entry.'},
+{id:58,cat:'market',name:'Platform Envelopment',strip:'A platform with an existing user base moves into adjacent markets by bundling a new product with its existing platform, using captive distribution to displace specialized competitors who cannot match the distribution advantage.',trigger:'"They didn\'t make a better product — they just bundled it." Or: a standalone market leader being displaced by a platform player who offers an inferior but ubiquitously distributed substitute.'},
+{id:59,cat:'market',name:'Lindy Effect',strip:'For non-perishable things — ideas, technologies, institutions, cultural products — life expectancy is proportional to current age. Things that have survived long are more likely to survive further than things that are new.',trigger:'"This old technology can\'t possibly survive much longer." Or: evaluating an old institution as obsolescent purely because of its age.'},
+{id:60,cat:'market',name:'Collingridge Dilemma',strip:'The impact of a technology cannot be assessed until it is widely deployed, but it becomes difficult or impossible to change once widely deployed — creating an inescapable dilemma between early regulation and late regulation.',trigger:'"We can\'t know how dangerous it is until everyone\'s using it." Or: a technology whose social consequences became clear only after it was too structurally embedded to change.'},
+{id:61,cat:'social',name:'Overton Window',strip:'At any moment, only a limited range of policy ideas is considered politically viable. Ideas outside the window are political non-starters regardless of their merit or public value.',trigger:'"That\'s politically impossible." Or: a policy that was considered radical being mainstream 10 years later with little apparent change in the underlying reality.'},
+{id:62,cat:'social',name:'Shirky Principle',strip:'Institutions will try to preserve the problem to which they are the solution — because solving the problem eliminates the institution\'s justification for existence.',trigger:'"They\'re not actually trying to solve this problem." Or: an institution that has existed long enough to develop interests separate from its original mission.'},
+{id:63,cat:'social',name:'Chesterton\'s Fence',strip:'Do not remove a fence until you understand why it was built. The existence of a rule implies someone had a reason for creating it; the burden of proof lies with the person proposing removal, not the person defending retention.',trigger:'"This rule makes no sense — let\'s eliminate it." Or: the rationale for a rule was lost to institutional memory, making the rule seem arbitrary.'},
+{id:64,cat:'social',name:'Dunbar\'s Number',strip:'The cognitive limit on stable social relationships (approximately 150) creates a structural maximum for organizations that can operate through informal coordination; above this size, formal hierarchy becomes necessary.',trigger:'"The company changed when it got to X people." Or: an organization\'s culture or performance degrading as it scaled despite unchanged hiring standards and mission.'},
+{id:65,cat:'social',name:'Peter Principle',strip:'In hierarchical organizations, employees are promoted based on performance in their current role until they reach a level at which they are incompetent — at which point promotion stops, leaving the organization managed by people performing at the level of their incompetence.',trigger:'"They were a great engineer but a terrible manager." Or: an organization where management quality appears to decline as seniority increases.'},
+{id:66,cat:'social',name:'Status Quo Bias',strip:'People systematically prefer the current state of affairs even when presented with alternatives that would leave them objectively better off — the disutility of change exceeds the utility of improvement.',trigger:'"People just don\'t want to change." Or: adoption of an evidently superior alternative being much slower than expected on rational grounds.'},
+{id:67,cat:'social',name:'Iron Law of Oligarchy',strip:'All organizations, regardless of how democratic or egalitarian their founding principles, eventually develop into oligarchies dominated by a small elite — because effective organization requires leadership, leadership creates power differentials, and power reproduces itself.',trigger:'"The movement started out democratic but now it\'s controlled by a small group." Or: an organization founded on egalitarian principles becoming hierarchically stratified over time.'},
+{id:68,cat:'social',name:'Conway\'s Law',strip:'Organizations design systems that mirror their own communication structure. The architecture of a product is determined more by the social structure of the team building it than by optimal technical design.',trigger:'"Why is this system structured so strangely?" Or: a technical architecture organized around organizational boundaries rather than technical requirements.'},
+{id:69,cat:'strategy',name:'Disruptive Innovation',strip:'New entrants attack incumbents from the low end with simpler, cheaper, inferior products. Incumbents rationally cede the low end and retreat upmarket until the disruptor\'s quality reaches the mainstream market and the incumbent has nowhere to retreat.',trigger:'"It\'s a toy — it\'s not good enough for our customers." Or: an incumbent dismissing a new entrant as irrelevant until the entrant has captured the mainstream market.'},
+{id:70,cat:'strategy',name:'Competitive Moats',strip:'Sustainable competitive advantage derives from durable barriers to imitation — switching costs, network effects, cost advantages, and intangible assets — not from being excellent at things competitors can also become excellent at.',trigger:'"They have a better product but can\'t seem to win market share." Or: a business maintaining profitability despite constant competitive attack.'},
+{id:71,cat:'strategy',name:'Preemptive Competition',strip:'An incumbent uses existing capabilities to preemptively occupy competitive spaces before new entrants can establish positions, eliminating the viability of entry rather than competing after entry has occurred.',trigger:'"By the time a competitor arrived, there was no space left." Or: a market that should attract entry but consistently doesn\'t, because incumbents have preoccupied every viable position.'},
+{id:72,cat:'strategy',name:'Commitment Device',strip:'An actor rationally constrains their own future options to make a threat or promise credible — because the threat is only believable if future defection is made impossible or prohibitively costly.',trigger:'"The threat isn\'t credible — they\'d never actually follow through." Or: a negotiation where the other party\'s commitment cannot be trusted without structural enforcement.'},
+{id:73,cat:'strategy',name:'Technology S-Curve',strip:'Technologies improve through a predictable S-shaped curve: slow initial progress during establishment, rapid improvement during the growth phase, and slowing improvement as the technology approaches its physical or economic limits.',trigger:'"Improvement has been slowing — should we invest more or switch?" Or: determining when to continue investing in an existing technology vs. transitioning to the next technology generation.'},
+{id:74,cat:'strategy',name:'Blue Ocean Strategy',strip:'Competition in existing markets involves fighting for market share. Creating new market spaces eliminates competition by defining value on dimensions where no competition currently exists.',trigger:'"We don\'t want to compete on price — but every competitor does." Or: an industry where margins have been competed away and differentiation appears impossible.'},
+{id:75,cat:'strategy',name:'Premortem Analysis',strip:'Before committing to a plan, assume explicitly that it has already failed and work backward to identify the most likely failure modes — producing more accurate risk assessment than forward-looking analysis that is subject to optimism bias.',trigger:'"Let\'s make sure we\'re not missing anything." Or: a high-stakes decision where overconfidence in the plan is itself a risk.'},
+{id:76,cat:'strategy',name:'Jobs-to-be-Done Framework',strip:'Products fail not because of insufficient features but because they are designed around product categories rather than the specific "jobs" customers are trying to accomplish — understanding the job determines what the real competition is.',trigger:'"We understand our customers\' needs but they keep choosing inferior products." Or: a product that is better on every conventional dimension but losing to a competitor that is worse on most dimensions.'},
+{id:77,cat:'strategy',name:'Crossing the Chasm',strip:'Technology adoption follows a bell curve, but there is a structural gap between early adopters and the early majority, because the two populations have different needs and require fundamentally different marketing and product strategies.',trigger:'"Our early customers love it but we can\'t seem to grow beyond them." Or: a product with high early adopter enthusiasm that stalls in mainstream adoption.'},
+{id:78,cat:'strategy',name:'Reverse Innovation',strip:'Products developed for resource-constrained emerging markets — designed to work with minimal infrastructure, at minimal cost, with minimal complexity — can successfully enter developed markets by meeting demand for simplicity and affordability that premium products overlook.',trigger:'"Why would a developed market customer want a stripped-down product?" Or: a business model considered low-end and irrelevant until it disrupted developed markets.'},
+{id:79,cat:'strategy',name:'Information Asymmetry as Self-Destroying Advantage',strip:'An advantage based on knowing something a competitor does not is self-liquidating — acting on the advantage reveals its existence, allowing the competitor to close the gap. The advantage must be consumed carefully or it disappears.',trigger:'"We had a lead but they caught up as soon as we launched." Or: a competitive advantage that was visible in testing but disappeared in market.'},
+{id:80,cat:'strategy',name:'Preemptive Investment in Decay',strip:'Organizations that fail to invest in their own replacement are replaced by competitors. The willingness to cannibalize existing profitable products with new ones is the only durable defense against disruption.',trigger:'"Why would we compete with ourselves?" Or: a profitable incumbent refusing to invest in the technology that will eventually displace it.'}
+];
+const COMPACT_REASONERS=[{"id": 1, "cat": "invest", "name": "Charlie Munger — The Latticework, and Inverting the Problem", "who": "Vice-chairman of Berkshire Hathaway; built his decision-making around a self-assembled 'latticework' of mental models drawn from outside finance.", "trigger": "How to make consistently good decisions in a domain (capital allocation) where most participants are smart, hard-working, and still lose. Munger refused to treat investing as a self-contained discipline.", "heuristic": "Before solving forward, invert: ask what would guarantee the worst outcome and design to avoid it. And check every important problem against three or four models from unrelated fields — if they all point the same way, you have real conviction; if only your home-field model likes it, you are probably fooling yourself."}, {"id": 2, "cat": "invest", "name": "Warren Buffett — Circle of Competence & the See's Candies Re-rating", "who": "CEO of Berkshire Hathaway; trained as a strict Graham-style 'cigar-butt' bargain hunter before deliberately rewiring how he valued a business.", "trigger": "In 1972 Berkshire could buy See's Candies. By his inherited rulebook — buy things trading below liquidation value — See's was too expensive relative to its hard assets. The cheap-asset framework said pass.", "heuristic": "Know the exact edge of what you can actually evaluate, and operate only inside it — the perimeter matters more than the area. And value a thing by the cash it will produce and the capital it consumes, not by the accounting category it happens to sit in."}, {"id": 3, "cat": "invest", "name": "George Soros — Reflexivity and Breaking the Pound (1992)", "who": "Founder of the Quantum Fund; built a theory that market prices and the fundamentals they supposedly reflect feed back on each other.", "trigger": "In 1992 the British pound was held inside the European Exchange Rate Mechanism at a rate Soros judged unsustainable, given Britain's economy and interest-rate constraints. The official position was that the peg would hold.", "heuristic": "When a price is held up only by a belief that the price will hold, it is not a stable fact — it is a feedback loop waiting for a push. Identify the equilibria that depend on confidence rather than on fundamentals, and hold your own thesis loosely enough to abandon it the instant reality disagrees."}, {"id": 4, "cat": "invest", "name": "Howard Marks — Second-Level Thinking & 'Where Are We in the Cycle?'", "who": "Co-founder of Oaktree Capital; specialist in distressed debt who codified his process in widely-read investor memos.", "trigger": "The perennial problem of being right in a way that pays: most obvious, sensible views are already in the price, so being correct and being profitable are different things.", "heuristic": "Being right is not enough — your view has to differ from what's already in the price. For any view, ask 'what does consensus believe, and why is my divergence justified?' And gauge risk by what's priced in, not by how it feels: danger is highest when everyone feels safest."}, {"id": 5, "cat": "invest", "name": "Michael Burry — Reading the Loan Tapes Nobody Else Read (2005)", "who": "Founder of Scion Capital; a physician-turned-investor who, before the 2008 crisis, bet against subprime mortgage bonds.", "trigger": "By 2005 the consensus, backed by ratings agencies and the entire mortgage-finance industry, was that pools of US home loans were safe and home prices would keep rising. Betting against them looked absurd and the instrument to do it barely existed.", "heuristic": "When everyone is trading the summary (the rating, the headline number, the consensus label), go and read the primary material the summary is built from. The biggest mispricings live in the gap between the abstraction everyone trusts and the raw facts almost no one bothers to check."}, {"id": 6, "cat": "science", "name": "Richard Feynman — The Notebook of 'Things I Don't Know'", "who": "Nobel-winning physicist known as much for his method of understanding as for his results; insistent on the difference between knowing a name and knowing a thing.", "trigger": "How to actually understand a hard subject rather than acquire the comforting illusion of understanding that comes from being able to recite it.", "heuristic": "Test understanding by trying to explain it from scratch in plain words; the moment you fall back on a label or jargon, you've found the exact thing you don't actually understand. Keep an explicit list of what you don't know, and treat the ability to recite a name as zero evidence that you grasp the thing."}, {"id": 7, "cat": "science", "name": "Charles Darwin — The Golden Rule for Inconvenient Facts", "who": "Naturalist who spent over two decades assembling the theory of evolution by natural selection before publishing, acutely aware of how badly he wanted to be right.", "trigger": "Building a vast, controversial theory over decades creates a powerful pull to remember the confirming evidence and quietly forget the observations that don't fit — the slow accumulation of self-deception that wrecks long projects.", "heuristic": "Your memory silently deletes the facts that threaten your conclusions. Make it a hard rule to record disconfirming evidence first and most carefully — the more an observation hurts your thesis, the more urgently it must be written down and faced."}, {"id": 8, "cat": "science", "name": "Barbara McClintock — 'A Feeling for the Organism'", "who": "Geneticist who discovered transposable genetic elements ('jumping genes') decades before the field could accept them; later a Nobel laureate.", "trigger": "McClintock observed patterns in maize genetics — genes that moved position and switched others on and off — that contradicted the rigid gene-as-fixed-bead model of her era. Her results were dismissed or ignored for years.", "heuristic": "The data point that doesn't fit your model is usually the most valuable thing in the dataset, not the error to be smoothed away. Immerse in the specific case long enough to let it overrule your inherited framework — and be prepared to be right and alone before the tools exist to prove it."}, {"id": 9, "cat": "science", "name": "Albert Einstein — Riding the Light Beam (Thought Experiments)", "who": "Physicist who reconstructed space, time, and gravity largely by reasoning from imagined physical situations rather than from new experimental data.", "trigger": "By 1905 the physics of light and motion contained a deep inconsistency between Newtonian mechanics and Maxwell's electromagnetism, but the contradiction was hidden inside assumptions everyone treated as self-evidently true — above all, that time is universal.", "heuristic": "Progress on a stuck problem usually means finding the 'obvious' assumption everyone treats as background and refusing to grant it. Construct a clean imagined scenario that pushes the contradiction to the surface, identify which premise has to give, and follow the consequences even where they offend common sense."}, {"id": 10, "cat": "build", "name": "Kelly Johnson — Skunk Works and the 14 Rules", "who": "Lockheed engineer who ran the 'Skunk Works,' delivering aircraft like the U-2 and SR-71 Blackbird at speeds and capabilities that seemed impossible.", "trigger": "How to produce radical engineering breakthroughs fast, inside a large bureaucratic defense contractor whose normal processes guaranteed slow, committee-driven, mediocre output.", "heuristic": "On hard creative work the real bottleneck is usually the communication and approval structure, not the technical problem. Shrink the team to good people, give one owner authority and a direct line to the customer, and collapse the distance between deciding, building, and testing so feedback arrives in hours, not quarters."}, {"id": 11, "cat": "build", "name": "Taiichi Ohno — The Five Whys and Root Cause", "who": "Architect of the Toyota Production System, the lean-manufacturing method that reshaped global industry.", "trigger": "When something goes wrong on a production line — a machine stops, a defect appears — the strong organizational temptation is to fix the immediate symptom and move on, which guarantees the problem recurs.", "heuristic": "Don't fix the symptom — chain 'why?' about five times until you reach a cause in a different part of the system than where the problem appeared. And go physically see the actual situation rather than trusting the report; the root cause is rarely where the symptom shows up."}, {"id": 12, "cat": "build", "name": "Elon Musk — First-Principles Cost Teardown", "who": "Founder of SpaceX and Tesla; reasons about cost and feasibility by decomposing products to their raw physical constituents.", "trigger": "Industry consensus held that rockets and electric-vehicle battery packs were irreducibly expensive — the prices were quoted as near-fixed facts, justifying the conclusion that the businesses couldn't work.", "heuristic": "When told something 'just costs that much' or 'can't be done,' break it down to physical primitives — raw materials, fundamental constraints — and compute the theoretical floor. The distance between that floor and the quoted price is the size of the opportunity, not a fact of nature."}, {"id": 13, "cat": "build", "name": "Margaret Hamilton — Designing for the Error That 'Can't Happen' (Apollo)", "who": "Led the team that wrote the onboard flight software for the Apollo Guidance Computer at MIT.", "trigger": "During the Apollo 11 descent, the guidance computer became overloaded and threw alarms minutes before landing. Whether the mission aborted depended on how the software had been designed to behave under a failure no one was supposed to cause.", "heuristic": "Design for the failure everyone insists can't happen — overloaded operators and 'impossible' mistakes are certainties on a long enough timeline. Build systems that detect overload and shed low-priority work to protect critical functions, rather than assuming clean inputs and a nominal path."}, {"id": 14, "cat": "strategy", "name": "John Boyd — The OODA Loop and Operating Inside the Enemy's Tempo", "who": "US Air Force fighter pilot and strategist whose theory of conflict influenced military doctrine, business strategy, and litigation.", "trigger": "Boyd started from a concrete puzzle: the US F-86 jet beat the more maneuverable Soviet MiG-15 in Korea despite being, on paper, the inferior aircraft. Why does the 'worse' fighter win?", "heuristic": "In any contest, whoever can observe-orient-decide-act faster and truer forces the other to react to a reality that's already gone. Compete on the speed and accuracy of your re-orientation, not just on resources — and watch your own orientation hardest, since a fast loop pointed at a wrong picture just fails faster."}, {"id": 15, "cat": "strategy", "name": "Abraham Lincoln — The Team of Rivals", "who": "US president during the Civil War, who built his cabinet from the men who had competed against him and openly thought him their inferior.", "trigger": "On taking office amid national disintegration, Lincoln had to assemble a government capable of holding the Union together, with the strongest, most capable politicians in his party being precisely those who had opposed him and doubted his competence.", "heuristic": "Staff the decision with the most capable people even when they threaten you, and treat dissent in the room as information rather than disloyalty. Put deliberate delay between a strong emotion and an irreversible act — write the angry letter, then don't send it."}, {"id": 16, "cat": "strategy", "name": "Lee Kuan Yew — Ruthless Empiricism: 'Does It Work?'", "who": "Founding prime minister of Singapore, who took a small resource-poor port with no natural advantages to first-world status within a generation.", "trigger": "A tiny city-state with no hinterland, no natural resources, and a mix of ethnic groups had to survive and prosper without the luxury of ideological certainty or large margins for error.", "heuristic": "Judge ideas by whether they actually work in reality, not by which camp they belong to or how they sound — and be willing to abandon your own prior position the moment the evidence turns. Then extend the time horizon: optimize for the second- and third-order outcome over decades, not the immediate reaction."}, {"id": 17, "cat": "strategy", "name": "Dwight Eisenhower — The D-Day Decision and the Undelivered Letter", "who": "Supreme Allied Commander in Europe, who ordered the Normandy invasion under irreducible uncertainty about the weather and the outcome.", "trigger": "In June 1944 a narrow window of marginal weather forced a go/no-go decision on the largest amphibious invasion in history. Wait, and the next suitable tides were weeks away with the secret leaking; go, and a wrong weather call could destroy the force on the beaches.", "heuristic": "For an irreversible decision under deadline, get the best probabilistic read you can, weigh the asymmetric costs, then commit fully and stop re-litigating — paralysis is the real failure. Write the failure-case post-mortem before you act: it forces honest confrontation with the downside and pre-commits you to owning it."}, {"id": 18, "cat": "strategy", "name": "Sun Tzu — Win First, Then Fight", "who": "The strategist behind 'The Art of War,' whose framework has shaped military and competitive thinking for over two millennia.", "trigger": "The general problem of conflict, where the instinctive approach is to focus on winning the battle once it is joined — the clash itself — as the decisive event.", "heuristic": "The contest is usually decided before the visible clash — by position, information, and preparation. Do the decisive work upstream so you've effectively already won before engaging, and route around the opponent's strength toward their weakness rather than attacking where they're ready."}, {"id": 19, "cat": "games", "name": "Garry Kasparov — Calculation, Intuition, and the Clock", "who": "World chess champion regarded among the greatest players ever; later a writer on decision-making.", "trigger": "At the board, a player cannot calculate everything — the tree of possibilities is effectively infinite — yet must choose a strong move within a strict time budget, balancing deep calculation against finite clock and finite attention.", "heuristic": "Use trained intuition to nominate the few candidates worth deep analysis, then spend your scarce calculation only there — don't analyze everything equally. Bank your hardest thinking for the genuinely critical moments, and study your own recurring mistakes as carefully as you study the problem."}, {"id": 20, "cat": "games", "name": "Magnus Carlsen — Grinding the 'Equal' Position", "who": "World chess champion known less for spectacular opening preparation than for winning positions that other grandmasters assess as dead-equal draws.", "trigger": "At the top of chess, opening theory is largely shared and most positions are objectively balanced. The conventional view is that a drawn position is a draw; Carlsen's results say otherwise.", "heuristic": "'Objectively even' is not even between two real, tiring humans — small practical edges accumulate into wins if you keep applying pressure rather than settling. Steer the contest onto the terrain where your durable edge (stamina, judgment) matters, and away from where everyone is equally well-prepared."}, {"id": 21, "cat": "games", "name": "Poker's Core Move — Ranges, Not Hands; Decisions, Not Results", "who": "The reasoning discipline of elite poker (articulated by players and decision-theorists such as Annie Duke), where money forces honest probabilistic thinking.", "trigger": "A player must act with hidden information (they can't see the opponent's cards) and noisy feedback (you can play a hand perfectly and lose, or terribly and win), which corrupts learning if you judge plays by their outcomes.", "heuristic": "Reason about the full distribution of what's possible, not a single guess, and judge a decision by whether it was right given what you knew — never by how it happened to turn out. One result is mostly luck; separate decision quality from outcome quality or you'll learn the wrong lessons from noise."}, {"id": 22, "cat": "games", "name": "Bill Belichick — Situational Football and Expected Value", "who": "Among the most successful coaches in NFL history, known for decisions that violated conventional wisdom but maximized win probability.", "trigger": "Football is saturated with convention — punt on fourth down, kick the field goal, play it safe — much of which is suboptimal but socially safe, because a coach is blamed far more for a bold failure than for a conventional one.", "heuristic": "Decide by expected value in the specific situation, not by what convention says you're 'supposed' to do — and accept that the right call sometimes looks bad when it fails. Ignore sunk cost and reputation risk; weigh only future probability, and neutralize the opponent's single biggest strength rather than their average."}, {"id": 23, "cat": "founders", "name": "Jeff Bezos — Regret Minimization & One-Way vs. Two-Way Doors", "who": "Founder of Amazon; built explicit personal frameworks for both irreversible life choices and recurring corporate decisions.", "trigger": "In 1994, leaving a secure, well-paid Wall Street job to start an online bookstore looked, on a short-term financial calculation, like a clear mistake. Separately, a large company tends to slow to a crawl as it treats every decision as if it were permanent.", "heuristic": "For big irreversible choices, project to the end of your life and minimize regret rather than optimizing the near-term number. For everything else, ask whether the door swings both ways: reversible decisions should be made fast and delegated; only the truly irreversible ones deserve slow, careful deliberation."}, {"id": 24, "cat": "founders", "name": "Andy Grove — 'What Would a New CEO Do?'", "who": "CEO of Intel; led the company through the strategic crisis of exiting the memory-chip business that had founded it.", "trigger": "In the mid-1980s Intel's original core business — memory chips — was being destroyed by Japanese competition, but the company was emotionally and institutionally identified with memory. Leadership was paralyzed by the unthinkability of leaving the business that was Intel.", "heuristic": "When attachment and sunk cost cloud a decision, ask what a brand-new outsider with no history would do — then do that yourself. The people at the periphery usually sense a fundamental shift before leadership does, because leadership's identity is most invested in the world that's ending."}, {"id": 25, "cat": "founders", "name": "Reed Hastings — Cannibalize Yourself Before Someone Else Does", "who": "Co-founder of Netflix; deliberately destroyed his own profitable business model to build the one that would replace it.", "trigger": "Netflix's DVD-by-mail business was profitable and beloved when streaming became viable. The comfortable move was to protect the cash cow; the threat was that streaming would eventually gut it regardless.", "heuristic": "If a disruptive shift is coming whether you act or not, the only question is whether you capture the new value or a rival does — so cannibalize your own profitable business before someone else does it to you. Reason forward to where the industry must end up and pay the cost of arriving first."}, {"id": 26, "cat": "founders", "name": "Steve Jobs — Focus as Deciding What Not to Do", "who": "Co-founder and CEO of Apple; on his 1997 return, rescued the company partly by drastically subtracting rather than adding.", "trigger": "When Jobs returned in 1997, Apple was near bankruptcy with a sprawling, confusing product line — dozens of models and variants that diffused the company's effort and the customer's understanding.", "heuristic": "Focus is deciding what NOT to do — and the hard part is killing the good ideas, not the bad ones, because finite attention means every extra project degrades the quality of the rest. Pick the few things you can do at an exceptional level and ruthlessly cut the rest, however promising it looks."}, {"id": 27, "cat": "medicine", "name": "Atul Gawande — The Checklist for Complexity", "who": "Surgeon and writer who studied why highly trained experts still make avoidable errors in complex, high-stakes work.", "trigger": "In modern surgery and intensive care, the knowledge exists to prevent most errors, yet skilled experts still kill patients through omissions — forgetting a step, skipping a check — under the load and pressure of complex procedures.", "heuristic": "In complex high-stakes work the main failure shifts from not-knowing to not-reliably-applying-what-you-know. Build a short checklist of the simple-but-catastrophic 'killer items' to catch the omissions expertise alone won't — and that forces the team to pause and let the quiet person speak."}, {"id": 28, "cat": "medicine", "name": "Gary Klein — How Experts Decide Without Comparing Options", "who": "Research psychologist who studied real-world experts — fireground commanders, ER nurses — making life-and-death decisions under time pressure.", "trigger": "Klein set out to document how expert decision-makers weigh their options under extreme time pressure, expecting to find them comparing alternatives — and found, to his surprise, that they mostly didn't.", "heuristic": "Under time pressure, experts don't compare options — they recognize a pattern, which surfaces one likely action, and mentally simulate whether it works before acting. Trust this intuition only where you've built genuine pattern experience with fast, honest feedback; in noisy low-feedback domains it's just confident guessing."}, {"id": 29, "cat": "medicine", "name": "Chesley 'Sully' Sullenberger — Ruling Options Out Fast (US Airways 1549)", "who": "Airline captain who, after a bird strike disabled both engines shortly after takeoff in 2009, landed an airliner on the Hudson River with no fatalities.", "trigger": "At roughly 2,800 feet over New York City, both engines lost almost all thrust simultaneously. Within seconds, with a gliding aircraft and no power, Sullenberger had to choose where to put the plane before it ran out of altitude.", "heuristic": "Under severe time pressure, spend your seconds eliminating the infeasible options fast against a well-calibrated model, then choose the option with the least-bad worst case rather than the best best-case. Offload everything practiced to routine so your scarce attention goes only to the one irreducible judgment."}];
+const REASONER_CATS=[{"id": "invest", "name": "Investing & Capital", "color": "#00f5ff"}, {"id": "science", "name": "Science & Discovery", "color": "#00ff88"}, {"id": "build", "name": "Engineering & Building", "color": "#ff6b35"}, {"id": "strategy", "name": "Strategy & Statecraft", "color": "#8b5cf6"}, {"id": "games", "name": "Competition & Games", "color": "#ffd700"}, {"id": "founders", "name": "Founders & Operators", "color": "#ff3366"}, {"id": "medicine", "name": "Medicine & High-Stakes", "color": "#00b8c4"}];
 const STATS=[
   {key:'pl',name:'PATTERN LIBRARY'},{key:'qp',name:'QUESTION PRECISION'},
   {key:'pc',name:'PRESSURE CLARITY'},{key:'cb',name:'CROSS-DOMAIN BRIDGING'},{key:'as',name:'ASSUMPTION SURFACING'}
 ];
 const RANKS=[{lvl:1,title:'INITIATE',xp:0},{lvl:2,title:'ANALYST',xp:500},{lvl:3,title:'STRATEGIST',xp:1200},{lvl:4,title:'TACTICIAN',xp:2500},{lvl:5,title:'ARCHITECT',xp:4500},{lvl:6,title:'ORACLE',xp:7000},{lvl:7,title:'APEX',xp:10000}];
-const TITLES={dash:['DASHBOARD','operator overview'],brief:['TODAY\u2019S BRIEF','generate · answer · grade'],log:['BRIEF LOG','your full record'],gauntlet:['GAUNTLET','question precision drill'],metrics:['METRICS & DELTA','measurement core'],character:['CHARACTER','growth vs origin'],launcher:['SESSION BLOCK','portable context'],baseline:['BASELINE','anchor your stats'],settings:['SETTINGS','profile & data']};
+const TITLES={dash:['DASHBOARD','operator overview'],brief:['TODAY\u2019S BRIEF','generate · answer · grade'],dossier:['DOSSIER MODE','multi-variable · competing narratives'],bossfight:['BOSS FIGHTS','format-break · synthesis under pressure'],log:['BRIEF LOG','your full record'],gauntlet:['GAUNTLET','question precision drill'],retrieval:['RETRIEVAL ENGINE','spaced recall'],metrics:['METRICS & DELTA','measurement core'],patterns:['PATTERN COVERAGE','live deployment heatmap'],character:['CHARACTER','growth vs origin'],launcher:['SESSION BLOCK','portable context'],baseline:['BASELINE','anchor your stats'],settings:['SETTINGS','profile & data']};
 const KEY='cogos_profile';
 const WINDOW=5;       // rolling-average window for "current rating"
 const RATCHET_N=3;    // consecutive improving scores to ratchet baseline
@@ -413,10 +616,12 @@ const RATCHET_MIN=0.3;// min avg improvement over baseline to ratchet
 let P=null;
 
 function defaultProfile(name){
-  return {v:3,name:(name||'OPERATOR').toUpperCase(),created:new Date().toISOString(),day:1,streak:0,lastCompleted:null,xp:0,
+  return {v:7,name:(name||'OPERATOR').toUpperCase(),created:new Date().toISOString(),day:1,streak:0,lastCompleted:null,xp:0,
     origin:null,baseline:null,stats:{pl:0,qp:0,pc:0,cb:0,as:0},
     antiPattern:{domains:[],regions:[],eras:[]},
-    scores:[],ratchets:[],currentBrief:null,log:[]};
+    scores:[],ratchets:[],currentBrief:null,currentDossier:null,currentBossFight:null,log:[],bossFights:[],
+    review:{items:[],seededPatterns:false,seededReasoners:false},
+    patternUsage:{}};
 }
 function load(){try{const r=localStorage.getItem(KEY);return r?JSON.parse(r):null}catch{return null}}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){toast('Save failed — storage full or blocked',true)}}
@@ -483,6 +688,225 @@ function isRegressing(dim){
   return arr.length>=3 && arr.slice(-3).every(v=>v<P.baseline[dim]);
 }
 
+// ===== RETRIEVAL ENGINE =====
+const INTERVALS=[1,2,4,7,14,30,60]; // days per box level, index = box
+let revealedSet=new Set(); // transient UI state, not persisted
+
+function addReviewItem(type,prompt,answer,sourceCat){
+  const id=type+'-'+Date.now()+'-'+Math.random().toString(36).slice(2,7);
+  P.review.items.push({id,type,prompt,answer,box:0,nextDue:new Date().toISOString(),lastReviewed:null,createdDay:P.day,sourceCat:sourceCat||'',reviewCount:0});
+}
+function dueItems(){
+  const now=new Date();
+  return P.review.items.filter(i=>new Date(i.nextDue)<=now);
+}
+function masteredCount(){
+  return P.review.items.filter(i=>i.box>=4 && i.reviewCount>0).length;
+}
+function seedPatternReview(){
+  if(P.review.seededPatterns){toast('Pattern library already seeded',true);return}
+  const existingIds=new Set(P.review.items.filter(i=>i.type==='pattern').map(i=>i.sourceCat+'|'+i.prompt));
+  COMPACT_PATTERNS.forEach(p=>{
+    addReviewItem('pattern', p.trigger, p.name.toUpperCase()+' — '+p.strip, p.cat);
+  });
+  P.review.seededPatterns=true;
+  P.xp=(P.xp||0)+10;
+  save();
+  toast(`${COMPACT_PATTERNS.length} patterns added to Retrieval queue (+10 XP)`);
+  renderRetrieval();
+}
+function seedReasonerReview(){
+  if(P.review.seededReasoners){toast('Reasoner Archive already seeded',true);return}
+  COMPACT_REASONERS.forEach(r=>{
+    addReviewItem('reasoner', r.trigger, r.name.toUpperCase()+' — '+r.heuristic, r.cat);
+  });
+  P.review.seededReasoners=true;
+  P.xp=(P.xp||0)+10;
+  save();
+  toast(`${COMPACT_REASONERS.length} reasoners added to Retrieval queue (+10 XP)`);
+  renderRetrieval();
+}
+function revealItem(id){
+  revealedSet.add(id);
+  renderRetrieval();
+}
+function gradeItem(id,grade){
+  const item=P.review.items.find(i=>i.id===id);
+  if(!item)return;
+  if(grade==='forgot')item.box=0;
+  else if(grade==='hard')item.box=Math.max(0,item.box-1);
+  else if(grade==='good')item.box=Math.min(INTERVALS.length-1,item.box+1);
+  else if(grade==='easy')item.box=Math.min(INTERVALS.length-1,item.box+2);
+  const days=INTERVALS[item.box];
+  const next=new Date();next.setDate(next.getDate()+days);
+  item.nextDue=next.toISOString();
+  item.lastReviewed=new Date().toISOString();
+  item.reviewCount=(item.reviewCount||0)+1;
+  revealedSet.delete(id);
+  P.xp=(P.xp||0)+5;
+  save();
+  renderRetrieval();
+  updateChrome();
+}
+function renderRetrieval(){
+  const due=dueItems();
+  $('rev-due-count').textContent=due.length;
+  $('rev-total-count').textContent=P.review.items.length;
+  $('rev-mastered-count').textContent=masteredCount();
+  const seedRow=$('rev-seed-row');
+  const patSeed=P.review.seededPatterns
+    ? `<span class="chip green">✓ pattern library seeded (${COMPACT_PATTERNS.length})</span>`
+    : `<button class="btn btn-primary" onclick="seedPatternReview()">⚡ SEED PATTERN LIBRARY (${COMPACT_PATTERNS.length} PATTERNS)</button>`;
+  const reaSeed=P.review.seededReasoners
+    ? `<span class="chip green">✓ reasoner archive seeded (${COMPACT_REASONERS.length})</span>`
+    : `<button class="btn btn-primary" onclick="seedReasonerReview()">🧠 SEED REASONER ARCHIVE (${COMPACT_REASONERS.length} MINDS)</button>`;
+  seedRow.innerHTML=patSeed+reaSeed;
+  const host=$('rev-list');
+  if(!due.length){
+    host.innerHTML=`<div class="panel"><div class="empty"><div class="empty-ic">⟲</div><div class="empty-t">Nothing due right now</div><div class="empty-s">${P.review.items.length?'You are caught up. Items resurface automatically as their interval comes due.':'Complete a brief with a principle, or seed the libraries above, to start building your queue.'}</div></div></div>`;
+    return;
+  }
+  host.innerHTML=due.map(item=>{
+    const isRevealed=revealedSet.has(item.id);
+    const typeLabel=item.type==='pattern'?'PATTERN RECALL':item.type==='reasoner'?'REASONER RECALL':'YOUR PRINCIPLE';
+    return `<div class="rev-card due">
+      <div class="rev-type ${item.type}">${typeLabel}${item.sourceCat?' · '+esc(item.sourceCat):''}</div>
+      <div class="rev-prompt">${esc(item.prompt)}</div>
+      <div class="rev-answer ${isRevealed?'shown':''}">${esc(item.answer)}</div>
+      ${isRevealed?`
+      <div class="rev-grade-row shown">
+        <button class="rev-grade-btn forgot" onclick="gradeItem('${item.id}','forgot')">FORGOT</button>
+        <button class="rev-grade-btn hard" onclick="gradeItem('${item.id}','hard')">HARD</button>
+        <button class="rev-grade-btn good" onclick="gradeItem('${item.id}','good')">GOOD</button>
+        <button class="rev-grade-btn easy" onclick="gradeItem('${item.id}','easy')">EASY</button>
+      </div>`:`<button class="btn btn-full" onclick="revealItem('${item.id}')">🧠 TRY TO RECALL, THEN REVEAL</button>`}
+      <div class="rev-box-indicator">box ${item.box+1}/${INTERVALS.length} · reviewed ${item.reviewCount}x${item.lastReviewed?' · last '+fmtDate(item.lastReviewed):''}</div>
+    </div>`;
+  }).join('');
+}
+
+// ===== PATTERN-LINKED PRACTICE =====
+const CATS=[
+  {id:'info',name:'Information & Epistemic',color:'#00f5ff'},
+  {id:'incentive',name:'Incentive & Game Theory',color:'#8b5cf6'},
+  {id:'systems',name:'Systems & Feedback',color:'#00ff88'},
+  {id:'decision',name:'Decision-Making & Bias',color:'#ff6b35'},
+  {id:'stats',name:'Statistical & Measurement',color:'#ffd700'},
+  {id:'market',name:'Markets & Economics',color:'#ff3366'},
+  {id:'social',name:'Social & Institutional',color:'#00b8c4'},
+  {id:'strategy',name:'Strategy & Competition',color:'#c084fc'}
+];
+let heatFilter='ALL';
+let heatSelected=null;
+
+function patternById(id){return COMPACT_PATTERNS.find(p=>p.id===id)}
+function catColor(catId){const c=CATS.find(x=>x.id===catId);return c?c.color:'#00f5ff'}
+function catName(catId){const c=CATS.find(x=>x.id===catId);return c?c.name:catId}
+
+let activeTagContext='brief'; // 'brief' or 'dossier' — which object the tag UI mutates
+function taggable(){return activeTagContext==='dossier'?P.currentDossier:P.currentBrief}
+
+function renderPatternSuggestions(){
+  const box=$('pattern-suggestions');
+  const searchEl=$('pattern-tag-search');
+  if(!searchEl||!box)return;
+  const q=(searchEl.value||'').toLowerCase().trim();
+  if(!q){box.style.display='none';box.innerHTML='';return}
+  const t=taggable();if(!t){box.style.display='none';return}
+  const tagged=new Set(t.patternTags||[]);
+  const matches=COMPACT_PATTERNS.filter(p=>!tagged.has(p.id)&&(p.name.toLowerCase().includes(q)||p.strip.toLowerCase().includes(q)||p.trigger.toLowerCase().includes(q))).slice(0,6);
+  if(!matches.length){box.style.display='block';box.innerHTML='<div class="tag-suggestion" style="color:var(--text-faint);cursor:default">no matches</div>';return}
+  box.style.display='block';
+  box.innerHTML=matches.map(p=>`<div class="tag-suggestion" onclick="addPatternTag(${p.id})"><div class="tsg-name">${esc(p.name)}</div><div class="tsg-strip">${esc(p.strip)}</div></div>`).join('');
+}
+function addPatternTag(id){
+  const t=taggable();if(!t)return;
+  t.patternTags=t.patternTags||[];
+  if(!t.patternTags.includes(id))t.patternTags.push(id);
+  const searchEl=$('pattern-tag-search');if(searchEl)searchEl.value='';
+  const box=$('pattern-suggestions');if(box)box.style.display='none';
+  save();
+  renderPatternChips();
+}
+function removePatternTag(id){
+  const t=taggable();if(!t)return;
+  t.patternTags=(t.patternTags||[]).filter(x=>x!==id);
+  save();
+  renderPatternChips();
+}
+function renderPatternChips(){
+  const host=$('pattern-chips');
+  if(!host)return;
+  const t=taggable();
+  const tags=(t&&t.patternTags)||[];
+  if(!tags.length){host.innerHTML='<span class="mono" style="font-size:11px;color:var(--text-faint)">no patterns tagged yet</span>';return}
+  host.innerHTML=tags.map(id=>{
+    const p=patternById(id);if(!p)return'';
+    const col=catColor(p.cat);
+    return `<span class="tag-chip" style="border-color:${col}55;color:${col};background:${col}12">${esc(p.name)}<span class="tag-chip-x" onclick="removePatternTag(${id})">✕</span></span>`;
+  }).join('');
+}
+function commitPatternUsage(ids){
+  ids.forEach(id=>{
+    const u=P.patternUsage[id]||{count:0,firstDay:P.day,lastDay:P.day};
+    u.count+=1;u.lastDay=P.day;
+    P.patternUsage[id]=u;
+    // ensure it exists in the retrieval queue too
+    const already=P.review.items.some(it=>it.type==='pattern'&&it.sourceCat===patternById(id).cat&&it.prompt===patternById(id).trigger);
+    if(!already){
+      const p=patternById(id);
+      addReviewItem('pattern',p.trigger,p.name.toUpperCase()+' — '+p.strip,p.cat);
+    }
+  });
+}
+function leastUsedPatterns(n){
+  n=n||3;
+  return COMPACT_PATTERNS
+    .map(p=>({...p,count:(P.patternUsage[p.id]&&P.patternUsage[p.id].count)||0}))
+    .sort((a,b)=>a.count-b.count||Math.random()-0.5)
+    .slice(0,n);
+}
+function setHeatFilter(c){heatFilter=c;heatSelected=null;renderPatterns()}
+function showPatternDetail(id){heatSelected=id;renderPatterns()}
+function renderPatterns(){
+  const usage=P.patternUsage||{};
+  const deployed=COMPACT_PATTERNS.filter(p=>usage[p.id]&&usage[p.id].count>0).length;
+  $('heat-deployed').textContent=deployed+' / '+COMPACT_PATTERNS.length;
+  $('heat-untouched').textContent=COMPACT_PATTERNS.length-deployed;
+  let most=null;
+  Object.entries(usage).forEach(([id,u])=>{if(!most||u.count>most.count)most={id:+id,count:u.count}});
+  $('heat-most').textContent=most?patternById(most.id).name+' ('+most.count+'x)':'—';
+
+  const fhost=$('heat-filters');
+  fhost.innerHTML='<button class="tf'+(heatFilter==='ALL'?' on':'')+'" onclick="setHeatFilter(\'ALL\')">ALL</button>'+
+    CATS.map(c=>`<button class="tf${heatFilter===c.id?' on':''}" onclick="setHeatFilter('${c.id}')">${c.name.split(' ')[0]}</button>`).join('');
+
+  const items=heatFilter==='ALL'?COMPACT_PATTERNS:COMPACT_PATTERNS.filter(p=>p.cat===heatFilter);
+  const ghost=$('heat-grid');
+  ghost.innerHTML=items.map(p=>{
+    const u=usage[p.id];const count=u?u.count:0;
+    const col=catColor(p.cat);
+    const intensity=count===0?0.05:count<=2?0.18:count<=5?0.34:0.52;
+    return `<div class="heat-cell" style="background:${col}${Math.round(intensity*255).toString(16).padStart(2,'0')};border-color:${col}${count?'66':'22'}" onclick="showPatternDetail(${p.id})">
+      <div class="heat-cell-name" style="color:${count?'#fff':'var(--text-faint)'}">${esc(p.name)}</div>
+      <div class="heat-cell-count" style="color:${count?'#fff':'var(--text-faint)'}">${count}x</div>
+    </div>`;
+  }).join('');
+
+  const dhost=$('heat-detail');
+  if(heatSelected!=null){
+    const p=patternById(heatSelected);
+    const u=usage[heatSelected];
+    const col=catColor(p.cat);
+    dhost.innerHTML=`<div class="panel">
+      <div class="panel-h" style="color:${col}">${esc(p.name)}</div>
+      <div style="font-size:14px;line-height:1.7;color:var(--text);margin-bottom:10px">${esc(p.strip)}</div>
+      <div class="mono" style="font-size:11px;color:var(--text-faint)">${u?`tagged ${u.count}x · first day ${u.firstDay} · last day ${u.lastDay}`:'never tagged on a live brief yet'}</div>
+    </div>`;
+  }else{
+    dhost.innerHTML='';
+  }
+}
 // ===== NAV =====
 function nav(screen){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -498,6 +922,10 @@ function nav(screen){
     else if(screen==='launcher')renderLauncher();
     else if(screen==='baseline')renderBaseline();
     else if(screen==='settings')renderSettings();
+    else if(screen==='retrieval')renderRetrieval();
+    else if(screen==='patterns'){heatSelected=null;renderPatterns();}
+    else if(screen==='dossier')renderDossier();
+    else if(screen==='bossfight')renderBossFight();
   }catch(e){toast('Render error: '+e.message,true);console.error(e)}
   try{window.scrollTo(0,0)}catch(e){}
 }
@@ -517,6 +945,12 @@ function updateChrome(){
   const d=new Date();const days=['SUN','MON','TUE','WED','THU','FRI','SAT'];const M=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
   $('tb-date').textContent=`${days[d.getDay()]} ${d.getDate()} ${M[d.getMonth()]} ${d.getFullYear()}`;
   $('side-streak').textContent=`🔥 ${P.streak||0} DAY STREAK`;
+  const dueN=dueItems().length;
+  const badge=$('nav-due-badge');
+  if(badge)badge.textContent=dueN>0?dueN:'';
+  const pendN=pendingForecasts().length;
+  const pbadge=$('nav-pending-badge');
+  if(pbadge)pbadge.textContent=pendN>0?pendN:'';
 }
 
 // ===== DASHBOARD =====
@@ -562,7 +996,7 @@ function renderBrief(){
       </div>
       <div class="btn-row">
         <button class="btn btn-primary" onclick="genBrief()">⚡ GENERATE PROMPT</button>
-        <button class="btn btn-green" onclick="openModal('modal-paste')">↓ STORE BRIEF (PASTE JSON)</button>
+        <button class="btn btn-green" onclick="openPasteModal('brief')">↓ STORE BRIEF (PASTE JSON)</button>
       </div>
       <div id="brief-prompt-wrap" style="display:none;margin-top:16px">
         <div class="promptbox" id="brief-prompt"></div>
@@ -584,7 +1018,18 @@ function renderBrief(){
     <div class="panel-h">YOUR ANSWER</div>
     <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px">Spend ~20 min. What's the core problem, and what would you investigate first? Saved to your Log forever.</p>
     <textarea id="answer-input" rows="8" placeholder="The core problem is… The first thing I'd investigate is…">${esc(b.answer||'')}</textarea>
+    <label class="fl" style="margin-top:14px">PRINCIPLE — one sentence: "the principle this illustrates is…" (feeds your Retrieval queue)</label>
+    <input id="principle-input" placeholder="e.g. when a measure becomes a target, it stops measuring the thing it was tracking" value="${esc(b.principle||'')}">
     <div class="btn-row" style="margin-top:14px"><button class="btn" onclick="saveAnswer()">💾 SAVE ANSWER</button></div>
+  </div>
+  <div class="panel">
+    <div class="panel-h">TAG THE STRUCTURE — BEFORE YOU SEE THE SCORE</div>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px;line-height:1.6">Which pattern(s) from your repository apply here? Tag first, grade after — this is what builds your coverage heatmap.</p>
+    <div class="tag-search-wrap">
+      <input id="pattern-tag-search" placeholder="Search patterns by name or trigger…" oninput="renderPatternSuggestions()" onfocus="renderPatternSuggestions()">
+      <div class="tag-suggestions" id="pattern-suggestions" style="display:none"></div>
+    </div>
+    <div class="tag-chips" id="pattern-chips"></div>
   </div>
   <div class="panel">
     <div class="panel-h">GRADE THIS BRIEF → 3 STATS</div>
@@ -602,12 +1047,16 @@ function renderBrief(){
       <button class="btn btn-ghost btn-danger" onclick="discardBrief()">DISCARD BRIEF</button>
     </div>
   </div>`;
+  activeTagContext='brief';
+  renderPatternChips();
 }
 function genBrief(){
   const domain=$('force-domain').value,diff=$('force-diff').value;
   const rd=(P.antiPattern.domains||[]).slice(-14),rr=(P.antiPattern.regions||[]).slice(-7),re=(P.antiPattern.eras||[]).slice(-7);
   const date=todayStr();
   const diffLine=diff==='adaptive'?`Medium-leaning (operator is on day ${P.day}, stats avg ${avgStat().toFixed(1)}/10 — calibrate accordingly)`:diff;
+  const underused=leastUsedPatterns(3);
+  const patternHint=underused.length?`\n\nBLIND-SPOT NUDGE (soft preference, don't force it): if a real case naturally fits one of these structural patterns the operator rarely deploys, lean toward it — but a stronger unrelated case always wins:\n${underused.map(p=>`- ${p.name}: ${p.strip}`).join('\n')}`:'';
   const prompt=`You are generating a daily brief for COGOS, a cognitive training system. Generate a compelling case study brief following these exact specifications:
 
 ANTI-PATTERN CONSTRAINTS (do NOT use these in the brief):
@@ -618,7 +1067,7 @@ ANTI-PATTERN CONSTRAINTS (do NOT use these in the brief):
 ${domain?`FORCED DOMAIN: ${domain}`:'DOMAIN: Pick something NOT in the recently used list above'}
 DIFFICULTY: ${diffLine}
 
-The brief must be a REAL story — a real problem that was actually solved or is being solved. It should NOT be a famous overused example (no SpaceX, no Apple iPhone launch, no Amazon AWS). Find something surprising, specific, and instructive.
+The brief must be a REAL story — a real problem that was actually solved or is being solved. It should NOT be a famous overused example (no SpaceX, no Apple iPhone launch, no Amazon AWS). Find something surprising, specific, and instructive.${patternHint}
 
 FOR DATE: ${date}
 
@@ -637,14 +1086,33 @@ Respond ONLY with a valid JSON object in exactly this format (no markdown, no ex
   copyText(prompt,'Prompt generated & copied — paste in Claude');
 }
 function extractJSON(text){let t=(text||'').trim().replace(/^```(?:json)?/i,'').replace(/```$/,'').trim();const a=t.indexOf('{'),z=t.lastIndexOf('}');if(a>=0&&z>a)t=t.slice(a,z+1);return JSON.parse(t)}
+let pasteMode='brief';
+function openPasteModal(mode){
+  pasteMode=mode;
+  const titles={dossier:"PASTE CLAUDE'S DOSSIER",brief:"PASTE CLAUDE'S BRIEF",'bf-synth-grade':'PASTE SYNTHESIS GRADE','bf-steelman-grade':'PASTE STEELMAN GRADE','bf-forecast-setup':'PASTE FORECAST SITUATION','bf-forecast-resolve':'PASTE FORECAST RESOLUTION'};
+  const btns={dossier:'⚡ STORE DOSSIER',brief:'⚡ STORE BRIEF','bf-synth-grade':'⚡ STORE GRADE','bf-steelman-grade':'⚡ STORE GRADE','bf-forecast-setup':'⚡ STORE SITUATION','bf-forecast-resolve':'⚡ STORE RESOLUTION'};
+  const placeholders={dossier:'{ "domain": "...", "headline": "...", "metrics": [...], ... }',brief:'{ "domain": "...", "headline": "...", ... }','bf-synth-grade':'{ "scores": {"cb": 7, "pl": 7}, "feedback": "...", "strongerSynthesis": "..." }','bf-steelman-grade':'{ "scores": {"as": 7, "qp": 7}, "feedback": "...", "biggestGap": "..." }','bf-forecast-setup':'{ "situation": "...", "question": "..." }','bf-forecast-resolve':'{ "outcome": "...", "wasCorrect": true, "scores": {"qp": 7, "pc": 7}, "calibrationNote": "..." }'};
+  $('modal-paste-title').textContent=titles[mode]||"PASTE CLAUDE'S BRIEF";
+  $('modal-paste-btn').textContent=btns[mode]||'⚡ STORE';
+  $('paste-input').placeholder=placeholders[mode]||'{ ... }';
+  openModal('modal-paste');
+}
+function dispatchPaste(){
+  if(pasteMode==='dossier')parseDossier();
+  else if(pasteMode==='bf-synth-grade')parseBossFightGrade('synthesis');
+  else if(pasteMode==='bf-steelman-grade')parseBossFightGrade('steelman');
+  else if(pasteMode==='bf-forecast-setup')parseForecastSetup();
+  else if(pasteMode==='bf-forecast-resolve')parseForecastResolution();
+  else parseBrief();
+}
 function parseBrief(){
   const raw=$('paste-input').value;if(!raw.trim()){toast('Paste the JSON first',true);return}
   let obj;try{obj=extractJSON(raw)}catch(e){toast('Could not read JSON — check it copied fully',true);return}
   if(!obj.headline||!obj.anchorQuestion||!obj.domain){toast('Missing fields (need domain, headline, anchorQuestion)',true);return}
-  P.currentBrief={domain:obj.domain||'—',region:obj.region||'',era:obj.era||'',difficulty:obj.difficulty||'Medium',headline:obj.headline,hook:obj.hook||'',anchorQuestion:obj.anchorQuestion,forDate:obj.forDate||todayStr(),answer:'',scores:null,storedAt:new Date().toISOString()};
+  P.currentBrief={domain:obj.domain||'—',region:obj.region||'',era:obj.era||'',difficulty:obj.difficulty||'Medium',headline:obj.headline,hook:obj.hook||'',anchorQuestion:obj.anchorQuestion,forDate:obj.forDate||todayStr(),answer:'',scores:null,patternTags:[],storedAt:new Date().toISOString()};
   save();$('paste-input').value='';closeModal('modal-paste');toast('Brief stored ✓');renderBrief();
 }
-function saveAnswer(){if(!P.currentBrief)return;P.currentBrief.answer=$('answer-input').value;save();toast('Answer saved')}
+function saveAnswer(){if(!P.currentBrief)return;P.currentBrief.answer=$('answer-input').value;P.currentBrief.principle=$('principle-input')?$('principle-input').value:(P.currentBrief.principle||'');save();toast('Answer saved')}
 function logBriefScore(){
   if(!P.currentBrief)return;
   if(!P.baseline){toast('Set your baseline first',true);return}
@@ -652,8 +1120,12 @@ function logBriefScore(){
   if(![pl,cb,as].every(v=>v>=1&&v<=10)){toast('Enter all three scores (1-10)',true);return}
   recordScore('pl',pl,'brief');recordScore('cb',cb,'brief');recordScore('as',as,'brief');
   P.currentBrief.scores={pl,cb,as};
-  P.xp=(P.xp||0)+20;save();
-  toast('Brief graded → PL/CB/AS updated (+20 XP)');renderBrief();
+  const tags=P.currentBrief.patternTags||[];
+  let tagXp=0;
+  if(tags.length){commitPatternUsage(tags);tagXp=tags.length*3;}
+  P.xp=(P.xp||0)+20+tagXp;save();
+  toast(tags.length?`Brief graded → PL/CB/AS updated (+${20+tagXp} XP, ${tags.length} pattern${tags.length>1?'s':''} tagged)`:'Brief graded → PL/CB/AS updated (+20 XP)');
+  renderBrief();
 }
 function discardBrief(){if(!confirm('Discard this brief without logging? Your answer will be lost.'))return;P.currentBrief=null;save();renderBrief();toast('Brief discarded')}
 function completeDay(){
@@ -661,31 +1133,679 @@ function completeDay(){
   const ans=$('answer-input')?$('answer-input').value:(P.currentBrief.answer||'');
   if(!ans.trim()&&!confirm('No answer written. Archive this day anyway?'))return;
   const b=P.currentBrief;b.answer=ans;
-  P.log.unshift({day:P.day,date:new Date().toISOString(),domain:b.domain,region:b.region,era:b.era,difficulty:b.difficulty,headline:b.headline,hook:b.hook,anchorQuestion:b.anchorQuestion,answer:ans,scores:b.scores||null});
+  const principle=($('principle-input')?$('principle-input').value:(b.principle||'')).trim();
+  P.log.unshift({type:'brief',day:P.day,date:new Date().toISOString(),domain:b.domain,region:b.region,era:b.era,difficulty:b.difficulty,headline:b.headline,hook:b.hook,anchorQuestion:b.anchorQuestion,answer:ans,principle:principle,patternTags:b.patternTags||[],scores:b.scores||null});
   if(b.domain)P.antiPattern.domains.push(b.domain);
   if(b.region)P.antiPattern.regions.push(b.region);
   if(b.era)P.antiPattern.eras.push(b.era);
+  if(principle){
+    addReviewItem('principle', b.headline, principle, b.domain);
+  }
   P.lastCompleted=new Date().toISOString();P.streak=(P.streak||0)+1;P.xp=(P.xp||0)+100;P.day=(P.day||1)+1;P.currentBrief=null;
-  save();updateChrome();toast(`Day archived → +100 XP`);nav('log');
+  save();updateChrome();toast(principle?`Day archived → +100 XP · principle added to Retrieval`:`Day archived → +100 XP`);nav('log');
+}
+
+// ===== DOSSIER MODE =====
+function genDossier(){
+  const rd=(P.antiPattern.domains||[]).slice(-14),rr=(P.antiPattern.regions||[]).slice(-7),re=(P.antiPattern.eras||[]).slice(-7);
+  const date=todayStr();
+  const underused=leastUsedPatterns(3);
+  const patternHint=underused.length?`\n\nBLIND-SPOT NUDGE (soft preference): if the data naturally fits one of these structural patterns, lean toward it — but a stronger real case always wins:\n${underused.map(p=>`- ${p.name}: ${p.strip}`).join('\n')}`:'';
+  const prompt=`You are generating a DOSSIER MODE brief for COGOS — a harder, multi-variable case format. Unlike a simple narrative brief, this hands the operator a small dataset with competing explanations, and the task is to find the hidden connection, not just "what happened."
+
+REQUIREMENTS:
+- Pick a REAL situation (not famous/overused — no SpaceX, no Apple, no Amazon AWS) with 6-10 genuinely reported, specific data points/metrics for that case.
+- Present 2-3 "competing narrative" explanations that each plausibly explain SOME of the data but not all of it — each should sound individually convincing.
+- The data must contain a hidden connection: either two numbers that are secretly measuring the same underlying thing, OR one fact that — once known — collapses the competing narratives into a single correct explanation.
+- Do NOT reveal or hint at the connecting insight anywhere in the setup or metrics. It should only become obvious in retrospect, after real analysis.
+
+ANTI-PATTERN CONSTRAINTS (do NOT reuse):
+- Recently used domains: ${rd.join(', ')||'none'}
+- Recently used regions: ${rr.join(', ')||'none'}
+- Recently used eras: ${re.join(', ')||'none'}${patternHint}
+
+FOR DATE: ${date}
+
+Respond ONLY with a valid JSON object in exactly this format (no markdown, no explanation, just JSON):
+{
+  "forDate": "${date}",
+  "domain": "exact domain name",
+  "region": "geographic region",
+  "era": "Historical/Recent/Current",
+  "difficulty": "Hard",
+  "headline": "A punchy 10-15 word headline naming the situation, not the answer",
+  "setup": "2-3 sentences of pure context — who, what, stakes. No analysis, no hints.",
+  "metrics": [
+    {"label": "short metric name", "value": "specific number/stat with units"}
+  ],
+  "narratives": [
+    "Story A: a plausible explanation that fits some but not all of the data",
+    "Story B: a different plausible explanation that also fits some but not all of the data",
+    "Story C (optional): a third angle if it strengthens the puzzle"
+  ],
+  "challengeQuestion": "Which two of these numbers are secretly measuring the same underlying thing? Or: what single additional fact would collapse these competing stories into one?"
+}
+
+Include at least 6 metrics and at least 2 narratives.`;
+  $('dossier-prompt').textContent=prompt;$('dossier-prompt-wrap').style.display='block';
+  copyText(prompt,'Dossier prompt copied — paste in Claude');
+}
+function parseDossier(){
+  const raw=$('paste-input').value;if(!raw.trim()){toast('Paste the JSON first',true);return}
+  let obj;try{obj=extractJSON(raw)}catch(e){toast('Could not read JSON — check it copied fully',true);return}
+  if(!obj.headline||!obj.domain||!Array.isArray(obj.metrics)||!obj.metrics.length||!Array.isArray(obj.narratives)||!obj.narratives.length||!obj.challengeQuestion){
+    toast('Missing fields (need domain, headline, metrics[], narratives[], challengeQuestion)',true);return;
+  }
+  P.currentDossier={domain:obj.domain||'—',region:obj.region||'',era:obj.era||'',difficulty:obj.difficulty||'Hard',headline:obj.headline,setup:obj.setup||'',metrics:obj.metrics,narratives:obj.narratives,challengeQuestion:obj.challengeQuestion,forDate:obj.forDate||todayStr(),answer:'',principle:'',scores:null,patternTags:[],storedAt:new Date().toISOString()};
+  save();$('paste-input').value='';closeModal('modal-paste');toast('Dossier stored ✓');renderDossier();
+}
+function renderDossier(){
+  const host=$('dossier-content');
+  if(!P.currentDossier){
+    const dossierCount=(P.log||[]).filter(e=>e.type==='dossier').length;
+    host.innerHTML=`
+    <div class="panel">
+      <div class="panel-h">GENERATE DOSSIER</div>
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:6px;line-height:1.7">A dataset, not a story. 6-10 metrics, 2-3 competing explanations, and one hidden connection to find. Harder and slower than a daily brief — doesn't touch your streak or day counter.</p>
+      <div class="dossier-cadence">${dossierCount} dossier${dossierCount===1?'':'s'} completed · recommended pace: 2 per week</div>
+      <div class="btn-row" style="margin-top:16px">
+        <button class="btn btn-primary" onclick="genDossier()">⚡ GENERATE DOSSIER PROMPT</button>
+        <button class="btn btn-green" onclick="openPasteModal('dossier')">↓ STORE DOSSIER (PASTE JSON)</button>
+      </div>
+      <div id="dossier-prompt-wrap" style="display:none;margin-top:16px">
+        <div class="promptbox" id="dossier-prompt"></div>
+        <div class="btn-row" style="margin-top:10px"><button class="btn" onclick="copyEl('dossier-prompt','Prompt copied — paste in Claude')">⧉ COPY PROMPT</button></div>
+      </div>
+    </div>`;
+    return;
+  }
+  const d=P.currentDossier;const sc=d.scores;
+  host.innerHTML=`
+  <div class="panel">
+    <div class="panel-h" style="color:var(--red)">DOSSIER · ${esc(d.region||'—')} · ${esc(d.era||'—')}</div>
+    <div class="dossier-meta"><span class="chip" style="color:var(--red);border-color:rgba(255,51,102,.4)">${esc(d.domain)}</span><span class="chip purple">${esc(d.difficulty||'Hard')}</span></div>
+    <div class="dossier-headline">${esc(d.headline)}</div>
+    ${d.setup?`<div class="dossier-setup">${esc(d.setup)}</div>`:''}
+    <div class="lbl">THE DATA</div>
+    <div class="metrics-table">${d.metrics.map(m=>`<div class="metric-row-label">${esc(m.label)}</div><div class="metric-row-value">${esc(m.value)}</div>`).join('')}</div>
+    <div class="lbl">COMPETING NARRATIVES</div>
+    ${d.narratives.map((n,i)=>`<div class="narrative-card"><div class="narrative-label">${String.fromCharCode(65+i)}</div><div class="narrative-text">${esc(n)}</div></div>`).join('')}
+    <div class="challenge-box" style="margin-top:14px">
+      <div class="challenge-label">⊹ THE CHALLENGE</div>
+      <div class="challenge-q">${esc(d.challengeQuestion)}</div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-h">YOUR ANALYSIS</div>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px">Find the connection. What's the single variable that resolves the competing narratives?</p>
+    <textarea id="dossier-answer-input" rows="8" placeholder="The hidden connection is… This resolves the narratives because…">${esc(d.answer||'')}</textarea>
+    <label class="fl" style="margin-top:14px">PRINCIPLE — one sentence (feeds your Retrieval queue)</label>
+    <input id="dossier-principle-input" placeholder="e.g. two metrics that look independent were both downstream of the same cause" value="${esc(d.principle||'')}">
+    <div class="btn-row" style="margin-top:14px"><button class="btn" onclick="saveDossierAnswer()">💾 SAVE ANSWER</button></div>
+  </div>
+  <div class="panel">
+    <div class="panel-h">TAG THE STRUCTURE</div>
+    <div class="tag-search-wrap">
+      <input id="pattern-tag-search" placeholder="Search patterns by name or trigger…" oninput="renderPatternSuggestions()" onfocus="renderPatternSuggestions()">
+      <div class="tag-suggestions" id="pattern-suggestions" style="display:none"></div>
+    </div>
+    <div class="tag-chips" id="pattern-chips"></div>
+  </div>
+  <div class="panel">
+    <div class="panel-h">GRADE THIS DOSSIER → 3 STATS</div>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.6">Paste your analysis to Claude for scoring. ${sc?'<span class="chip green">✓ already logged</span>':''}</p>
+    <div class="grid2">
+      <div><label class="fl">LEVER FOUND → PATTERN LIBRARY</label><input type="number" min="1" max="10" step="0.5" id="ds-pl" value="${sc?sc.pl:''}"></div>
+      <div><label class="fl">BRIDGE → CROSS-DOMAIN BRIDGING</label><input type="number" min="1" max="10" step="0.5" id="ds-cb" value="${sc?sc.cb:''}"></div>
+      <div><label class="fl">PREMISE CHECK → ASSUMPTION SURFACING</label><input type="number" min="1" max="10" step="0.5" id="ds-as" value="${sc?sc.as:''}"></div>
+    </div>
+    <button class="btn btn-green btn-full" style="margin-top:14px" onclick="logDossierScore()">✓ LOG DOSSIER SCORE</button>
+  </div>
+  <div class="panel">
+    <div class="btn-row">
+      <button class="btn btn-green" onclick="completeDossier()">✓ COMPLETE DOSSIER → ARCHIVE</button>
+      <button class="btn btn-ghost btn-danger" onclick="discardDossier()">DISCARD DOSSIER</button>
+    </div>
+  </div>`;
+  activeTagContext='dossier';
+  renderPatternChips();
+}
+function saveDossierAnswer(){
+  if(!P.currentDossier)return;
+  P.currentDossier.answer=$('dossier-answer-input').value;
+  P.currentDossier.principle=$('dossier-principle-input')?$('dossier-principle-input').value:(P.currentDossier.principle||'');
+  save();toast('Answer saved');
+}
+function logDossierScore(){
+  if(!P.currentDossier)return;
+  if(!P.baseline){toast('Set your baseline first',true);return}
+  const pl=+$('ds-pl').value,cb=+$('ds-cb').value,as=+$('ds-as').value;
+  if(![pl,cb,as].every(v=>v>=1&&v<=10)){toast('Enter all three scores (1-10)',true);return}
+  recordScore('pl',pl,'dossier');recordScore('cb',cb,'dossier');recordScore('as',as,'dossier');
+  P.currentDossier.scores={pl,cb,as};
+  const tags=P.currentDossier.patternTags||[];
+  let tagXp=0;
+  if(tags.length){commitPatternUsage(tags);tagXp=tags.length*3;}
+  P.xp=(P.xp||0)+30+tagXp;save();
+  toast(tags.length?`Dossier graded (+${30+tagXp} XP, ${tags.length} pattern${tags.length>1?'s':''} tagged)`:'Dossier graded (+30 XP)');
+  renderDossier();
+}
+function discardDossier(){if(!confirm('Discard this dossier without logging? Your answer will be lost.'))return;P.currentDossier=null;save();renderDossier();toast('Dossier discarded')}
+function completeDossier(){
+  if(!P.currentDossier)return;
+  const ans=$('dossier-answer-input')?$('dossier-answer-input').value:(P.currentDossier.answer||'');
+  if(!ans.trim()&&!confirm('No answer written. Archive this dossier anyway?'))return;
+  const d=P.currentDossier;d.answer=ans;
+  const principle=($('dossier-principle-input')?$('dossier-principle-input').value:(d.principle||'')).trim();
+  P.log.unshift({type:'dossier',day:P.day,date:new Date().toISOString(),domain:d.domain,region:d.region,era:d.era,difficulty:d.difficulty,headline:d.headline,setup:d.setup,metrics:d.metrics,narratives:d.narratives,challengeQuestion:d.challengeQuestion,answer:ans,principle:principle,patternTags:d.patternTags||[],scores:d.scores||null});
+  if(d.domain)P.antiPattern.domains.push(d.domain);
+  if(d.region)P.antiPattern.regions.push(d.region);
+  if(d.era)P.antiPattern.eras.push(d.era);
+  if(principle){addReviewItem('principle',d.headline,principle,d.domain);}
+  P.xp=(P.xp||0)+150;P.currentDossier=null;
+  save();updateChrome();toast(principle?'Dossier archived → +150 XP · principle added to Retrieval':'Dossier archived → +150 XP');nav('log');
+}
+
+// ===== BOSS FIGHTS =====
+const DIM_CHIP={pl:'cyan',qp:'green',pc:'red',cb:'orange',as:'purple'};
+const DIM_NAME={pl:'PL',qp:'QP',pc:'PC',cb:'CB',as:'AS'};
+let resolvingForecastId=null;
+function bossFightCount(){return (P.bossFights||[]).filter(b=>b.completed!==false).length}
+function pendingForecasts(){return (P.bossFights||[]).filter(b=>b.type==='forecast'&&!b.resolved&&new Date(b.targetDate)<=new Date())}
+function upcomingForecasts(){return (P.bossFights||[]).filter(b=>b.type==='forecast'&&!b.resolved&&new Date(b.targetDate)>new Date())}
+function daysSinceLastBossFight(){
+  const all=(P.bossFights||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
+  if(!all.length)return null;
+  return Math.floor((new Date()-new Date(all[0].date))/86400000);
+}
+function reasonerByName(name){return COMPACT_REASONERS.find(r=>r.name===name)}
+
+// ----- local synthesis sourcing (no Claude round-trip needed for setup) -----
+function pickSynthesisSources(){
+  const byType={principle:[],pattern:[],reasoner:[]};
+  (P.log||[]).forEach(e=>{
+    if(e.principle&&e.principle.trim()){
+      byType.principle.push({sourceType:'principle',label:e.headline||e.domain||'Logged entry',snippet:e.principle.trim(),cat:e.domain||''});
+    }
+  });
+  Object.keys(P.patternUsage||{}).forEach(id=>{
+    const p=patternById(+id);
+    if(p)byType.pattern.push({sourceType:'pattern',label:p.name,snippet:p.strip,cat:p.cat});
+  });
+  if(P.review.seededReasoners){
+    COMPACT_REASONERS.forEach(r=>byType.reasoner.push({sourceType:'reasoner',label:r.name,snippet:r.heuristic,cat:r.cat}));
+  }
+  Object.values(byType).forEach(arr=>{for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}});
+  const picked=[];
+  let progressed=true;
+  while(picked.length<5&&progressed){
+    progressed=false;
+    for(const t of ['principle','pattern','reasoner']){
+      if(picked.length>=5)break;
+      if(byType[t].length){picked.push(byType[t].shift());progressed=true;}
+    }
+  }
+  if(picked.length<5){
+    const fp=[...COMPACT_PATTERNS].sort(()=>Math.random()-0.5);
+    const fr=[...COMPACT_REASONERS].sort(()=>Math.random()-0.5);
+    let fi=0,ri=0;
+    while(picked.length<5&&(fi<fp.length||ri<fr.length)){
+      if(fi<fp.length){const p=fp[fi++];picked.push({sourceType:'pattern',label:p.name,snippet:p.strip,cat:p.cat});}
+      if(picked.length>=5)break;
+      if(ri<fr.length){const r=fr[ri++];picked.push({sourceType:'reasoner',label:r.name,snippet:r.heuristic,cat:r.cat});}
+    }
+  }
+  return picked.slice(0,5);
+}
+
+function startBossFight(type){
+  const id='bf-'+Date.now()+'-'+Math.random().toString(36).slice(2,7);
+  if(type==='synthesis'){
+    P.currentBossFight={id,type:'synthesis',day:P.day,date:new Date().toISOString(),sources:pickSynthesisSources(),response:'',principle:'',scores:null,startedAt:new Date().toISOString()};
+  }else if(type==='steelman'){
+    P.currentBossFight={id,type:'steelman',day:P.day,date:new Date().toISOString(),topic:'',response:'',principle:'',scores:null,startedAt:null};
+  }else if(type==='forecast'){
+    P.currentBossFight={id,type:'forecast',day:P.day,date:new Date().toISOString(),setup:null,prediction:'',confidence:50};
+  }else return;
+  save();renderBossFight();
+}
+function discardBossFight(){
+  if(!P.currentBossFight)return;
+  if(!confirm('Discard this boss fight in progress?'))return;
+  P.currentBossFight=null;save();renderBossFight();toast('Boss fight discarded');
+}
+function lockSteelmanTopic(){
+  if(!P.currentBossFight||P.currentBossFight.type!=='steelman')return;
+  const t=$('bf-topic-input').value.trim();
+  if(!t){toast('Enter a topic first',true);return}
+  P.currentBossFight.topic=t;P.currentBossFight.startedAt=new Date().toISOString();
+  save();renderBossFight();
+}
+function saveBossFightResponse(){
+  if(!P.currentBossFight)return;
+  const el=$('bf-response-input');if(!el)return;
+  P.currentBossFight.response=el.value;
+  const pr=$('bf-principle-input');if(pr)P.currentBossFight.principle=pr.value;
+  save();toast('Response saved');
+}
+
+// ----- synthesis / steelman grading prompts (local setup, Claude grades) -----
+function genSynthesisGradePrompt(){
+  const bf=P.currentBossFight;if(!bf||bf.type!=='synthesis')return;
+  const resp=$('bf-response-input')?$('bf-response-input').value.trim():(bf.response||'');
+  if(!resp){toast('Write your synthesis first',true);return}
+  bf.response=resp;save();
+  const srcList=bf.sources.map((s,i)=>`${i+1}. [${s.sourceType.toUpperCase()}] ${s.label} — ${s.snippet}`).join('\n');
+  const prompt=`You are grading a SYNTHESIS BOSS FIGHT for COGOS, a cognitive training system. The operator was given 5 unrelated items pulled from their own history and the system's reference libraries, and asked to find ONE unifying structural principle connecting all 5, in about 10 minutes.
+
+THE 5 SOURCES:
+${srcList}
+
+THE OPERATOR'S SYNTHESIS:
+${resp}
+
+Grade the synthesis on CROSS-DOMAIN BRIDGING (did they find a genuine structural connection spanning the actual domains, not a vague platitude) and PATTERN LIBRARY (does the connection reflect real understanding of the structures involved) on a 1-10 scale. Be calibrated — a 7 is genuinely good, a 5 average. Do not inflate. Also give your own stronger synthesis for comparison.
+
+Respond ONLY with a valid JSON object in exactly this format (no markdown, no explanation, just JSON):
+{
+  "scores": {"cb": 7, "pl": 7},
+  "feedback": "2-3 sentences of direct, calibrated feedback",
+  "strongerSynthesis": "your own one or two sentence version of the unifying principle, for comparison"
+}`;
+  $('bf-grade-prompt').textContent=prompt;$('bf-grade-prompt-wrap').style.display='block';
+  copyText(prompt,'Grading prompt copied — paste in Claude');
+}
+function genSteelmanGradePrompt(){
+  const bf=P.currentBossFight;if(!bf||bf.type!=='steelman')return;
+  const resp=$('bf-response-input')?$('bf-response-input').value.trim():(bf.response||'');
+  if(!resp){toast('Write your steelman first',true);return}
+  bf.response=resp;save();
+  const prompt=`You are grading a STEELMAN BOSS FIGHT for COGOS, a cognitive training system. The operator named a position they most confidently DISAGREE with, then had to argue the strongest possible version of it — fully, with no hedging — in about 5 minutes.
+
+THE POSITION (one the operator disagrees with): ${bf.topic}
+
+THE OPERATOR'S STEELMAN:
+${resp}
+
+Grade on ASSUMPTION SURFACING (did they surface and argue the strongest underlying assumptions of the opposing view, not a weak version) and QUESTION PRECISION (is the argument sharp, specific, and well-targeted rather than vague) on a 1-10 scale. Be calibrated — a 7 is genuinely good, a 5 average. Do not inflate.
+
+Respond ONLY with a valid JSON object in exactly this format (no markdown, no explanation, just JSON):
+{
+  "scores": {"as": 7, "qp": 7},
+  "feedback": "2-3 sentences of direct, calibrated feedback",
+  "biggestGap": "the single strongest point of the opposing position the operator missed or underweighted, if any"
+}`;
+  $('bf-grade-prompt').textContent=prompt;$('bf-grade-prompt-wrap').style.display='block';
+  copyText(prompt,'Grading prompt copied — paste in Claude');
+}
+function parseBossFightGrade(kind){
+  const raw=$('paste-input').value;if(!raw.trim()){toast('Paste the JSON first',true);return}
+  let obj;try{obj=extractJSON(raw)}catch(e){toast('Could not read JSON — check it copied fully',true);return}
+  if(!obj.scores||typeof obj.scores!=='object'){toast('Missing scores object',true);return}
+  const bf=P.currentBossFight;if(!bf||bf.type!==kind){toast('No matching active boss fight',true);return}
+  const dims=kind==='synthesis'?['cb','pl']:['as','qp'];
+  if(!dims.every(d=>typeof obj.scores[d]==='number')){toast(`Missing scores (need ${dims.join(', ')})`,true);return}
+  bf.scores={};dims.forEach(d=>{bf.scores[d]=obj.scores[d]});
+  bf.feedback=obj.feedback||'';
+  bf.compareNote=kind==='synthesis'?(obj.strongerSynthesis||''):(obj.biggestGap||'');
+  save();$('paste-input').value='';closeModal('modal-paste');toast('Grade stored ✓');renderBossFight();
+}
+function completeBossFight(){
+  const bf=P.currentBossFight;if(!bf)return;
+  if(bf.type==='forecast'){toast('Use LOCK IN PREDICTION to complete a forecast boss fight',true);return}
+  if(!bf.scores){toast('Grade this boss fight before completing it',true);return}
+  const principle=($('bf-principle-input')?$('bf-principle-input').value:(bf.principle||'')).trim();
+  const dims=Object.keys(bf.scores);
+  dims.forEach(d=>recordScore(d,bf.scores[d],'bossfight-'+bf.type));
+  const logEntry={id:bf.id,type:'boss-'+bf.type,day:P.day,date:new Date().toISOString(),
+    headline:bf.type==='synthesis'?'SYNTHESIS — find the unifying principle':'STEELMAN — '+bf.topic,
+    sources:bf.sources||null,topic:bf.topic||'',response:bf.response||'',principle:principle,
+    feedback:bf.feedback||'',compareNote:bf.compareNote||'',scores:bf.scores};
+  P.log.unshift(logEntry);
+  P.bossFights.unshift({id:bf.id,type:bf.type,day:bf.day,date:bf.date,scores:bf.scores,completed:true});
+  if(principle)addReviewItem('principle',logEntry.headline,principle,bf.type);
+  P.xp=(P.xp||0)+200;
+  P.currentBossFight=null;
+  save();updateChrome();
+  toast(principle?'Boss fight archived → +200 XP · principle added to Retrieval':'Boss fight archived → +200 XP');
+  nav('log');
+}
+
+// ----- forecast: generate situation, lock prediction, resolve 30 days later -----
+function genBossFightForecastPrompt(){
+  const prompt=`You are setting up a FORECASTING BOSS FIGHT for COGOS, a cognitive training system. Give me one real, currently-unfolding situation (as of your knowledge) with genuinely incomplete information — something where a thoughtful, specific, falsifiable prediction is possible but not obvious. Avoid generic macro questions (e.g. "will the Fed cut rates") — pick something more specific and less commonly discussed: a particular company, technology, conflict, market, or trend in genuine flux.
+
+Respond ONLY with a valid JSON object in exactly this format (no markdown, no explanation, just JSON):
+{
+  "situation": "3-5 sentences of context — what's unfolding, why it's uncertain, what's at stake.",
+  "question": "One specific, falsifiable question to predict the answer to. Phrase it so a clear yes/no or specific-number answer will exist in about 30 days."
+}`;
+  $('bf-forecast-prompt').textContent=prompt;$('bf-forecast-prompt-wrap').style.display='block';
+  copyText(prompt,'Forecast prompt copied — paste in Claude');
+}
+function parseForecastSetup(){
+  const raw=$('paste-input').value;if(!raw.trim()){toast('Paste the JSON first',true);return}
+  let obj;try{obj=extractJSON(raw)}catch(e){toast('Could not read JSON — check it copied fully',true);return}
+  if(!obj.situation||!obj.question){toast('Missing fields (need situation, question)',true);return}
+  if(!P.currentBossFight||P.currentBossFight.type!=='forecast'){toast('No active forecast boss fight',true);return}
+  P.currentBossFight.setup={situation:obj.situation,question:obj.question};
+  save();$('paste-input').value='';closeModal('modal-paste');toast('Forecast situation stored ✓');renderBossFight();
+}
+function lockForecastPrediction(){
+  const bf=P.currentBossFight;if(!bf||bf.type!=='forecast')return;
+  const pred=$('bf-prediction-input')?$('bf-prediction-input').value.trim():'';
+  const conf=$('bf-confidence-input')?+$('bf-confidence-input').value:NaN;
+  if(!pred){toast('Write your prediction first',true);return}
+  if(!(conf>=0&&conf<=100)){toast('Confidence must be 0-100',true);return}
+  const target=new Date();target.setDate(target.getDate()+30);
+  const entry={id:bf.id,type:'forecast',day:bf.day,date:bf.date,setup:bf.setup,prediction:pred,confidence:conf,targetDate:target.toISOString(),resolved:false,resolution:null,scores:null,completed:false};
+  P.bossFights.unshift(entry);
+  P.xp=(P.xp||0)+50;
+  P.currentBossFight=null;
+  save();updateChrome();
+  toast(`Prediction locked in (+50 XP) — resolves ${fmtDate(target.toISOString())}`);
+  nav('bossfight');
+}
+function openResolveForecast(id){resolvingForecastId=id;renderBossFight();}
+function closeResolveForecast(){resolvingForecastId=null;renderBossFight();}
+function genForecastResolutionPrompt(){
+  const f=(P.bossFights||[]).find(b=>b.id===resolvingForecastId);if(!f)return;
+  const prompt=`You are resolving a FORECASTING BOSS FIGHT prediction for COGOS, made roughly 30 days ago. Here is the original situation, question, and the operator's prediction:
+
+SITUATION: ${f.setup.situation}
+QUESTION: ${f.setup.question}
+OPERATOR'S PREDICTION: ${f.prediction}
+OPERATOR'S STATED CONFIDENCE: ${f.confidence}%
+
+Using your best current knowledge, determine what actually happened (or your best responsible estimate), judge whether the prediction was correct, and score the operator's QUESTION PRECISION (was the prediction specific and falsifiable enough to actually check) and PRESSURE CLARITY (was the reasoning behind it clear and well-structured) on a 1-10 scale. Be calibrated — a 7 is genuinely good, a 5 average. Do not inflate.
+
+Respond ONLY with a valid JSON object in exactly this format (no markdown, no explanation, just JSON):
+{
+  "outcome": "what actually happened, as best you can determine",
+  "wasCorrect": true,
+  "scores": {"qp": 7, "pc": 7},
+  "calibrationNote": "1-2 sentences on whether the stated confidence level was well-calibrated to the outcome"
+}`;
+  $('bf-resolve-prompt').textContent=prompt;$('bf-resolve-prompt-wrap').style.display='block';
+  copyText(prompt,'Resolution prompt copied — paste in Claude');
+}
+function parseForecastResolution(){
+  const raw=$('paste-input').value;if(!raw.trim()){toast('Paste the JSON first',true);return}
+  let obj;try{obj=extractJSON(raw)}catch(e){toast('Could not read JSON — check it copied fully',true);return}
+  if(!obj.outcome||!obj.scores||typeof obj.scores.qp!=='number'||typeof obj.scores.pc!=='number'){toast('Missing fields (need outcome, scores.qp, scores.pc)',true);return}
+  const f=(P.bossFights||[]).find(b=>b.id===resolvingForecastId);if(!f){toast('Forecast not found',true);return}
+  recordScore('qp',obj.scores.qp,'bossfight-forecast');
+  recordScore('pc',obj.scores.pc,'bossfight-forecast');
+  f.resolved=true;f.completed=true;
+  f.resolution={outcome:obj.outcome,wasCorrect:!!obj.wasCorrect,calibrationNote:obj.calibrationNote||''};
+  f.scores={qp:obj.scores.qp,pc:obj.scores.pc};
+  P.xp=(P.xp||0)+150;
+  const logEntry={id:f.id+'-resolved',type:'boss-forecast',day:f.day,date:new Date().toISOString(),
+    headline:'FORECAST — '+f.setup.question,
+    setup:f.setup,prediction:f.prediction,confidence:f.confidence,
+    outcome:f.resolution.outcome,wasCorrect:f.resolution.wasCorrect,calibrationNote:f.resolution.calibrationNote,
+    scores:f.scores};
+  P.log.unshift(logEntry);
+  resolvingForecastId=null;
+  save();$('paste-input').value='';closeModal('modal-paste');updateChrome();
+  toast(`Forecast resolved (+150 XP) → QP/PC updated`);
+  nav('log');
+}
+
+// ----- render -----
+function renderBossFight(){
+  const host=$('bossfight-content');
+  const bf=P.currentBossFight;
+
+  if(resolvingForecastId){
+    const f=(P.bossFights||[]).find(b=>b.id===resolvingForecastId);
+    if(!f){resolvingForecastId=null;}
+    else{
+      host.innerHTML=`<div class="panel">
+        <div class="panel-h" style="color:var(--yellow)">RESOLVE FORECAST</div>
+        <div class="boss-pending-meta">Locked in ${fmtDate(f.date)} · target ${fmtDate(f.targetDate)}</div>
+        <div class="log-section"><div class="log-section-l">SITUATION</div><div style="font-size:14px;color:var(--text-dim);line-height:1.6">${esc(f.setup.situation)}</div></div>
+        <div class="log-section"><div class="log-section-l">QUESTION</div><div style="font-size:15px">${esc(f.setup.question)}</div></div>
+        <div class="log-section"><div class="log-section-l">YOUR PREDICTION (${f.confidence}% confidence)</div><div class="log-answer">${esc(f.prediction)}</div></div>
+        <div class="btn-row" style="margin-top:14px">
+          <button class="btn btn-primary" onclick="genForecastResolutionPrompt()">⚡ GENERATE RESOLUTION PROMPT</button>
+          <button class="btn btn-green" onclick="openPasteModal('bf-forecast-resolve')">↓ STORE RESOLUTION (PASTE JSON)</button>
+          <button class="btn btn-ghost" onclick="closeResolveForecast()">CANCEL</button>
+        </div>
+        <div id="bf-resolve-prompt-wrap" style="display:none;margin-top:16px">
+          <div class="promptbox" id="bf-resolve-prompt"></div>
+          <div class="btn-row" style="margin-top:10px"><button class="btn" onclick="copyEl('bf-resolve-prompt','Prompt copied — paste in Claude')">⧉ COPY PROMPT</button></div>
+        </div>
+      </div>`;
+      return;
+    }
+  }
+
+  if(!bf){
+    const pending=pendingForecasts();
+    const upcoming=upcomingForecasts();
+    const since=daysSinceLastBossFight();
+    const cadenceText=since===null?'No boss fights completed yet.':`Last boss fight: ${since} day${since===1?'':'s'} ago${since>=7?' — due for another':''}.`;
+    host.innerHTML=`
+    <div class="panel">
+      <div class="panel-h">BOSS FIGHTS — FORMAT-BREAK CHALLENGES</div>
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:6px;line-height:1.7">Daily reps build the substrate; they don't produce the click. These are qualitatively different, not just harder — periodic, weekly-to-biweekly, and pull material from everything else you've built: patterns, dossiers, the Reasoner Archive, and your own logged principles. Doesn't touch your streak or day counter.</p>
+      <div class="boss-cadence">${bossFightCount()} boss fight${bossFightCount()===1?'':'s'} completed · ${cadenceText}</div>
+      <div class="boss-type-grid">
+        <button class="boss-type-card" onclick="startBossFight('synthesis')">
+          <div class="boss-type-ic">⚡</div>
+          <div class="boss-type-name" style="color:var(--cyan)">SYNTHESIS</div>
+          <div class="boss-type-desc">5 unrelated sources from your own history. Find the one structural principle that unifies all of them. ~10 minutes.</div>
+          <div class="boss-type-meta">Scores: CROSS-DOMAIN BRIDGING · PATTERN LIBRARY</div>
+        </button>
+        <button class="boss-type-card" onclick="startBossFight('steelman')">
+          <div class="boss-type-ic">⚔</div>
+          <div class="boss-type-name" style="color:var(--purple)">STEELMAN</div>
+          <div class="boss-type-desc">Name the position you most confidently disagree with. Argue it fully — no hedging. ~5 minutes.</div>
+          <div class="boss-type-meta">Scores: ASSUMPTION SURFACING · QUESTION PRECISION</div>
+        </button>
+        <button class="boss-type-card" onclick="startBossFight('forecast')">
+          <div class="boss-type-ic">◎</div>
+          <div class="boss-type-name" style="color:var(--yellow)">FORECAST</div>
+          <div class="boss-type-desc">A real, currently-unfolding situation with incomplete information. Make a falsifiable prediction. Scored against reality in 30 days.</div>
+          <div class="boss-type-meta">Scores: QUESTION PRECISION · PRESSURE CLARITY (on resolution)</div>
+        </button>
+      </div>
+    </div>
+    ${pending.length?`<div class="panel">
+      <div class="panel-h" style="color:var(--yellow)">⏰ PENDING RESOLUTION (${pending.length})</div>
+      ${pending.map(f=>`<div class="boss-pending-card">
+        <div class="boss-pending-meta">Locked in ${fmtDate(f.date)} · due ${fmtDate(f.targetDate)}</div>
+        <div style="font-weight:600;font-size:14px;margin-bottom:8px">${esc(f.setup.question)}</div>
+        <div style="font-size:13px;color:var(--text-dim);margin-bottom:10px">Your prediction (${f.confidence}%): ${esc(f.prediction)}</div>
+        <button class="btn btn-primary" onclick="openResolveForecast('${f.id}')">RESOLVE NOW →</button>
+      </div>`).join('')}
+    </div>`:''}
+    ${upcoming.length?`<div class="panel">
+      <div class="panel-h">AWAITING TARGET DATE (${upcoming.length})</div>
+      ${upcoming.map(f=>`<div class="boss-pending-card" style="border-color:var(--border-bright)">
+        <div class="boss-pending-meta">Resolves ${fmtDate(f.targetDate)}</div>
+        <div style="font-size:13.5px">${esc(f.setup.question)}</div>
+      </div>`).join('')}
+    </div>`:''}`;
+    return;
+  }
+
+  // ----- SYNTHESIS active -----
+  if(bf.type==='synthesis'){
+    host.innerHTML=`<div class="panel">
+      <div class="boss-banner"><div class="boss-banner-t">⚡ SYNTHESIS — FIND THE ONE PRINCIPLE</div>5 unrelated items, pulled from your own history and reference libraries. Find the single structural principle that connects all of them. Aim for ~10 minutes.</div>
+      <div class="lbl" style="font-family:var(--fm);font-size:9.5px;letter-spacing:1.8px;color:var(--text-faint);margin-bottom:8px">THE 5 SOURCES</div>
+      ${bf.sources.map((s,i)=>`<div class="boss-source-card">
+        <div class="boss-source-n">${i+1} · ${s.sourceType.toUpperCase()}</div>
+        <div class="boss-source-name">${esc(s.label)}</div>
+        <div class="boss-source-snip">${esc(s.snippet)}</div>
+      </div>`).join('')}
+    </div>
+    <div class="panel">
+      <div class="panel-h">YOUR SYNTHESIS</div>
+      <textarea id="bf-response-input" rows="6" placeholder="The one principle connecting all 5 is…">${esc(bf.response||'')}</textarea>
+      <label class="fl" style="margin-top:14px">PRINCIPLE — one sentence (feeds your Retrieval queue)</label>
+      <input id="bf-principle-input" placeholder="e.g. every one of these is the same feedback structure wearing a different costume" value="${esc(bf.principle||'')}">
+      <div class="btn-row" style="margin-top:14px"><button class="btn" onclick="saveBossFightResponse()">💾 SAVE RESPONSE</button></div>
+    </div>
+    ${bossGradeSection(bf,'synthesis')}
+    ${bossCompleteSection(bf)}`;
+    return;
+  }
+
+  // ----- STEELMAN active -----
+  if(bf.type==='steelman'){
+    if(!bf.topic){
+      host.innerHTML=`<div class="panel">
+        <div class="boss-banner"><div class="boss-banner-t">⚔ STEELMAN — NO HEDGING</div>Name the position you most confidently disagree with. You'll then have to argue it as strongly and fully as its best advocate would, with zero hedging. ~5 minutes once you begin.</div>
+        <label class="fl">THE POSITION YOU DISAGREE WITH</label>
+        <input id="bf-topic-input" placeholder="e.g. remote work is bad for junior employees' careers">
+        <div class="btn-row" style="margin-top:14px"><button class="btn btn-primary" onclick="lockSteelmanTopic()">BEGIN STEELMAN →</button></div>
+      </div>`;
+      return;
+    }
+    host.innerHTML=`<div class="panel">
+      <div class="boss-banner"><div class="boss-banner-t">⚔ STEELMAN</div>${esc(bf.topic)}</div>
+      <div class="panel-h">YOUR STEELMAN — FULL COMMITMENT, NO HEDGING</div>
+      <textarea id="bf-response-input" rows="8" placeholder="The strongest version of this position is…">${esc(bf.response||'')}</textarea>
+      <label class="fl" style="margin-top:14px">PRINCIPLE — one sentence (feeds your Retrieval queue)</label>
+      <input id="bf-principle-input" placeholder="e.g. the strongest version of this argument rests on an assumption I hadn't surfaced" value="${esc(bf.principle||'')}">
+      <div class="btn-row" style="margin-top:14px"><button class="btn" onclick="saveBossFightResponse()">💾 SAVE RESPONSE</button></div>
+    </div>
+    ${bossGradeSection(bf,'steelman')}
+    ${bossCompleteSection(bf)}`;
+    return;
+  }
+
+  // ----- FORECAST active -----
+  if(bf.type==='forecast'){
+    if(!bf.setup){
+      host.innerHTML=`<div class="panel">
+        <div class="boss-banner"><div class="boss-banner-t">◎ FORECAST — STAGE 1: GET A SITUATION</div>Generate a real, currently-unfolding situation with incomplete information, then come back and make your prediction.</div>
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="genBossFightForecastPrompt()">⚡ GENERATE FORECAST PROMPT</button>
+          <button class="btn btn-green" onclick="openPasteModal('bf-forecast-setup')">↓ STORE SITUATION (PASTE JSON)</button>
+          <button class="btn btn-ghost btn-danger" onclick="discardBossFight()">DISCARD</button>
+        </div>
+        <div id="bf-forecast-prompt-wrap" style="display:none;margin-top:16px">
+          <div class="promptbox" id="bf-forecast-prompt"></div>
+          <div class="btn-row" style="margin-top:10px"><button class="btn" onclick="copyEl('bf-forecast-prompt','Prompt copied — paste in Claude')">⧉ COPY PROMPT</button></div>
+        </div>
+      </div>`;
+      return;
+    }
+    host.innerHTML=`<div class="panel">
+      <div class="boss-banner"><div class="boss-banner-t">◎ FORECAST — STAGE 2: PREDICT</div>This resolves in 30 days, scored against what actually happened.</div>
+      <div class="log-section"><div class="log-section-l">SITUATION</div><div style="font-size:14px;color:var(--text-dim);line-height:1.6">${esc(bf.setup.situation)}</div></div>
+      <div class="log-section"><div class="log-section-l">QUESTION</div><div style="font-size:16px;font-weight:500">${esc(bf.setup.question)}</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-h">YOUR PREDICTION</div>
+      <textarea id="bf-prediction-input" rows="5" placeholder="My prediction is…">${esc(bf.prediction||'')}</textarea>
+      <label class="fl" style="margin-top:14px">CONFIDENCE: <span id="bf-conf-val">${bf.confidence||50}</span>%</label>
+      <input type="range" id="bf-confidence-input" min="0" max="100" step="5" value="${bf.confidence||50}" oninput="$('bf-conf-val').textContent=this.value" style="width:100%">
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn btn-primary" onclick="lockForecastPrediction()">🔒 LOCK IN PREDICTION (+50 XP)</button>
+        <button class="btn btn-ghost btn-danger" onclick="discardBossFight()">DISCARD</button>
+      </div>
+    </div>`;
+    return;
+  }
+}
+function bossGradeSection(bf,kind){
+  if(bf.scores){
+    const dims=Object.keys(bf.scores);
+    return `<div class="panel">
+      <div class="panel-h">GRADED ✓</div>
+      <div class="chips">${dims.map(d=>`<span class="chip ${DIM_CHIP[d]}">${DIM_NAME[d]} ${bf.scores[d]}</span>`).join('')}</div>
+      ${bf.feedback?`<div class="log-section"><div class="log-section-l">FEEDBACK</div><div style="font-size:13.5px;color:var(--text-dim);line-height:1.6">${esc(bf.feedback)}</div></div>`:''}
+      ${bf.compareNote?`<div class="log-section"><div class="log-section-l">${kind==='synthesis'?'A STRONGER SYNTHESIS':'BIGGEST GAP'}</div><div style="font-size:13.5px;color:var(--cyan);line-height:1.6">${esc(bf.compareNote)}</div></div>`:''}
+    </div>`;
+  }
+  const genFn=kind==='synthesis'?'genSynthesisGradePrompt':'genSteelmanGradePrompt';
+  const pasteMode=kind==='synthesis'?'bf-synth-grade':'bf-steelman-grade';
+  return `<div class="panel">
+    <div class="panel-h">GRADE THIS BOSS FIGHT</div>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.6">Paste your response to Claude for scoring.</p>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="${genFn}()">⚡ GENERATE GRADING PROMPT</button>
+      <button class="btn btn-green" onclick="openPasteModal('${pasteMode}')">↓ STORE GRADE (PASTE JSON)</button>
+    </div>
+    <div id="bf-grade-prompt-wrap" style="display:none;margin-top:16px">
+      <div class="promptbox" id="bf-grade-prompt"></div>
+      <div class="btn-row" style="margin-top:10px"><button class="btn" onclick="copyEl('bf-grade-prompt','Prompt copied — paste in Claude')">⧉ COPY PROMPT</button></div>
+    </div>
+  </div>`;
+}
+function bossCompleteSection(bf){
+  return `<div class="panel">
+    <div class="btn-row">
+      <button class="btn btn-green" onclick="completeBossFight()">✓ COMPLETE BOSS FIGHT → ARCHIVE (+200 XP)</button>
+      <button class="btn btn-ghost btn-danger" onclick="discardBossFight()">DISCARD</button>
+    </div>
+  </div>`;
 }
 
 // ===== LOG =====
 function renderLog(){
   const host=$('log-list');const q=($('log-search')?.value||'').toLowerCase();
   let items=P.log||[];
-  if(q)items=items.filter(e=>(e.domain+' '+e.headline+' '+e.anchorQuestion+' '+(e.answer||'')).toLowerCase().includes(q));
+  if(q)items=items.filter(e=>(e.domain+' '+e.headline+' '+(e.anchorQuestion||'')+' '+(e.challengeQuestion||'')+' '+(e.answer||'')+' '+(e.topic||'')+' '+(e.response||'')+' '+(e.prediction||'')+' '+(e.outcome||'')).toLowerCase().includes(q));
   if(!items.length){host.innerHTML=`<div class="empty"><div class="empty-ic">≡</div><div class="empty-t">${q?'No matching entries':'No briefs logged yet'}</div><div class="empty-s">${q?'Try a different search.':'Complete your first daily brief and it lands here — question, answer, and the grade you got.'}</div>${q?'':'<button class="btn btn-primary" onclick="nav(\'brief\')">GENERATE TODAY\u2019S BRIEF →</button>'}</div>`;return}
   host.innerHTML=items.map((e,i)=>{
-    const ans=(e.answer||'').trim();
-    const grade=e.scores?`<div class="chips" style="margin-top:10px"><span class="chip cyan">PL ${e.scores.pl}</span><span class="chip orange">CB ${e.scores.cb}</span><span class="chip purple">AS ${e.scores.as}</span></div>`:'';
+    const kind=e.type||'brief';
+    const isDossier=kind==='dossier';
+    const isBossSynth=kind==='boss-synthesis';
+    const isBossSteel=kind==='boss-steelman';
+    const isBossForecast=kind==='boss-forecast';
+    const isBoss=isBossSynth||isBossSteel||isBossForecast;
+    const ans=(e.answer||e.response||e.prediction||'').trim();
+    let qText;
+    if(isDossier)qText=e.challengeQuestion;
+    else if(isBossSynth)qText='Find the unifying structural principle';
+    else if(isBossSteel)qText=e.topic;
+    else if(isBossForecast)qText=(e.setup&&e.setup.question)||'';
+    else qText=e.anchorQuestion;
+    const scores=e.scores||null;
+    const grade=scores?`<div class="chips" style="margin-top:10px">${Object.keys(scores).map(d=>`<span class="chip ${DIM_CHIP[d]||''}">${(DIM_NAME[d]||d.toUpperCase())} ${scores[d]}</span>`).join('')}</div>`:'';
+    const metricsBlock=(isDossier&&e.metrics)?`<div class="log-section"><div class="log-section-l">DATA</div><div class="metrics-table">${e.metrics.map(m=>`<div class="metric-row-label">${esc(m.label)}</div><div class="metric-row-value">${esc(m.value)}</div>`).join('')}</div></div>`:'';
+    const narrativesBlock=(isDossier&&e.narratives)?`<div class="log-section"><div class="log-section-l">NARRATIVES</div>${e.narratives.map((n,ni)=>`<div class="narrative-card"><div class="narrative-label">${String.fromCharCode(65+ni)}</div><div class="narrative-text">${esc(n)}</div></div>`).join('')}</div>`:'';
+    const sourcesBlock=(isBossSynth&&e.sources)?`<div class="log-section"><div class="log-section-l">THE 5 SOURCES</div>${e.sources.map((s,si)=>`<div class="boss-source-card"><div class="boss-source-n">${si+1} · ${esc(s.sourceType.toUpperCase())}</div><div class="boss-source-name">${esc(s.label)}</div><div class="boss-source-snip">${esc(s.snippet)}</div></div>`).join('')}</div>`:'';
+    const forecastBlock=isBossForecast?`
+      <div class="log-section"><div class="log-section-l">SITUATION</div><div style="font-size:14px;color:var(--text-dim);line-height:1.6">${esc(e.setup?e.setup.situation:'')}</div></div>
+      <div class="log-section"><div class="log-section-l">QUESTION</div><div style="font-size:15px">${esc(qText)}</div></div>
+      <div class="log-section"><div class="log-section-l">CONFIDENCE STATED</div><div style="font-size:14px">${e.confidence}%</div></div>
+      ${e.outcome?`<div class="log-section"><div class="log-section-l">OUTCOME</div><div style="font-size:14px;color:var(--text-dim);line-height:1.6">${esc(e.outcome)}</div><div class="chip ${e.wasCorrect?'green':'red'}" style="margin-top:8px">${e.wasCorrect?'✓ CORRECT':'✗ INCORRECT'}</div></div>`:''}
+      ${e.calibrationNote?`<div class="log-section"><div class="log-section-l">CALIBRATION</div><div style="font-size:13px;color:var(--text-dim)">${esc(e.calibrationNote)}</div></div>`:''}
+    `:'';
+    const feedbackBlock=e.feedback?`<div class="log-section"><div class="log-section-l">FEEDBACK</div><div style="font-size:13.5px;color:var(--text-dim);line-height:1.6">${esc(e.feedback)}</div></div>`:'';
+    const compareBlock=e.compareNote?`<div class="log-section"><div class="log-section-l">${isBossSynth?'A STRONGER SYNTHESIS':'BIGGEST GAP'}</div><div style="font-size:13.5px;color:var(--cyan);line-height:1.6">${esc(e.compareNote)}</div></div>`:'';
+    const typeChip=isDossier?'<span class="chip" style="color:var(--red);border-color:rgba(255,51,102,.4);padding:2px 7px">DOSSIER</span>'
+      :isBossSynth?'<span class="chip" style="color:var(--yellow);border-color:rgba(255,215,0,.4);padding:2px 7px">BOSS·SYNTHESIS</span>'
+      :isBossSteel?'<span class="chip" style="color:var(--yellow);border-color:rgba(255,215,0,.4);padding:2px 7px">BOSS·STEELMAN</span>'
+      :isBossForecast?'<span class="chip" style="color:var(--yellow);border-color:rgba(255,215,0,.4);padding:2px 7px">BOSS·FORECAST</span>'
+      :'DAY '+e.day;
+    const domainLabel=e.domain||(isBoss?'BOSS FIGHT':'');
     return `<div class="log-item" id="logitem-${i}">
-      <div class="log-head" onclick="toggleLog(${i})"><div class="log-day">DAY ${e.day}</div><div class="log-q">${esc(e.anchorQuestion)}</div><div class="log-dom">${esc(e.domain)}</div><div class="log-caret">▸</div></div>
+      <div class="log-head" onclick="toggleLog(${i})">
+        <div class="log-day">${typeChip}</div>
+        <div class="log-q">${esc(qText||e.headline)}</div><div class="log-dom">${esc(domainLabel)}</div><div class="log-caret">▸</div></div>
       <div class="log-body">
-        <div class="chips" style="margin-top:14px"><span class="chip">${esc(fmtDate(e.date))}</span><span class="chip cyan">${esc(e.domain)}</span>${e.region?`<span class="chip">${esc(e.region)}</span>`:''}${e.era?`<span class="chip orange">${esc(e.era)}</span>`:''}</div>
+        <div class="chips" style="margin-top:14px"><span class="chip">${esc(fmtDate(e.date))}</span>${domainLabel?`<span class="chip cyan">${esc(domainLabel)}</span>`:''}${e.region?`<span class="chip">${esc(e.region)}</span>`:''}${e.era?`<span class="chip orange">${esc(e.era)}</span>`:''}</div>
         <div class="log-section"><div class="log-section-l">HEADLINE</div><div style="font-weight:600">${esc(e.headline)}</div></div>
         ${e.hook?`<div class="log-section"><div class="log-section-l">CASE</div><div style="font-size:14px;color:var(--text-dim);line-height:1.6">${esc(e.hook)}</div></div>`:''}
-        <div class="log-section"><div class="log-section-l">ANCHOR QUESTION</div><div style="font-size:15px">${esc(e.anchorQuestion)}</div></div>
-        <div class="log-section"><div class="log-section-l">YOUR ANSWER</div><div class="log-answer ${ans?'':'empty'}">${ans?esc(ans):'(no answer recorded)'}</div></div>
+        ${e.setup&&typeof e.setup==='string'?`<div class="log-section"><div class="log-section-l">SETUP</div><div style="font-size:14px;color:var(--text-dim);line-height:1.6">${esc(e.setup)}</div></div>`:''}
+        ${metricsBlock}
+        ${narrativesBlock}
+        ${sourcesBlock}
+        ${forecastBlock}
+        ${(qText&&!isBossForecast)?`<div class="log-section"><div class="log-section-l">${isDossier?'CHALLENGE':isBossSynth?'CHALLENGE':isBossSteel?'POSITION ARGUED':'ANCHOR QUESTION'}</div><div style="font-size:15px">${esc(qText)}</div></div>`:''}
+        ${!isBossForecast?`<div class="log-section"><div class="log-section-l">YOUR ${isBossSynth?'SYNTHESIS':isBossSteel?'STEELMAN':'ANSWER'}</div><div class="log-answer ${ans?'':'empty'}">${ans?esc(ans):'(no answer recorded)'}</div></div>`:''}
+        ${e.principle?`<div class="log-section"><div class="log-section-l">PRINCIPLE</div><div style="font-size:13.5px;color:var(--cyan);font-style:italic">"${esc(e.principle)}"</div></div>`:''}
+        ${(e.patternTags&&e.patternTags.length)?`<div class="log-section"><div class="log-section-l">PATTERNS TAGGED</div><div class="chips">${e.patternTags.map(id=>{const p=patternById(id);return p?`<span class="chip" style="color:${catColor(p.cat)};border-color:${catColor(p.cat)}55">${esc(p.name)}</span>`:''}).join('')}</div></div>`:''}
+        ${feedbackBlock}
+        ${compareBlock}
         ${grade?`<div class="log-section"><div class="log-section-l">GRADE</div>${grade}</div>`:''}
       </div></div>`;
   }).join('');
@@ -850,6 +1970,13 @@ function migrate(){
   P.stats=P.stats||{pl:0,qp:0,pc:0,cb:0,as:0};
   if(P.baseline&&!P.origin)P.origin={...P.baseline};
   if(typeof P.xp!=='number')P.xp=0;if(typeof P.day!=='number')P.day=1;if(typeof P.streak!=='number')P.streak=0;
+  P.review=P.review||{items:[],seededPatterns:false,seededReasoners:false};
+  P.review.items=P.review.items||[];
+  if(typeof P.review.seededReasoners!=='boolean')P.review.seededReasoners=false;
+  P.bossFights=P.bossFights||[];
+  if(P.currentBossFight===undefined)P.currentBossFight=null;
+  P.patternUsage=P.patternUsage||{};
+  if(P.currentDossier===undefined)P.currentDossier=null;
 }
 function boot(){
   P=load();
