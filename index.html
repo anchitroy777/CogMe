@@ -197,6 +197,29 @@
   .boss-pending-meta{font-family:var(--fm);font-size:10px;color:var(--text-faint);margin-bottom:8px}
   .boss-grade-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 
+  /* CONSULTING ENGAGEMENT */
+  .mode-chooser{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+  .mode-card{background:var(--bg2);border:1px solid var(--border-bright);border-radius:12px;padding:18px;cursor:pointer;transition:.15s;text-align:left}
+  .mode-card:hover{transform:translateY(-2px)}
+  .mode-card.selected{border-color:var(--purple);background:rgba(139,92,246,.08)}
+  .mode-ic{font-size:22px;margin-bottom:8px}
+  .mode-name{font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:5px}
+  .mode-desc{font-size:12px;color:var(--text-dim);line-height:1.6}
+  .mode-meta{font-family:var(--fm);font-size:9.5px;color:var(--text-faint);margin-top:8px}
+  .consult-banner{background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(0,245,255,.06));border:1px solid rgba(139,92,246,.35);border-radius:11px;padding:16px 18px;margin-bottom:14px}
+  .consult-banner-t{font-family:var(--fm);font-size:11px;letter-spacing:1.5px;color:var(--purple);margin-bottom:4px}
+  .consult-headline{font-family:var(--fd);font-size:19px;font-weight:700;line-height:1.35;margin:10px 0 14px}
+  .stage-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:4px}
+  .stage-pill{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:11px;font-weight:700;border:1px solid var(--border-bright);color:var(--text-faint);background:var(--bg2)}
+  .stage-pill.done{background:rgba(0,255,136,.12);border-color:rgba(0,255,136,.4);color:var(--green)}
+  .key-moment-item{background:var(--bg2);border:1px solid var(--border-bright);border-radius:9px;padding:12px 14px;margin-bottom:9px;border-left:3px solid var(--cyan)}
+  .key-moment-item.prompted{border-left-color:var(--orange)}
+  .key-moment-stage{font-family:var(--fm);font-size:9.5px;color:var(--text-faint);letter-spacing:1px;margin-bottom:5px}
+  .key-moment-note{font-size:13.5px;line-height:1.6;color:var(--text)}
+  .coach-note-box{background:linear-gradient(135deg,rgba(0,245,255,.06),rgba(139,92,246,.05));border:1px solid rgba(0,245,255,.25);border-radius:10px;padding:16px 18px;font-size:14.5px;line-height:1.75;color:var(--text)}
+  .consult-synthesis{background:#06060d;border:1px solid var(--border-bright);border-radius:9px;padding:15px 17px;font-size:14px;line-height:1.8;color:var(--text-dim)}
+  @media(max-width:600px){.mode-chooser{grid-template-columns:1fr}}
+
   /* PATTERN TAGGING */
   .tag-search-wrap{position:relative}
   .tag-suggestions{position:absolute;top:100%;left:0;right:0;background:var(--panel2);border:1px solid var(--border-bright);border-radius:9px;margin-top:4px;max-height:220px;overflow-y:auto;z-index:50;box-shadow:0 10px 30px rgba(0,0,0,.4)}
@@ -223,7 +246,7 @@
   .rev-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:12px}
   .rev-card.due{border-color:rgba(255,107,53,.35)}
   .rev-type{font-family:var(--fm);font-size:9px;letter-spacing:1.5px;color:var(--text-faint);margin-bottom:8px}
-  .rev-type.pattern{color:var(--purple)}.rev-type.principle{color:var(--cyan)}.rev-type.reasoner{color:var(--orange)}
+  .rev-type.pattern{color:var(--purple)}.rev-type.principle{color:var(--cyan)}.rev-type.reasoner{color:var(--orange)}.rev-type.case{color:var(--yellow)}
   .rev-prompt{font-size:15px;line-height:1.6;color:var(--text);margin-bottom:14px}
   .rev-answer{background:#06060d;border:1px solid var(--border-bright);border-radius:9px;padding:14px 16px;margin-bottom:14px;font-size:14px;line-height:1.7;color:var(--text-dim);display:none}
   .rev-answer.shown{display:block;animation:fade .25s}
@@ -356,7 +379,7 @@
     <section class="screen" id="screen-retrieval">
       <div class="panel">
         <div class="panel-h">RETRIEVAL ENGINE — SPACED RECALL</div>
-        <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.7">Forces active recall before showing the answer. Forgot resets the interval, Good/Easy push it further out. This is the fix for forgetting — material only sticks if you're forced to retrieve it, not just re-read it. Seed the 80-pattern library and the 29-mind Reasoner Archive below to build your queue.</p>
+        <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.7">Forces active recall before showing the answer. Forgot resets the interval, Good/Easy push it further out. This is the fix for forgetting — material only sticks if you're forced to retrieve it, not just re-read it. Seed the 80-pattern library, the 29-mind Reasoner Archive, and the 40-case Consulting Repository below to build your queue.</p>
         <div class="rev-stats">
           <div class="kpi"><div class="kpi-label">DUE TODAY</div><div class="kpi-val orange" id="rev-due-count">0</div></div>
           <div class="kpi"><div class="kpi-label">IN QUEUE</div><div class="kpi-val" id="rev-total-count">0</div></div>
@@ -603,6 +626,8 @@ const COMPACT_PATTERNS=[
 ];
 const COMPACT_REASONERS=[{"id": 1, "cat": "invest", "name": "Charlie Munger — The Latticework, and Inverting the Problem", "who": "Vice-chairman of Berkshire Hathaway; built his decision-making around a self-assembled 'latticework' of mental models drawn from outside finance.", "trigger": "How to make consistently good decisions in a domain (capital allocation) where most participants are smart, hard-working, and still lose. Munger refused to treat investing as a self-contained discipline.", "heuristic": "Before solving forward, invert: ask what would guarantee the worst outcome and design to avoid it. And check every important problem against three or four models from unrelated fields — if they all point the same way, you have real conviction; if only your home-field model likes it, you are probably fooling yourself."}, {"id": 2, "cat": "invest", "name": "Warren Buffett — Circle of Competence & the See's Candies Re-rating", "who": "CEO of Berkshire Hathaway; trained as a strict Graham-style 'cigar-butt' bargain hunter before deliberately rewiring how he valued a business.", "trigger": "In 1972 Berkshire could buy See's Candies. By his inherited rulebook — buy things trading below liquidation value — See's was too expensive relative to its hard assets. The cheap-asset framework said pass.", "heuristic": "Know the exact edge of what you can actually evaluate, and operate only inside it — the perimeter matters more than the area. And value a thing by the cash it will produce and the capital it consumes, not by the accounting category it happens to sit in."}, {"id": 3, "cat": "invest", "name": "George Soros — Reflexivity and Breaking the Pound (1992)", "who": "Founder of the Quantum Fund; built a theory that market prices and the fundamentals they supposedly reflect feed back on each other.", "trigger": "In 1992 the British pound was held inside the European Exchange Rate Mechanism at a rate Soros judged unsustainable, given Britain's economy and interest-rate constraints. The official position was that the peg would hold.", "heuristic": "When a price is held up only by a belief that the price will hold, it is not a stable fact — it is a feedback loop waiting for a push. Identify the equilibria that depend on confidence rather than on fundamentals, and hold your own thesis loosely enough to abandon it the instant reality disagrees."}, {"id": 4, "cat": "invest", "name": "Howard Marks — Second-Level Thinking & 'Where Are We in the Cycle?'", "who": "Co-founder of Oaktree Capital; specialist in distressed debt who codified his process in widely-read investor memos.", "trigger": "The perennial problem of being right in a way that pays: most obvious, sensible views are already in the price, so being correct and being profitable are different things.", "heuristic": "Being right is not enough — your view has to differ from what's already in the price. For any view, ask 'what does consensus believe, and why is my divergence justified?' And gauge risk by what's priced in, not by how it feels: danger is highest when everyone feels safest."}, {"id": 5, "cat": "invest", "name": "Michael Burry — Reading the Loan Tapes Nobody Else Read (2005)", "who": "Founder of Scion Capital; a physician-turned-investor who, before the 2008 crisis, bet against subprime mortgage bonds.", "trigger": "By 2005 the consensus, backed by ratings agencies and the entire mortgage-finance industry, was that pools of US home loans were safe and home prices would keep rising. Betting against them looked absurd and the instrument to do it barely existed.", "heuristic": "When everyone is trading the summary (the rating, the headline number, the consensus label), go and read the primary material the summary is built from. The biggest mispricings live in the gap between the abstraction everyone trusts and the raw facts almost no one bothers to check."}, {"id": 6, "cat": "science", "name": "Richard Feynman — The Notebook of 'Things I Don't Know'", "who": "Nobel-winning physicist known as much for his method of understanding as for his results; insistent on the difference between knowing a name and knowing a thing.", "trigger": "How to actually understand a hard subject rather than acquire the comforting illusion of understanding that comes from being able to recite it.", "heuristic": "Test understanding by trying to explain it from scratch in plain words; the moment you fall back on a label or jargon, you've found the exact thing you don't actually understand. Keep an explicit list of what you don't know, and treat the ability to recite a name as zero evidence that you grasp the thing."}, {"id": 7, "cat": "science", "name": "Charles Darwin — The Golden Rule for Inconvenient Facts", "who": "Naturalist who spent over two decades assembling the theory of evolution by natural selection before publishing, acutely aware of how badly he wanted to be right.", "trigger": "Building a vast, controversial theory over decades creates a powerful pull to remember the confirming evidence and quietly forget the observations that don't fit — the slow accumulation of self-deception that wrecks long projects.", "heuristic": "Your memory silently deletes the facts that threaten your conclusions. Make it a hard rule to record disconfirming evidence first and most carefully — the more an observation hurts your thesis, the more urgently it must be written down and faced."}, {"id": 8, "cat": "science", "name": "Barbara McClintock — 'A Feeling for the Organism'", "who": "Geneticist who discovered transposable genetic elements ('jumping genes') decades before the field could accept them; later a Nobel laureate.", "trigger": "McClintock observed patterns in maize genetics — genes that moved position and switched others on and off — that contradicted the rigid gene-as-fixed-bead model of her era. Her results were dismissed or ignored for years.", "heuristic": "The data point that doesn't fit your model is usually the most valuable thing in the dataset, not the error to be smoothed away. Immerse in the specific case long enough to let it overrule your inherited framework — and be prepared to be right and alone before the tools exist to prove it."}, {"id": 9, "cat": "science", "name": "Albert Einstein — Riding the Light Beam (Thought Experiments)", "who": "Physicist who reconstructed space, time, and gravity largely by reasoning from imagined physical situations rather than from new experimental data.", "trigger": "By 1905 the physics of light and motion contained a deep inconsistency between Newtonian mechanics and Maxwell's electromagnetism, but the contradiction was hidden inside assumptions everyone treated as self-evidently true — above all, that time is universal.", "heuristic": "Progress on a stuck problem usually means finding the 'obvious' assumption everyone treats as background and refusing to grant it. Construct a clean imagined scenario that pushes the contradiction to the surface, identify which premise has to give, and follow the consequences even where they offend common sense."}, {"id": 10, "cat": "build", "name": "Kelly Johnson — Skunk Works and the 14 Rules", "who": "Lockheed engineer who ran the 'Skunk Works,' delivering aircraft like the U-2 and SR-71 Blackbird at speeds and capabilities that seemed impossible.", "trigger": "How to produce radical engineering breakthroughs fast, inside a large bureaucratic defense contractor whose normal processes guaranteed slow, committee-driven, mediocre output.", "heuristic": "On hard creative work the real bottleneck is usually the communication and approval structure, not the technical problem. Shrink the team to good people, give one owner authority and a direct line to the customer, and collapse the distance between deciding, building, and testing so feedback arrives in hours, not quarters."}, {"id": 11, "cat": "build", "name": "Taiichi Ohno — The Five Whys and Root Cause", "who": "Architect of the Toyota Production System, the lean-manufacturing method that reshaped global industry.", "trigger": "When something goes wrong on a production line — a machine stops, a defect appears — the strong organizational temptation is to fix the immediate symptom and move on, which guarantees the problem recurs.", "heuristic": "Don't fix the symptom — chain 'why?' about five times until you reach a cause in a different part of the system than where the problem appeared. And go physically see the actual situation rather than trusting the report; the root cause is rarely where the symptom shows up."}, {"id": 12, "cat": "build", "name": "Elon Musk — First-Principles Cost Teardown", "who": "Founder of SpaceX and Tesla; reasons about cost and feasibility by decomposing products to their raw physical constituents.", "trigger": "Industry consensus held that rockets and electric-vehicle battery packs were irreducibly expensive — the prices were quoted as near-fixed facts, justifying the conclusion that the businesses couldn't work.", "heuristic": "When told something 'just costs that much' or 'can't be done,' break it down to physical primitives — raw materials, fundamental constraints — and compute the theoretical floor. The distance between that floor and the quoted price is the size of the opportunity, not a fact of nature."}, {"id": 13, "cat": "build", "name": "Margaret Hamilton — Designing for the Error That 'Can't Happen' (Apollo)", "who": "Led the team that wrote the onboard flight software for the Apollo Guidance Computer at MIT.", "trigger": "During the Apollo 11 descent, the guidance computer became overloaded and threw alarms minutes before landing. Whether the mission aborted depended on how the software had been designed to behave under a failure no one was supposed to cause.", "heuristic": "Design for the failure everyone insists can't happen — overloaded operators and 'impossible' mistakes are certainties on a long enough timeline. Build systems that detect overload and shed low-priority work to protect critical functions, rather than assuming clean inputs and a nominal path."}, {"id": 14, "cat": "strategy", "name": "John Boyd — The OODA Loop and Operating Inside the Enemy's Tempo", "who": "US Air Force fighter pilot and strategist whose theory of conflict influenced military doctrine, business strategy, and litigation.", "trigger": "Boyd started from a concrete puzzle: the US F-86 jet beat the more maneuverable Soviet MiG-15 in Korea despite being, on paper, the inferior aircraft. Why does the 'worse' fighter win?", "heuristic": "In any contest, whoever can observe-orient-decide-act faster and truer forces the other to react to a reality that's already gone. Compete on the speed and accuracy of your re-orientation, not just on resources — and watch your own orientation hardest, since a fast loop pointed at a wrong picture just fails faster."}, {"id": 15, "cat": "strategy", "name": "Abraham Lincoln — The Team of Rivals", "who": "US president during the Civil War, who built his cabinet from the men who had competed against him and openly thought him their inferior.", "trigger": "On taking office amid national disintegration, Lincoln had to assemble a government capable of holding the Union together, with the strongest, most capable politicians in his party being precisely those who had opposed him and doubted his competence.", "heuristic": "Staff the decision with the most capable people even when they threaten you, and treat dissent in the room as information rather than disloyalty. Put deliberate delay between a strong emotion and an irreversible act — write the angry letter, then don't send it."}, {"id": 16, "cat": "strategy", "name": "Lee Kuan Yew — Ruthless Empiricism: 'Does It Work?'", "who": "Founding prime minister of Singapore, who took a small resource-poor port with no natural advantages to first-world status within a generation.", "trigger": "A tiny city-state with no hinterland, no natural resources, and a mix of ethnic groups had to survive and prosper without the luxury of ideological certainty or large margins for error.", "heuristic": "Judge ideas by whether they actually work in reality, not by which camp they belong to or how they sound — and be willing to abandon your own prior position the moment the evidence turns. Then extend the time horizon: optimize for the second- and third-order outcome over decades, not the immediate reaction."}, {"id": 17, "cat": "strategy", "name": "Dwight Eisenhower — The D-Day Decision and the Undelivered Letter", "who": "Supreme Allied Commander in Europe, who ordered the Normandy invasion under irreducible uncertainty about the weather and the outcome.", "trigger": "In June 1944 a narrow window of marginal weather forced a go/no-go decision on the largest amphibious invasion in history. Wait, and the next suitable tides were weeks away with the secret leaking; go, and a wrong weather call could destroy the force on the beaches.", "heuristic": "For an irreversible decision under deadline, get the best probabilistic read you can, weigh the asymmetric costs, then commit fully and stop re-litigating — paralysis is the real failure. Write the failure-case post-mortem before you act: it forces honest confrontation with the downside and pre-commits you to owning it."}, {"id": 18, "cat": "strategy", "name": "Sun Tzu — Win First, Then Fight", "who": "The strategist behind 'The Art of War,' whose framework has shaped military and competitive thinking for over two millennia.", "trigger": "The general problem of conflict, where the instinctive approach is to focus on winning the battle once it is joined — the clash itself — as the decisive event.", "heuristic": "The contest is usually decided before the visible clash — by position, information, and preparation. Do the decisive work upstream so you've effectively already won before engaging, and route around the opponent's strength toward their weakness rather than attacking where they're ready."}, {"id": 19, "cat": "games", "name": "Garry Kasparov — Calculation, Intuition, and the Clock", "who": "World chess champion regarded among the greatest players ever; later a writer on decision-making.", "trigger": "At the board, a player cannot calculate everything — the tree of possibilities is effectively infinite — yet must choose a strong move within a strict time budget, balancing deep calculation against finite clock and finite attention.", "heuristic": "Use trained intuition to nominate the few candidates worth deep analysis, then spend your scarce calculation only there — don't analyze everything equally. Bank your hardest thinking for the genuinely critical moments, and study your own recurring mistakes as carefully as you study the problem."}, {"id": 20, "cat": "games", "name": "Magnus Carlsen — Grinding the 'Equal' Position", "who": "World chess champion known less for spectacular opening preparation than for winning positions that other grandmasters assess as dead-equal draws.", "trigger": "At the top of chess, opening theory is largely shared and most positions are objectively balanced. The conventional view is that a drawn position is a draw; Carlsen's results say otherwise.", "heuristic": "'Objectively even' is not even between two real, tiring humans — small practical edges accumulate into wins if you keep applying pressure rather than settling. Steer the contest onto the terrain where your durable edge (stamina, judgment) matters, and away from where everyone is equally well-prepared."}, {"id": 21, "cat": "games", "name": "Poker's Core Move — Ranges, Not Hands; Decisions, Not Results", "who": "The reasoning discipline of elite poker (articulated by players and decision-theorists such as Annie Duke), where money forces honest probabilistic thinking.", "trigger": "A player must act with hidden information (they can't see the opponent's cards) and noisy feedback (you can play a hand perfectly and lose, or terribly and win), which corrupts learning if you judge plays by their outcomes.", "heuristic": "Reason about the full distribution of what's possible, not a single guess, and judge a decision by whether it was right given what you knew — never by how it happened to turn out. One result is mostly luck; separate decision quality from outcome quality or you'll learn the wrong lessons from noise."}, {"id": 22, "cat": "games", "name": "Bill Belichick — Situational Football and Expected Value", "who": "Among the most successful coaches in NFL history, known for decisions that violated conventional wisdom but maximized win probability.", "trigger": "Football is saturated with convention — punt on fourth down, kick the field goal, play it safe — much of which is suboptimal but socially safe, because a coach is blamed far more for a bold failure than for a conventional one.", "heuristic": "Decide by expected value in the specific situation, not by what convention says you're 'supposed' to do — and accept that the right call sometimes looks bad when it fails. Ignore sunk cost and reputation risk; weigh only future probability, and neutralize the opponent's single biggest strength rather than their average."}, {"id": 23, "cat": "founders", "name": "Jeff Bezos — Regret Minimization & One-Way vs. Two-Way Doors", "who": "Founder of Amazon; built explicit personal frameworks for both irreversible life choices and recurring corporate decisions.", "trigger": "In 1994, leaving a secure, well-paid Wall Street job to start an online bookstore looked, on a short-term financial calculation, like a clear mistake. Separately, a large company tends to slow to a crawl as it treats every decision as if it were permanent.", "heuristic": "For big irreversible choices, project to the end of your life and minimize regret rather than optimizing the near-term number. For everything else, ask whether the door swings both ways: reversible decisions should be made fast and delegated; only the truly irreversible ones deserve slow, careful deliberation."}, {"id": 24, "cat": "founders", "name": "Andy Grove — 'What Would a New CEO Do?'", "who": "CEO of Intel; led the company through the strategic crisis of exiting the memory-chip business that had founded it.", "trigger": "In the mid-1980s Intel's original core business — memory chips — was being destroyed by Japanese competition, but the company was emotionally and institutionally identified with memory. Leadership was paralyzed by the unthinkability of leaving the business that was Intel.", "heuristic": "When attachment and sunk cost cloud a decision, ask what a brand-new outsider with no history would do — then do that yourself. The people at the periphery usually sense a fundamental shift before leadership does, because leadership's identity is most invested in the world that's ending."}, {"id": 25, "cat": "founders", "name": "Reed Hastings — Cannibalize Yourself Before Someone Else Does", "who": "Co-founder of Netflix; deliberately destroyed his own profitable business model to build the one that would replace it.", "trigger": "Netflix's DVD-by-mail business was profitable and beloved when streaming became viable. The comfortable move was to protect the cash cow; the threat was that streaming would eventually gut it regardless.", "heuristic": "If a disruptive shift is coming whether you act or not, the only question is whether you capture the new value or a rival does — so cannibalize your own profitable business before someone else does it to you. Reason forward to where the industry must end up and pay the cost of arriving first."}, {"id": 26, "cat": "founders", "name": "Steve Jobs — Focus as Deciding What Not to Do", "who": "Co-founder and CEO of Apple; on his 1997 return, rescued the company partly by drastically subtracting rather than adding.", "trigger": "When Jobs returned in 1997, Apple was near bankruptcy with a sprawling, confusing product line — dozens of models and variants that diffused the company's effort and the customer's understanding.", "heuristic": "Focus is deciding what NOT to do — and the hard part is killing the good ideas, not the bad ones, because finite attention means every extra project degrades the quality of the rest. Pick the few things you can do at an exceptional level and ruthlessly cut the rest, however promising it looks."}, {"id": 27, "cat": "medicine", "name": "Atul Gawande — The Checklist for Complexity", "who": "Surgeon and writer who studied why highly trained experts still make avoidable errors in complex, high-stakes work.", "trigger": "In modern surgery and intensive care, the knowledge exists to prevent most errors, yet skilled experts still kill patients through omissions — forgetting a step, skipping a check — under the load and pressure of complex procedures.", "heuristic": "In complex high-stakes work the main failure shifts from not-knowing to not-reliably-applying-what-you-know. Build a short checklist of the simple-but-catastrophic 'killer items' to catch the omissions expertise alone won't — and that forces the team to pause and let the quiet person speak."}, {"id": 28, "cat": "medicine", "name": "Gary Klein — How Experts Decide Without Comparing Options", "who": "Research psychologist who studied real-world experts — fireground commanders, ER nurses — making life-and-death decisions under time pressure.", "trigger": "Klein set out to document how expert decision-makers weigh their options under extreme time pressure, expecting to find them comparing alternatives — and found, to his surprise, that they mostly didn't.", "heuristic": "Under time pressure, experts don't compare options — they recognize a pattern, which surfaces one likely action, and mentally simulate whether it works before acting. Trust this intuition only where you've built genuine pattern experience with fast, honest feedback; in noisy low-feedback domains it's just confident guessing."}, {"id": 29, "cat": "medicine", "name": "Chesley 'Sully' Sullenberger — Ruling Options Out Fast (US Airways 1549)", "who": "Airline captain who, after a bird strike disabled both engines shortly after takeoff in 2009, landed an airliner on the Hudson River with no fatalities.", "trigger": "At roughly 2,800 feet over New York City, both engines lost almost all thrust simultaneously. Within seconds, with a gliding aircraft and no power, Sullenberger had to choose where to put the plane before it ran out of altitude.", "heuristic": "Under severe time pressure, spend your seconds eliminating the infeasible options fast against a well-calibrated model, then choose the option with the least-bad worst case rather than the best best-case. Offload everything practiced to routine so your scarce attention goes only to the one irreducible judgment."}];
 const REASONER_CATS=[{"id": "invest", "name": "Investing & Capital", "color": "#00f5ff"}, {"id": "science", "name": "Science & Discovery", "color": "#00ff88"}, {"id": "build", "name": "Engineering & Building", "color": "#ff6b35"}, {"id": "strategy", "name": "Strategy & Statecraft", "color": "#8b5cf6"}, {"id": "games", "name": "Competition & Games", "color": "#ffd700"}, {"id": "founders", "name": "Founders & Operators", "color": "#ff3366"}, {"id": "medicine", "name": "Medicine & High-Stakes", "color": "#00b8c4"}];
+const CASE_DOMAINS=[{"id": "tech", "color": "#00f5ff"}, {"id": "healthcare", "color": "#00ff88"}, {"id": "industrial", "color": "#ff6b35"}, {"id": "retail", "color": "#ffd700"}, {"id": "finance", "color": "#8b5cf6"}, {"id": "energy", "color": "#ff3366"}, {"id": "pubsec", "color": "#00b8c4"}, {"id": "transport", "color": "#e879f9"}, {"id": "fmcg", "color": "#fb923c"}, {"id": "media", "color": "#a3e635"}];
+const COMPACT_CASES=[{"id": 1, "domain": "tech", "type": "turnaround", "org": "IBM / Lou Gerstner (1993–2002)", "headline": "How IBM avoided breakup by discovering customers wanted integration, not hardware", "trigger": "In 1993 IBM was losing $8 billion annually — the largest corporate loss in US history at the time. The board's plan was to split the company into 13 separate units and sell them. Lou Gerstner, an outsider with no tech background, was hired explicitly to…", "insight": "When diagnosing a turnaround, run the jobs-to-be-done test: ask what customers are actually hiring the company to do versus what the company believes it sells. IBM's customers were not buying mainframes; they were buying accountability for complex system integration. The product was the delivery mechanism. Seeing this distinction correctly is the difference between a breakup and a transformation — and it requires talking to customers before talking to analysts."}, {"id": 2, "domain": "tech", "type": "disruption", "org": "Netflix / Reed Hastings (2007–2013)", "headline": "How Netflix cannibalized its own $1.6B DVD business before a competitor could", "trigger": "In 2007 Netflix had 7.5 million subscribers and a profitable, beloved DVD-by-mail business generating $1.6 billion in revenue. Streaming existed but was technically marginal — most US households lacked sufficient bandwidth. The comfortable strategic choice…", "insight": "When a disruptive shift is technologically inevitable, the only real variable is timing your own cannibalization versus letting a competitor time it for you. The internal resistance to cannibalization (margin pressure, identity, sunk costs) is the primary threat, not the technical challenge. Structure the organization to make the old business's decline visible and painful — Hastings's Qwikster experiment was clumsy in execution but correct in instinct: separate the cash cow from the future before the cash cow's gravity pulls strategy back to the past."}, {"id": 3, "domain": "tech", "type": "org", "org": "Microsoft / Satya Nadella (2014–2020)", "headline": "How changing one word in the company's mission unlocked a $1 trillion market cap", "trigger": "When Satya Nadella became CEO of Microsoft in 2014, the stock had been flat for 14 years. Windows Phone had failed, Surface was losing money, and the company's internal culture was defined by stack ranking — a forced curve where managers rated employees…", "insight": "Culture change precedes strategy execution — not in a soft sense but in a hard mechanistic sense. Stack ranking was not just bad for morale; it made collaborative platforms (cloud, developer tools, cross-product integration) structurally impossible to build because the incentive structure punished the cooperation required. Fixing the incentive structure first, then pointing it at the right strategy, is the correct sequencing. Most turnarounds attempt the reverse."}, {"id": 4, "domain": "tech", "type": "entry", "org": "Amazon Web Services (2006)", "headline": "How Amazon accidentally built a $90B business by selling its own internal infrastructure", "trigger": "In 2002, Amazon's engineering teams were frustrated. Building new features required months of coordination to provision servers, storage, and databases — each team reinventing the same infrastructure primitives. Jeff Bezos issued a memo requiring all teams to…", "insight": "Internal inefficiency, solved systematically, often reveals the most durable business opportunities — because if your organization needed it badly enough to build it from scratch, your customers probably need it too and are currently solving it expensively and badly themselves. The 'we built this for ourselves' origin story is not a coincidence; it is a signal that the problem is real, the solution is tested, and the market is definitionally not well-served by existing vendors."}, {"id": 5, "domain": "tech", "type": "ma", "org": "Google / Android acquisition (2005)", "headline": "How a $50M acquisition became the operating system for 3 billion devices", "trigger": "In 2005, Google paid $50 million for Android Inc., a two-year-old startup of eight people working on an operating system for digital cameras. The acquisition barely made the news. Google's core business was desktop search; mobile was a fringe market. The…", "insight": "In platform businesses, the layer you monetize is not necessarily the layer you need to control — but you must control the layer that determines who has default distribution access. Android was a defensive acquisition as much as an offensive one: Google was not buying an OS to sell; it was buying insurance against its search monopoly being taxed by a platform it didn't own. Mapping the control points in your distribution chain and ensuring you are not dependent on a competitor at any critical node is a distinct strategic exercise from mapping revenue."}, {"id": 6, "domain": "tech", "type": "digital", "org": "Best Buy / Hubert Joly (2012–2019)", "headline": "How Best Buy survived Amazon by turning 1,000 stores into 1,000 mini-warehouses", "trigger": "In 2012, Best Buy's stock had fallen 50% in 18 months. Analysts were writing its obituary. The narrative was settled: Amazon's infinite selection, lower prices, and no-tax advantage would kill every electronics retailer. Best Buy's cost structure required…", "insight": "Before conceding that your cost structure is unwinnable versus a digital competitor, audit what your physical presence enables that cannot be replicated digitally: immediacy, high-touch expertise, and installation/repair. The strategic question is not 'how do we reduce cost to Amazon's level' but 'which customer needs require physical presence, and can we make our physical assets productive enough to generate margin from those needs?' Turning a liability (stores) into a logistics and service platform is a different kind of turnaround than cutting to parity."}, {"id": 7, "domain": "healthcare", "type": "ops", "org": "Virginia Mason Medical Center (2002–2013)", "headline": "How a Seattle hospital reduced adverse events 74% by treating patient care as a production system", "trigger": "In 2002 Virginia Mason Medical Center was at the 14th percentile nationally for patient satisfaction, costs were rising 14% annually, and physician burnout was at record levels. The CEO Gary Kaplan made a decision that baffled his medical staff: he sent his…", "insight": "The most powerful operational improvements in service industries come from imposing manufacturing discipline — defect visibility, process standardization, and the right of anyone to stop the line — on what is typically managed as art. The domain translation is itself the insight. When a problem in your industry has been 'solved' in a structurally similar industry, the barrier to importing the solution is cultural and professional identity, not technical complexity."}, {"id": 8, "domain": "healthcare", "type": "pricing", "org": "Geisinger Health System / ProvenCare (2006)", "headline": "How bundled pricing for heart surgery created a $44M quality improvement with zero mandates", "trigger": "In 2006, Geisinger Health System in Pennsylvania faced the standard healthcare quality paradox: reimbursement was structured to reward volume (procedures performed) rather than outcomes (patients healed), creating systematic incentives against prevention and…", "insight": "Bundled or outcome-based pricing is not primarily a financial model — it is an organizational forcing function. When the price includes consequences, every actor in the delivery chain suddenly cares about the steps they previously had no incentive to control. The design question is not 'what should we bundle' but 'where does accountability end in the current model, and what would force it to extend further?' Price structure follows accountability structure, or it doesn't stick."}, {"id": 9, "domain": "healthcare", "type": "org", "org": "Cleveland Clinic / Toby Cosgrove (2004–2017)", "headline": "How reorganizing around patient conditions instead of physician specialties cut care fragmentation by half", "trigger": "Cleveland Clinic was among the world's top-ranked hospitals by clinical outcome measures, but patient experience surveys told a different story. A cardiac patient might see a cardiologist in one building, a cardiac surgeon in another, and a cardiac…", "insight": "Organizational structure should be designed around the customer's journey, not around the provider's internal logic. When organizational units are defined by professional category (specialty, function, product line) rather than by what the customer experiences, coordination costs fall on the customer and accumulate as both dissatisfaction and clinical risk. Restructuring around the customer's problem — even when it violates professional identity and disrupts internal fiefdoms — is the most durable form of experience improvement."}, {"id": 10, "domain": "healthcare", "type": "public", "org": "UK National Health Service Blood and Transplant (2005–2010)", "headline": "How supply chain optimization eliminated 85% of blood product waste without any new procurement", "trigger": "NHS Blood and Transplant in the UK was facing a paradox by 2005: blood product shortages were causing surgical cancellations while simultaneously a significant portion of collected units were expiring unused. The collection system was optimized for supply…", "insight": "Supply chain waste almost always reflects information asymmetry rather than true demand uncertainty. When each node in the chain is optimizing locally against uncertain demand signals from other nodes, the result is synchronized over-stocking and periodic shortages — the bullwhip effect. The fix is visibility and aligned incentives, not more inventory. The question to ask: at which point in the supply chain does real-time demand information exist, and why is it not reaching every upstream node?"}, {"id": 11, "domain": "industrial", "type": "turnaround", "org": "Alcoa / Paul O'Neill (1987–2000)", "headline": "How making worker safety the only goal produced the highest profits in Alcoa's history", "trigger": "When Paul O'Neill became CEO of Alcoa in 1987, the company was struggling with rising costs, quality problems, and labor relations. Analysts expected the standard playbook: cost cuts, restructuring, and margin targets. Instead, O'Neill's first investor…", "insight": "When facing organizational transformation, find the keystone metric — one that requires building exactly the capabilities you need across the whole organization, but is politically unassailable. Direct change mandates trigger defensive behavior and coalition formation. Indirect change mandates that build the same capabilities through a morally unambiguous proxy goal achieve the structural change while diffusing resistance. The question to ask: what capability do I need to build, and what proxy problem — universally agreed to be bad — requires building that exact capability to solve?"}, {"id": 12, "domain": "industrial", "type": "ops", "org": "Toyota Production System / Taiichi Ohno", "headline": "How refusing to fix symptoms and surfacing root causes rebuilt Toyota's entire production economics", "trigger": "In the 1950s Toyota was a small, cash-constrained manufacturer trying to compete with American mass-production giants who had capital advantages Toyota could not match. Ford's River Rouge plant was vertically integrated across 100,000 workers; Toyota's entire…", "insight": "Defects and delays in any system are almost always caused by root conditions several steps removed from where they appear. Every problem has an obvious proximate cause and a non-obvious structural cause — and fixing the proximate cause without finding the structural cause guarantees recurrence at a different failure point. The diagnostic discipline of asking why repeatedly until you reach a cause in a genuinely different domain than the symptom is the operating core of every major operations improvement methodology."}, {"id": 13, "domain": "industrial", "type": "disruption", "org": "Nucor Steel (1970s–1990s)", "headline": "How mini-mills turned steel industry's biggest weakness — scrap metal — into a cost advantage", "trigger": "By the 1970s, the US integrated steel mills (US Steel, Bethlehem) were losing market share to cheaper Japanese imports. The integrated mill model required enormous capital investment — blast furnaces, coking coal operations, iron ore transport — making the…", "insight": "Disruption almost always starts in the segment the incumbent most wants to exit — the lowest-margin, lowest-prestige product. The disruptor builds a cost structure specifically designed around that segment's economics, uses the resulting cash flow to fund quality improvement, and progressively moves upmarket into the segments the incumbent still values. The question to ask about any threatened business: which of our product segments have we mentally conceded and are we pricing to exit? That is where the disruptor will establish their beachhead."}, {"id": 14, "domain": "industrial", "type": "ops", "org": "Zara / Inditex (1990s–2010s)", "headline": "How designing a 14-day production cycle instead of a 9-month one changed who wins in fashion", "trigger": "The fashion industry in the 1990s operated on a 9-month design-to-shelf cycle. Brands predicted trends 9 months in advance, committed to large production runs, and bore the inventory risk when those predictions proved wrong. Discount rates on unsold inventory…", "insight": "In any business where demand is uncertain and perishable (fashion, news, software features, seasonal goods), the value of speed is not just time-to-market but uncertainty reduction. Cutting the design-to-feedback cycle from 9 months to 2 weeks does not just make you faster — it turns your production system from a demand-prediction machine into a demand-observation machine. The economics of inventory risk change completely when your lag is short enough to react to actual demand rather than forecast it."}, {"id": 15, "domain": "industrial", "type": "pricing", "org": "Rolls-Royce Aerospace / TotalCare (1990s)", "headline": "How selling thrust-hours instead of jet engines turned a product company into an annuity", "trigger": "In the early 1990s Rolls-Royce's aerospace engine business had a classic product company problem: revenue was lumpy (engines sold when airlines ordered aircraft), margins were compressed by competition, and aftermarket servicing was being aggressively…", "insight": "Product-to-service transitions succeed when the seller has better information about the product's performance and failure modes than the buyer — and when that information advantage can be converted into risk absorption that the buyer values more than the cost. The question is not 'can we offer services' but 'what risk does the customer bear that we could absorb at lower cost than them, because we have better data and control?' That asymmetry is the business model."}, {"id": 16, "domain": "retail", "type": "entry", "org": "Southwest Airlines (1971–1990s)", "headline": "How ignoring industry structure and solving only for one customer revealed a market nobody thought existed", "trigger": "In 1971, the commercial airline industry was defined by hub-and-spoke networks, regulated pricing, and the assumption that air travel was a premium product for business travelers. All major carriers competed on the same routes, used the same airports, and…", "insight": "Business model design should start from a target customer and work backward to economics, not start from industry practice and work forward to a target customer. Every major constraint in Southwest's model (no meals, single aircraft, secondary airports) was derived from the economics required to serve a customer segment the industry had ignored, not from operational convenience. The question to ask when designing a new model: 'What would have to be true about our operations for us to profitably serve this customer at this price?' Most incumbents never ask because they've already assumed the customer who can't pay their current price is simply not their customer."}, {"id": 17, "domain": "retail", "type": "growth", "org": "Starbucks / Howard Schultz (1987–2000)", "headline": "How importing a Milanese espresso bar experience created a new consumer category in America", "trigger": "In 1983 Howard Schultz visited Milan and encountered the Italian espresso bar — a social institution where people lingered, socialized, and the barista knew regulars by name. Coffee in America was commodity Folgers, sold in cans at supermarkets or as a…", "insight": "Category creation requires designing every operational detail to reinforce the category definition, not to optimize efficiency within the existing category's logic. The moment you benchmark against the existing category's cost structure (coffee sold in cans), you've conceded the new category's defining economics. Every Starbucks decision that looks inefficient by a diner's economics — Italian vocabulary, barista training, comfortable seating — was load-bearing for the category it was building. Identify the category you're creating, then ask: what does every customer touchpoint need to communicate about that category?"}, {"id": 18, "domain": "retail", "type": "disruption", "org": "Dollar Shave Club (2012–2016)", "headline": "How a $12M startup forced Gillette to cut prices 20% by redefining what razor customers were paying for", "trigger": "By 2012, Gillette controlled approximately 72% of the global razor market and charged $15-20 for a 4-pack of Fusion blades. The product had genuine innovation (5 blades, precision trimmer, lubrication strip) but blade engineering had plateaued. Gillette's…", "insight": "Disruption in high-margin consumer goods almost always begins by separating what customers are actually paying for from what they're willing to pay for. Gillette's customers were paying for distribution convenience and brand reassurance, not the 5th blade. A new entrant who eliminates the distribution cost structure and substitutes a lower-stakes direct relationship can reset the pricing floor permanently, even with an inferior product. The question: in your highest-margin category, what specific cost in the value chain are customers paying for that they would prefer not to?"}, {"id": 19, "domain": "retail", "type": "ops", "org": "McDonald's / Ray Kroc (1950s–1970s)", "headline": "Why McDonald's is really a real estate business that happens to sell hamburgers", "trigger": "In the 1950s, the McDonald brothers had a highly profitable single restaurant in San Bernardino operating an efficient assembly-line system for burgers. Ray Kroc joined as a franchise agent and began expanding the concept. By the early 1960s, franchising was…", "insight": "The most valuable part of a business model is often not the product or the customer relationship but the asset that the product or relationship creates or controls. McDonald's customers were buying hamburgers; McDonald's was accumulating real estate. Kroc's original framing (we sell burgers, we franchise the system) was entirely correct about the customer experience but entirely wrong about where value was being created. Ask: in the course of serving our customers, what asset are we accumulating, and are we capturing the value of that asset or leaving it on the table?"}, {"id": 20, "domain": "finance", "type": "growth", "org": "PayPal (1999–2002)", "headline": "How paying people $10 to sign up built a $1.5B acquisition by making viral growth the product", "trigger": "In 1999, PayPal needed to build a two-sided payment network rapidly — every new user was more valuable as the network grew, but in the early days there were too few users to demonstrate value to any individual new user. Online payment was a commodity…", "insight": "In network-effects businesses, the early growth mechanism must be engineered into the product's core transaction — not bolted on as a marketing program. PayPal's genius was that using the product to receive payment automatically enrolled the payer's counterpart, creating a referral loop that accelerated with every transaction. The question to ask: is there a natural moment in our core product transaction where the customer must interact with a non-customer, and can we design that interaction to create a new customer automatically?"}, {"id": 21, "domain": "finance", "type": "pricing", "org": "Michelin (2013 — ongoing)", "headline": "How charging per kilometer instead of per tire turned a commodity into a service and recovered margin", "trigger": "By the 2010s, tire manufacturing was a commoditizing industry — Chinese manufacturers were entering with price points 30-40% below European producers, and fleet buyers (trucking companies, bus operators) were treating tires as a cost-minimization exercise,…", "insight": "When your product's value is difficult for customers to measure with their existing purchasing processes, repackage the product as an outcome and sell the outcome instead. Michelin's tires were measurably superior, but fleet procurement measured invoice price. By selling kilometers (the outcome the fleet actually cared about), Michelin made its advantage visible in the customer's own accounting. The transition to outcome-based pricing almost always requires a monitoring capability that makes the outcome measurable in real time — that sensor investment is not optional, it is the enabling technology of the new business model."}, {"id": 22, "domain": "finance", "type": "digital", "org": "Ally Financial (2009–2016)", "headline": "How General Motors' captive auto lender became a digital bank by treating branches as overhead", "trigger": "In 2009, the GMAC financial arm was renamed Ally Financial and restructured after near-collapse in the financial crisis. Ally needed to attract retail deposits to fund its auto lending operations but had no branch network — it had been a wholesale lender,…", "insight": "A structural constraint forced by circumstance is sometimes preferable to optionality. Having no branch network forced Ally to design a business model that was genuinely superior for its target customer rather than a slightly different version of an existing model. Before building the obvious capability you lack, ask: is the absence of this capability forcing us to serve customers better in some way? If so, the constraint might be the strategy."}, {"id": 23, "domain": "finance", "type": "ma", "org": "Disney / Pixar Integration (2006)", "headline": "How Disney's $7.4B Pixar acquisition preserved the very culture that made it worth buying", "trigger": "When Disney acquired Pixar in 2006 for $7.4 billion, the history of entertainment industry acquisitions was a cautionary literature. Time Warner-AOL had destroyed both companies. Paramount had bought DreamWorks and alienated its founders. Disney itself had…", "insight": "In acquisitions where the value being purchased is cultural or creative, integration should run in reverse: the acquired entity's practices should colonize the acquirer, not the other way around. The standard integration impulse — consolidate, centralize, harmonize — is specifically destructive to creative businesses where the value lives in informal norms, psychological safety, and productive disagreement. The diagnostic question before any creative acquisition: if we impose our management system on these people, will they still produce the thing we paid for?"}, {"id": 24, "domain": "energy", "type": "public", "org": "Denmark / Offshore Wind Industry (1980s–2010s)", "headline": "How a country with no natural resources built the world's dominant wind turbine industry through deliberate policy design", "trigger": "After the 1973 oil crisis, Denmark had no domestic oil, gas, or coal and was paying nearly 10% of GDP on energy imports. The Danish government's stated policy goal was energy independence. Nuclear power was rejected by referendum. The realistic renewable…", "insight": "Industrial policy that creates demand stimulus without quality requirements typically produces protected mediocrity. Industrial policy that creates quality requirements without demand stimulus produces investment without return. The combination — guaranteed market access conditional on meeting quality standards — creates the incentive to invest in quality improvement that the market alone cannot produce in an early-stage technology. The Danish case is a design template: what standards must be met before accessing the subsidy, and what shared technical infrastructure reduces the cost of meeting those standards?"}, {"id": 25, "domain": "energy", "type": "ops", "org": "Maersk Line / Triple-E Vessels (2010–2013)", "headline": "How designing the world's largest container ship around a unit cost calculation restructured global shipping economics", "trigger": "By 2010, global container shipping was in severe overcapacity following the 2008-2009 financial crisis. Freight rates had collapsed, and carriers were competing on price in a market where fixed costs (vessel financing, port fees, crew) were essentially…", "insight": "In capital-intensive industries with commodity pricing, the question is rarely 'how do we differentiate our product' but 'how do we permanently lower our cost floor below what any competitor can match given their capital structure?' Scale-based cost advantages are not automatic — they require simultaneous redesign of the operating profile (slow steaming), the infrastructure (port agreements), and the financing (vessel economics) to actually deliver the per-unit cost the physics suggests is possible."}, {"id": 26, "domain": "energy", "type": "turnaround", "org": "BP After Deepwater Horizon (2010–2015)", "headline": "How the largest environmental disaster in US history forced a complete rebuild of safety governance", "trigger": "The April 2010 Deepwater Horizon blowout killed 11 workers and released 4.9 million barrels of oil into the Gulf of Mexico. The liability ultimately exceeded $65 billion. But the deeper damage was structural: internal BP investigations and the subsequent US…", "insight": "Organizational disasters in safety-critical industries almost always involve an information system that reported compliance while concealing risk — lagging indicators that were clean right up to the failure. The fix is not more compliance but different metrics: leading indicators that reveal the accumulation of risk before it becomes an incident. The harder organizational problem is creating a culture where reporting bad news is rewarded and concealing it has consequences — which requires changing what information leadership actually asks for."}, {"id": 27, "domain": "pubsec", "type": "public", "org": "Port of Singapore Authority (1960s–1990s)", "headline": "How a tiny city-state with no geographic advantage built the world's most connected port through relentless operational excellence", "trigger": "When Singapore gained independence in 1965, it had no natural resources, a small domestic market, and a port that was significant but not dominant. The natural advantage of the Strait of Malacca geography was shared with Malaysian and Indonesian ports.…", "insight": "In network-effects industries (logistics hubs, financial centers, technology platforms), there is frequently a winner-take-most dynamic driven by connectivity. The early strategic priority should be maximizing participation in the network rather than optimizing current profitability, because connectivity advantages compound: each new participant makes the network more valuable, which attracts more participants. The critical question is not 'what is our margin on each transaction' but 'how do we maximize the number of participants who have reason to route through us?'"}, {"id": 28, "domain": "pubsec", "type": "digital", "org": "Estonia e-Government (1996–2010)", "headline": "How a country of 1.3 million people became a digital governance model by treating government as a platform", "trigger": "Following the collapse of the Soviet Union, Estonia gained independence in 1991 with no functioning digital infrastructure, aging physical infrastructure, and a small tax base. Rather than rebuilding the analog administrative systems of the Soviet era, the…", "insight": "Most digital government transformations fail because they digitize the analog process without redesigning the underlying logic. The question is not 'how do we put this form online' but 'what information does the government already possess that should eliminate the need for this form entirely?' Treating government as a data platform — where information enters once and flows to every agency that needs it — is a fundamentally different architectural choice from treating government as a collection of independent departments that happen to share citizens."}, {"id": 29, "domain": "pubsec", "type": "public", "org": "Singapore Healthcare System (1980s–2010s)", "headline": "How designing co-payment into the funding model aligned individual incentives with system sustainability", "trigger": "Singapore in the 1970s was building a universal healthcare system with a limited tax base and a culturally specific concern: the government worried that free-at-point-of-use healthcare would produce overconsumption (patients seeking treatment for minor…", "insight": "Healthcare funding design is incentive design. Every element of how care is paid for shapes what behaviors patients, providers, and administrators optimize for. The Singapore system's durability comes not from administrative efficiency (which any well-run system can improve) but from its structural alignment between individual financial signals and system-level cost outcomes. The design question is: at what point does the cost signal disappear for the patient, and what behaviors does that disappearance incentivize?"}, {"id": 30, "domain": "transport", "type": "ops", "org": "FedEx / Fred Smith (1971–1975)", "headline": "How building a hub-and-spoke network for packages nobody wanted to send overnight created the overnight delivery industry", "trigger": "In 1971, Fred Smith proposed an overnight package delivery network in his Yale thesis. The premise: no reliable overnight delivery service existed because every carrier routed packages point-to-point — a package from Memphis to Cleveland went Memphis →…", "insight": "Hub-and-spoke network design creates a counterintuitive trade-off: individual routes appear less efficient (longer paths), but system-level throughput and economics improve dramatically because sorting complexity, aircraft utilization, and schedule reliability are all optimized at the hub. Before designing any service network, ask whether the apparent inefficiency of centralizing through a hub is actually enabling system-level efficiencies that point-to-point connections cannot achieve."}, {"id": 31, "domain": "transport", "type": "entry", "org": "Uber (2010–2014)", "headline": "How solving a supply uncertainty problem, not a price problem, unlocked a $70B market", "trigger": "By 2010, taxis existed in every major city. The problem was not price — taxis were available in most cities at roughly similar rates. The problem was uncertainty: customers could not reliably predict when a cab would arrive, whether one would be available in…", "insight": "Many markets that appear to have a pricing problem actually have an information and certainty problem. Taxi pricing was acceptable to customers; taxi uncertainty was not. Solving the certainty problem — real-time location, accurate ETA, upfront pricing, rated drivers — justified a premium and created switching costs that pure price competition could not have created. Before attacking a market on price, diagnose which dimensions of the transaction produce customer anxiety, and ask whether eliminating that anxiety is worth more than a price reduction."}, {"id": 32, "domain": "transport", "type": "growth", "org": "Amazon Logistics (2013–2021)", "headline": "How Amazon turned the threat of losing its primary carrier into a structural competitive advantage", "trigger": "By 2013, Amazon was spending over $6 billion annually on shipping through UPS and FedEx, and the relationship had become a strategic vulnerability — both carriers had raised rates, were struggling to handle Amazon's peak season volumes, and had leverage…", "insight": "When a supplier relationship becomes a strategic vulnerability — because the supplier has pricing power, delivery unreliability, or serves your competitors — build the capability yourself if and only if your volume provides sufficient scale to compete on unit economics in the segments where your route density is already high. Start in the segments where your economics already work, generate cash flow, and use it to expand into lower-density segments. Vertical integration as a defensive move requires this staged approach; building the full capability before any segment is profitable is a common and expensive mistake."}, {"id": 33, "domain": "fmcg", "type": "growth", "org": "Procter & Gamble / Connect + Develop (2000s)", "headline": "How P&G doubled its innovation success rate by deciding to invent less and connect more", "trigger": "By 2000, P&G's internal R&D model was showing diminishing returns. The company employed 7,500 scientists and engineers, spending $2 billion annually on R&D, but the hit rate on new products had declined and the pipeline was thinner than growth targets…", "insight": "The relevant question for any R&D function is not 'how do we improve our internal innovation rate' but 'what is the ratio of people working on our problems inside the company versus outside it, and how do we access the outside group?' When your internal R&D capability is vastly smaller than the global population working on adjacent problems, a connectivity strategy that imports external solutions almost always outperforms a production strategy that manufactures internal ones. Publishing your unsolved problems precisely enough that external solvers can engage them is the key design challenge."}, {"id": 34, "domain": "fmcg", "type": "entry", "org": "Unilever / Developing Markets Strategy (1990s–2010s)", "headline": "How selling sachets instead of bottles opened a $5B market by redesigning unit economics for $2-a-day consumers", "trigger": "In the 1990s, Unilever's major brands — Dove, Sunsilk, Lifebuoy — were selling well in developed markets but penetration in developing markets (India, Indonesia, sub-Saharan Africa) was minimal despite the population scale. The product and pricing structure…", "insight": "Designing for emerging market consumers is not about cheaper products — it is about different unit economics that fit the actual structure of the consumer's budget management. A poor consumer is not a wealthy consumer with less money; they are a consumer with high income volatility and very low tolerance for large upfront cash commitments. Redesigning the unit of sale (smaller, more frequent purchases rather than larger, less frequent ones) is a more powerful lever than price reduction. The question is: what is the maximum cash the consumer can commit at the moment of purchase, and what package size delivers our product within that constraint?"}, {"id": 35, "domain": "fmcg", "type": "ops", "org": "AB InBev / 3G Capital Playbook (2008–2016)", "headline": "How applying zero-based budgeting to a beer company reduced costs by $10B but created a growth trap", "trigger": "When 3G Capital's Jorge Paulo Lemann led the InBev acquisition of Anheuser-Busch in 2008 for $52 billion, the combined company was cost-bloated: corporate overhead was high, logistics was not optimized, marketing spend was discretionary and untracked, and…", "insight": "Cost reduction through zero-based budgeting creates genuine efficiency gains but carries a systematic risk: ZBB removes spending that managers cannot prove is immediately productive, which structurally underinvests in brand building (whose returns are long-lagged and statistically difficult to isolate) and R&D (whose returns are uncertain). The playbook works powerfully on one phase of a company's lifecycle but becomes destructive when applied beyond the point where cost efficiency has been achieved and growth investment is required. Always test: are the costs being cut load-bearing for the revenue we're protecting, or genuinely wasteful overhead?"}, {"id": 36, "domain": "media", "type": "disruption", "org": "Spotify (2006–2015)", "headline": "How convincing record labels to embrace streaming cannibalization saved the music industry from piracy", "trigger": "By 2005, the music industry had lost 40% of its revenue over six years to digital piracy following Napster. iTunes had partially recovered CD revenue loss but was not growing — it had converted pirates into legal downloaders, not created a new music…", "insight": "When your industry faces a structural threat from an alternative that is free (piracy, a substituting technology), the competitive response must out-convenience the free alternative, not out-price it. Charging less than the competition is insufficient if the competition charges nothing — you can only win on experience. The negotiating challenge in building this experience is convincing rights holders to license to a convenient free option that appears to cannibalize paid sales, when the real alternative is illegal zero-payment consumption."}, {"id": 37, "domain": "media", "type": "org", "org": "The New York Times Digital Transformation (2012–2020)", "headline": "How a 150-year-old newspaper became the most successful digital subscription business in media", "trigger": "In 2011, the New York Times launched its digital paywall with deep internal skepticism. The dominant media theory held that internet users would not pay for news — the web had trained the expectation of free content, and advertising revenue would inevitably…", "insight": "Legacy media organizations fail at digital transformation not because their content is inferior but because their organizational structure and workflow were optimized for a delivery mechanism (print, broadcast) rather than for the audience they serve. Reorganizing around the customer's consumption patterns — what they read, when, on what device, via what platform — requires redesigning workflows, incentives, and metrics that were all calibrated for the old delivery mechanism. The 'Innovation Report' was valuable precisely because it was specific: not 'we need to be more digital' but 'here are the exact organizational processes that are preventing digital success.'"}, {"id": 38, "domain": "media", "type": "ma", "org": "Disney / Marvel Integration (2009)", "headline": "How Disney paid $4B for 5,000 characters and built a $25B franchise by reversing the normal content economics", "trigger": "In 2009, Disney acquired Marvel Entertainment for $4.24 billion. At the time, Marvel's most valuable cinematic rights (Spider-Man, X-Men, Fantastic Four) were licensed to other studios. The acquisition was for a character library centered on second-tier…", "insight": "Content IP valuation should account for the option value of narrative infrastructure, not just current franchise performance. Marvel's second-tier characters were individually worth less than their first-tier characters; their collective value as a shared universe was worth more than the sum of their individual values because the shared universe enabled a structural demand mechanism (cross-film story investment) that individual franchises cannot produce. When valuing IP portfolios, ask: what are these assets worth together, in a system designed around their interaction, versus what each is worth sold separately?"}, {"id": 39, "domain": "industrial", "type": "org", "org": "General Electric / Jack Welch — Work-Out (1988–1995)", "headline": "How removing bureaucracy by locking managers out of meetings created $1B in productivity gains", "trigger": "When Jack Welch became CEO of GE in 1981, he found an organization suffering from classic large-company bureaucracy: decisions required multiple management layers of approval, workers with operational knowledge had no channel to propose improvements, and the…", "insight": "Bureaucratic processes persist because the people who benefit from them (middle management) have more organizational power than the people who suffer from them (frontline workers). Inverting this dynamic — creating a forum where frontline knowledge is legitimized and managers are required to justify existing processes publicly — is far more effective than asking managers to identify their own redundant activities. Process improvement is a power negotiation as much as an analytical exercise; the design of the improvement process must account for this."}, {"id": 40, "domain": "retail", "type": "turnaround", "org": "LEGO (2003–2008)", "headline": "How LEGO recovered from near-bankruptcy by abandoning diversification and obsessing over the core product", "trigger": "By 2003, LEGO was losing $300 million annually and was reportedly weeks from bankruptcy. The company had spent a decade diversifying — theme parks, video games, LEGO clothing, LEGO jewelry — trying to grow beyond the plastic brick. Each extension diluted…", "insight": "Diversification pursued as a growth strategy almost always produces the opposite of its intent when it diverts attention and capital from a core business that has not yet been optimized. The diagnostic question is not 'are these diversifications individually promising' but 'has the core business been taken to its full potential, and is the diversification funded by core-business cash flow or by borrowing against it?' LEGO's diversifications were individually reasonable and collectively lethal because they fragmented the management attention and manufacturing discipline that the core brick business required to be excellent."}];
 const STATS=[
   {key:'pl',name:'PATTERN LIBRARY'},{key:'qp',name:'QUESTION PRECISION'},
   {key:'pc',name:'PRESSURE CLARITY'},{key:'cb',name:'CROSS-DOMAIN BRIDGING'},{key:'as',name:'ASSUMPTION SURFACING'}
@@ -620,7 +645,7 @@ function defaultProfile(name){
     origin:null,baseline:null,stats:{pl:0,qp:0,pc:0,cb:0,as:0},
     antiPattern:{domains:[],regions:[],eras:[]},
     scores:[],ratchets:[],currentBrief:null,currentDossier:null,currentBossFight:null,log:[],bossFights:[],
-    review:{items:[],seededPatterns:false,seededReasoners:false},
+    review:{items:[],seededPatterns:false,seededReasoners:false,seededCases:false},
     patternUsage:{}};
 }
 function load(){try{const r=localStorage.getItem(KEY);return r?JSON.parse(r):null}catch{return null}}
@@ -726,6 +751,17 @@ function seedReasonerReview(){
   toast(`${COMPACT_REASONERS.length} reasoners added to Retrieval queue (+10 XP)`);
   renderRetrieval();
 }
+function seedCasesReview(){
+  if(P.review.seededCases){toast('Consulting Cases already seeded',true);return}
+  COMPACT_CASES.forEach(c=>{
+    addReviewItem('case', c.trigger, c.org.toUpperCase()+' — '+c.insight, c.domain);
+  });
+  P.review.seededCases=true;
+  P.xp=(P.xp||0)+10;
+  save();
+  toast(`${COMPACT_CASES.length} cases added to Retrieval queue (+10 XP)`);
+  renderRetrieval();
+}
 function revealItem(id){
   revealedSet.add(id);
   renderRetrieval();
@@ -760,7 +796,10 @@ function renderRetrieval(){
   const reaSeed=P.review.seededReasoners
     ? `<span class="chip green">✓ reasoner archive seeded (${COMPACT_REASONERS.length})</span>`
     : `<button class="btn btn-primary" onclick="seedReasonerReview()">🧠 SEED REASONER ARCHIVE (${COMPACT_REASONERS.length} MINDS)</button>`;
-  seedRow.innerHTML=patSeed+reaSeed;
+  const caseSeed=P.review.seededCases
+    ? `<span class="chip green">✓ consulting cases seeded (${COMPACT_CASES.length})</span>`
+    : `<button class="btn btn-primary" onclick="seedCasesReview()">⧉ SEED CONSULTING CASES (${COMPACT_CASES.length} CASES)</button>`;
+  seedRow.innerHTML=patSeed+reaSeed+caseSeed;
   const host=$('rev-list');
   if(!due.length){
     host.innerHTML=`<div class="panel"><div class="empty"><div class="empty-ic">⟲</div><div class="empty-t">Nothing due right now</div><div class="empty-s">${P.review.items.length?'You are caught up. Items resurface automatically as their interval comes due.':'Complete a brief with a principle, or seed the libraries above, to start building your queue.'}</div></div></div>`;
@@ -768,7 +807,7 @@ function renderRetrieval(){
   }
   host.innerHTML=due.map(item=>{
     const isRevealed=revealedSet.has(item.id);
-    const typeLabel=item.type==='pattern'?'PATTERN RECALL':item.type==='reasoner'?'REASONER RECALL':'YOUR PRINCIPLE';
+    const typeLabel=item.type==='pattern'?'PATTERN RECALL':item.type==='reasoner'?'REASONER RECALL':item.type==='case'?'CASE RECALL':'YOUR PRINCIPLE';
     return `<div class="rev-card due">
       <div class="rev-type ${item.type}">${typeLabel}${item.sourceCat?' · '+esc(item.sourceCat):''}</div>
       <div class="rev-prompt">${esc(item.prompt)}</div>
@@ -980,75 +1019,339 @@ function renderDash(){
 // ===== BRIEF =====
 function renderBrief(){
   const host=$('brief-content');
+
+  // ── EMPTY STATE: mode chooser ──────────────────────────────────────────
   if(!P.currentBrief){
     host.innerHTML=`
     <div class="panel">
-      <div class="panel-h">DAY ${P.day} — GENERATE BRIEF</div>
-      <div class="step"><div class="step-n">1</div><div class="step-t"><b>Generate the prompt</b>, copy it.</div></div>
-      <div class="step"><div class="step-n">2</div><div class="step-t">Paste into <b>Claude</b> → it returns a JSON case study.</div></div>
-      <div class="step"><div class="step-n">3</div><div class="step-t"><b>Store Brief</b>, paste the JSON back, and today's case appears here.</div></div>
-      <div class="grid2" style="margin:18px 0">
-        <div><label class="fl">DOMAIN</label><select id="force-domain">
-          <option value="">Auto (avoid recent)</option><option>Business &amp; Strategy</option><option>Urban Planning</option><option>Geopolitics</option>
-          <option>Science &amp; Tech</option><option>Crisis Management</option><option>Healthcare</option><option>Economics</option>
-          <option>Culture &amp; Society</option><option>Environment</option><option>Sports &amp; Performance</option><option>History</option><option>Infrastructure</option></select></div>
-        <div><label class="fl">DIFFICULTY</label><select id="force-diff"><option value="adaptive">Adaptive (recommended)</option><option>Easy</option><option>Medium</option><option>Hard</option><option>Expert</option></select></div>
+      <div class="panel-h">DAY ${P.day} — CHOOSE YOUR MODE</div>
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.7">Sprint briefs build pattern-recognition speed. Consulting Engagements build the deeper analytical muscle that comes from sustained pressure across multiple inferential steps — back-and-forth dialogue, pushback, and a forced synthesis.</p>
+      <div class="mode-chooser">
+        <div class="mode-card" onclick="toggleBriefMode('sprint')" id="mc-sprint">
+          <div class="mode-ic">◎</div>
+          <div class="mode-name" style="color:var(--cyan)">SPRINT BRIEF</div>
+          <div class="mode-desc">One real case, one anchor question. Answer in ~20 min. Quick pattern activation.</div>
+          <div class="mode-meta">Scores PL · CB · AS · +100 XP</div>
+        </div>
+        <div class="mode-card" onclick="toggleBriefMode('consulting')" id="mc-consulting">
+          <div class="mode-ic">⧉</div>
+          <div class="mode-name" style="color:var(--purple)">CONSULTING ENGAGEMENT</div>
+          <div class="mode-desc">6-stage structured dialogue. McKinsey-style back-and-forth — framing, hypothesis, framework, deep drill, stress test, synthesis. Claude pushes back at every shallow answer.</div>
+          <div class="mode-meta">Scores ALL 5 DIMENSIONS · +150 XP · ~45-60 min</div>
+        </div>
       </div>
-      <div class="btn-row">
-        <button class="btn btn-primary" onclick="genBrief()">⚡ GENERATE PROMPT</button>
-        <button class="btn btn-green" onclick="openPasteModal('brief')">↓ STORE BRIEF (PASTE JSON)</button>
+    </div>
+    <div id="sprint-area" style="display:none">
+      <div class="panel">
+        <div class="panel-h" style="color:var(--cyan)">SPRINT BRIEF</div>
+        <div class="step"><div class="step-n">1</div><div class="step-t"><b>Generate the prompt</b>, copy it.</div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-t">Paste into <b>Claude</b> → it returns a JSON case study.</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-t"><b>Store Brief</b>, paste the JSON back, answer and grade.</div></div>
+        <div class="grid2" style="margin:18px 0">
+          <div><label class="fl">DOMAIN</label><select id="force-domain">
+            <option value="">Auto (avoid recent)</option><option>Business &amp; Strategy</option><option>Urban Planning</option><option>Geopolitics</option>
+            <option>Science &amp; Tech</option><option>Crisis Management</option><option>Healthcare</option><option>Economics</option>
+            <option>Culture &amp; Society</option><option>Environment</option><option>Sports &amp; Performance</option><option>History</option><option>Infrastructure</option></select></div>
+          <div><label class="fl">DIFFICULTY</label><select id="force-diff"><option value="adaptive">Adaptive (recommended)</option><option>Easy</option><option>Medium</option><option>Hard</option><option>Expert</option></select></div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="genBrief()">⚡ GENERATE SPRINT PROMPT</button>
+          <button class="btn btn-green" onclick="openPasteModal('brief')">↓ STORE BRIEF (PASTE JSON)</button>
+        </div>
+        <div id="brief-prompt-wrap" style="display:none;margin-top:16px">
+          <div class="promptbox" id="brief-prompt"></div>
+          <div class="btn-row" style="margin-top:10px"><button class="btn" onclick="copyEl('brief-prompt','Prompt copied — paste in Claude')">⧉ COPY PROMPT</button></div>
+        </div>
       </div>
-      <div id="brief-prompt-wrap" style="display:none;margin-top:16px">
-        <div class="promptbox" id="brief-prompt"></div>
-        <div class="btn-row" style="margin-top:10px"><button class="btn" onclick="copyEl('brief-prompt','Prompt copied — paste in Claude')">⧉ COPY PROMPT</button></div>
+    </div>
+    <div id="consulting-area" style="display:none">
+      <div class="panel">
+        <div class="consult-banner"><div class="consult-banner-t">⧉ CONSULTING ENGAGEMENT PROTOCOL</div>One prompt generates a full 6-stage dialogue. Run it in a fresh Claude conversation — this takes 45-60 minutes. When all stages are done, ask Claude to output the grade JSON, then paste it back here.</div>
+        <div class="mode-chooser" style="margin-top:14px">
+          <div class="mode-card" onclick="toggleConsultingMode('synthetic')" id="cc-synthetic">
+            <div class="mode-ic">⚡</div>
+            <div class="mode-name" style="color:var(--purple)">SYNTHETIC CASE</div>
+            <div class="mode-desc">Claude generates a fresh real-world case to your domain preference, then runs the 6-stage dialogue.</div>
+          </div>
+          <div class="mode-card" onclick="toggleConsultingMode('historical')" id="cc-historical">
+            <div class="mode-ic">⧉</div>
+            <div class="mode-name" style="color:var(--yellow)">REAL HISTORICAL CASE</div>
+            <div class="mode-desc">Drawn from your 40-case repository. Work a real decision — outcome revealed at Stage 5. Compare your recommendation to what actually succeeded.</div>
+          </div>
+        </div>
+        <div id="c-synthetic-area" style="display:none;margin-top:14px">
+          <div class="grid2" style="margin-bottom:14px">
+            <div><label class="fl">DOMAIN (optional)</label><select id="force-domain-c">
+              <option value="">Auto (avoid recent)</option><option>Business &amp; Strategy</option><option>Urban Planning</option><option>Geopolitics</option>
+              <option>Science &amp; Tech</option><option>Crisis Management</option><option>Healthcare</option><option>Economics</option>
+              <option>Culture &amp; Society</option><option>Environment</option><option>Sports &amp; Performance</option><option>History</option><option>Infrastructure</option></select></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" style="background:rgba(139,92,246,.2);border-color:rgba(139,92,246,.6)" onclick="genConsulting()">⚡ GENERATE SYNTHETIC PROMPT</button>
+            <button class="btn btn-green" onclick="openPasteModal('consulting-grade')">↓ PASTE GRADE JSON</button>
+          </div>
+          <div id="consulting-prompt-wrap" style="display:none;margin-top:16px">
+            <div class="promptbox" id="consulting-prompt" style="max-height:320px"></div>
+            <div class="btn-row" style="margin-top:10px"><button class="btn" onclick="copyEl('consulting-prompt','Prompt copied — open a fresh Claude conversation')">⧉ COPY PROMPT</button></div>
+          </div>
+        </div>
+        <div id="c-historical-area" style="display:none;margin-top:14px">
+          <div class="grid2" style="margin-bottom:14px">
+            <div><label class="fl">DOMAIN</label><select id="force-domain-hist">
+              <option value="">Any domain</option>
+              <option value="tech">Technology</option><option value="healthcare">Healthcare</option>
+              <option value="industrial">Industrial & Manufacturing</option><option value="retail">Retail & Consumer</option>
+              <option value="finance">Financial Services</option><option value="energy">Energy & Resources</option>
+              <option value="pubsec">Public Sector</option><option value="transport">Transport & Logistics</option>
+              <option value="fmcg">FMCG & Consumer Goods</option><option value="media">Media & Entertainment</option>
+            </select></div>
+            <div><label class="fl">PROBLEM TYPE</label><select id="force-type-hist">
+              <option value="">Any type</option>
+              <option value="turnaround">Turnaround</option><option value="growth">Growth Strategy</option>
+              <option value="ops">Operations</option><option value="pricing">Pricing</option>
+              <option value="entry">Market Entry</option><option value="ma">M&amp;A & Integration</option>
+              <option value="digital">Digital Transformation</option><option value="disruption">Disruptive Innovation</option>
+              <option value="org">Org Design</option><option value="public">Public Sector Reform</option>
+            </select></div>
+          </div>
+          <div id="hist-case-preview" style="margin-bottom:14px"></div>
+          <div class="btn-row">
+            <button class="btn btn-ghost" onclick="pickHistoricalCase()">🎲 PICK CASE</button>
+            <button class="btn btn-primary" style="background:rgba(255,215,0,.15);border-color:rgba(255,215,0,.5)" id="gen-hist-btn" onclick="genConsultingHistorical()" disabled>⚡ GENERATE HISTORICAL PROMPT</button>
+            <button class="btn btn-green" onclick="openPasteModal('consulting-grade')">↓ PASTE GRADE JSON</button>
+          </div>
+          <div id="consulting-hist-prompt-wrap" style="display:none;margin-top:16px">
+            <div class="promptbox" id="consulting-hist-prompt" style="max-height:320px"></div>
+            <div class="btn-row" style="margin-top:10px"><button class="btn" onclick="copyEl('consulting-hist-prompt','Historical prompt copied — open a fresh Claude conversation')">⧉ COPY PROMPT</button></div>
+          </div>
+        </div>
       </div>
     </div>`;
     return;
   }
-  const b=P.currentBrief;const sc=b.scores;
+
+  // ── ACTIVE: SPRINT BRIEF ───────────────────────────────────────────────
+  const b=P.currentBrief;
+  if(!b.mode||b.mode==='sprint'){
+    const sc=b.scores;
+    host.innerHTML=`
+    <div class="panel">
+      <div class="panel-h">DAY ${P.day} BRIEF · ${esc(b.region||'—')} · ${esc(b.era||'—')}</div>
+      <div class="brief-meta"><span class="chip cyan">${esc(b.domain)}</span><span class="chip purple">${esc(b.difficulty||'Medium')}</span>${b.region?`<span class="chip">${esc(b.region)}</span>`:''}${b.era?`<span class="chip orange">${esc(b.era)}</span>`:''}</div>
+      <div class="brief-headline">${esc(b.headline)}</div>
+      <div class="brief-hook">${esc(b.hook)}</div>
+      <div class="anchor"><div class="anchor-label">⊹ ANCHOR QUESTION</div><div class="anchor-q">${esc(b.anchorQuestion)}</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-h">YOUR ANSWER</div>
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px">Spend ~20 min. What's the core problem, and what would you investigate first?</p>
+      <textarea id="answer-input" rows="8" placeholder="The core problem is… The first thing I'd investigate is…">${esc(b.answer||'')}</textarea>
+      <label class="fl" style="margin-top:14px">PRINCIPLE — one sentence: "the principle this illustrates is…" (feeds your Retrieval queue)</label>
+      <input id="principle-input" placeholder="e.g. when a measure becomes a target, it stops measuring the thing it was tracking" value="${esc(b.principle||'')}">
+      <div class="btn-row" style="margin-top:14px"><button class="btn" onclick="saveAnswer()">💾 SAVE ANSWER</button></div>
+    </div>
+    <div class="panel">
+      <div class="panel-h">TAG THE STRUCTURE — BEFORE YOU SEE THE SCORE</div>
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px;line-height:1.6">Which pattern(s) from your repository apply here? Tag first, grade after.</p>
+      <div class="tag-search-wrap">
+        <input id="pattern-tag-search" placeholder="Search patterns by name or trigger…" oninput="renderPatternSuggestions()" onfocus="renderPatternSuggestions()">
+        <div class="tag-suggestions" id="pattern-suggestions" style="display:none"></div>
+      </div>
+      <div class="tag-chips" id="pattern-chips"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-h">GRADE THIS BRIEF → 3 STATS</div>
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.6">Paste your answer to Claude, ask it to score these three (1-10), enter them here. ${sc?'<span class="chip green">✓ already logged</span>':''}</p>
+      <div class="grid2">
+        <div><label class="fl">LEVER FOUND → PATTERN LIBRARY</label><input type="number" min="1" max="10" step="0.5" id="bs-pl" value="${sc?sc.pl:''}"></div>
+        <div><label class="fl">BRIDGE → CROSS-DOMAIN BRIDGING</label><input type="number" min="1" max="10" step="0.5" id="bs-cb" value="${sc?sc.cb:''}"></div>
+        <div><label class="fl">PREMISE CHECK → ASSUMPTION SURFACING</label><input type="number" min="1" max="10" step="0.5" id="bs-as" value="${sc?sc.as:''}"></div>
+      </div>
+      <button class="btn btn-green btn-full" style="margin-top:14px" onclick="logBriefScore()">✓ LOG BRIEF SCORE</button>
+    </div>
+    <div class="panel">
+      <div class="btn-row">
+        <button class="btn btn-green" onclick="completeDay()">✓ COMPLETE DAY ${P.day} → ARCHIVE & ADVANCE</button>
+        <button class="btn btn-ghost btn-danger" onclick="discardBrief()">DISCARD BRIEF</button>
+      </div>
+    </div>`;
+    activeTagContext='brief';
+    renderPatternChips();
+    return;
+  }
+
+  // ── ACTIVE: CONSULTING ENGAGEMENT ─────────────────────────────────────
+  const sc=b.scores||{};
+  const stages=b.stagesCompleted||0;
+  const moments=b.keyMoments||[];
+  const frameworks=b.frameworksDeployed||[];
   host.innerHTML=`
   <div class="panel">
-    <div class="panel-h">DAY ${P.day} BRIEF · ${esc(b.region||'—')} · ${esc(b.era||'—')}</div>
-    <div class="brief-meta"><span class="chip cyan">${esc(b.domain)}</span><span class="chip purple">${esc(b.difficulty||'Medium')}</span>${b.region?`<span class="chip">${esc(b.region)}</span>`:''}${b.era?`<span class="chip orange">${esc(b.era)}</span>`:''}</div>
-    <div class="brief-headline">${esc(b.headline)}</div>
-    <div class="brief-hook">${esc(b.hook)}</div>
-    <div class="anchor"><div class="anchor-label">⊹ ANCHOR QUESTION</div><div class="anchor-q">${esc(b.anchorQuestion)}</div></div>
-  </div>
-  <div class="panel">
-    <div class="panel-h">YOUR ANSWER</div>
-    <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px">Spend ~20 min. What's the core problem, and what would you investigate first? Saved to your Log forever.</p>
-    <textarea id="answer-input" rows="8" placeholder="The core problem is… The first thing I'd investigate is…">${esc(b.answer||'')}</textarea>
-    <label class="fl" style="margin-top:14px">PRINCIPLE — one sentence: "the principle this illustrates is…" (feeds your Retrieval queue)</label>
-    <input id="principle-input" placeholder="e.g. when a measure becomes a target, it stops measuring the thing it was tracking" value="${esc(b.principle||'')}">
-    <div class="btn-row" style="margin-top:14px"><button class="btn" onclick="saveAnswer()">💾 SAVE ANSWER</button></div>
-  </div>
-  <div class="panel">
-    <div class="panel-h">TAG THE STRUCTURE — BEFORE YOU SEE THE SCORE</div>
-    <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px;line-height:1.6">Which pattern(s) from your repository apply here? Tag first, grade after — this is what builds your coverage heatmap.</p>
-    <div class="tag-search-wrap">
-      <input id="pattern-tag-search" placeholder="Search patterns by name or trigger…" oninput="renderPatternSuggestions()" onfocus="renderPatternSuggestions()">
-      <div class="tag-suggestions" id="pattern-suggestions" style="display:none"></div>
+    <div class="consult-banner"><div class="consult-banner-t">⧉ CONSULTING ENGAGEMENT · DAY ${P.day}</div>Session graded — add your principle and archive the day.</div>
+    <div class="brief-meta"><span class="chip" style="color:var(--purple);border-color:rgba(139,92,246,.4)">${esc(b.domain)}</span><span class="chip orange">${esc(b.era||'—')}</span><span class="chip">${esc(b.region||'—')}</span></div>
+    <div class="consult-headline">${esc(b.headline)}</div>
+    <div class="lbl">STAGES COMPLETED</div>
+    <div class="stage-row">
+      ${Array.from({length:6},(_,i)=>`<div class="stage-pill ${i<stages?'done':''}">${i+1}</div>`).join('')}
+      <span style="font-family:var(--fm);font-size:10px;color:var(--text-faint);margin:auto 0 auto 8px">${stages}/6 stages</span>
     </div>
-    <div class="tag-chips" id="pattern-chips"></div>
   </div>
-  <div class="panel">
-    <div class="panel-h">GRADE THIS BRIEF → 3 STATS</div>
-    <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.6">Paste your answer to Claude, ask it to score these three (1-10), enter them here. ${sc?'<span class="chip green">✓ already logged this brief</span>':''}</p>
-    <div class="grid2">
-      <div><label class="fl">LEVER FOUND → PATTERN LIBRARY</label><input type="number" min="1" max="10" step="0.5" id="bs-pl" value="${sc?sc.pl:''}"></div>
-      <div><label class="fl">BRIDGE → CROSS-DOMAIN BRIDGING</label><input type="number" min="1" max="10" step="0.5" id="bs-cb" value="${sc?sc.cb:''}"></div>
-      <div><label class="fl">PREMISE CHECK → ASSUMPTION SURFACING</label><input type="number" min="1" max="10" step="0.5" id="bs-as" value="${sc?sc.as:''}"></div>
+  ${moments.length?`<div class="panel">
+    <div class="panel-h">KEY MOMENTS</div>
+    ${moments.map(m=>`<div class="key-moment-item ${m.move==='prompted'?'prompted':''}">
+      <div class="key-moment-stage">STAGE ${m.stage} · ${m.move==='spontaneous'?'⚡ SPONTANEOUS':'→ PROMPTED'}</div>
+      <div class="key-moment-note">${esc(m.note)}</div>
+    </div>`).join('')}
+    ${frameworks.length?`<div style="margin-top:12px"><div class="lbl">FRAMEWORKS DEPLOYED</div><div class="chips">${frameworks.map(f=>`<span class="chip">${esc(f)}</span>`).join('')}</div></div>`:''}
+  </div>`:''}
+  ${b.coachNote?`<div class="panel">
+    <div class="panel-h">COACH NOTE</div>
+    <div class="coach-note-box">${esc(b.coachNote)}</div>
+  </div>`:''}
+  ${b.calibration?`<div class="panel">
+    <div class="panel-h" style="color:var(--yellow)">CALIBRATION — vs. WHAT ACTUALLY HAPPENED</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
+      <div style="background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.25);border-radius:9px;padding:13px 15px">
+        <div style="font-family:var(--fm);font-size:9px;color:var(--green);letter-spacing:1.5px;margin-bottom:7px">✓ GOT RIGHT</div>
+        <div style="font-size:13.5px;line-height:1.65;color:var(--text)">${esc(b.calibration.theyGotRight||'—')}</div>
+      </div>
+      <div style="background:rgba(255,107,53,.06);border:1px solid rgba(255,107,53,.25);border-radius:9px;padding:13px 15px">
+        <div style="font-family:var(--fm);font-size:9px;color:var(--orange);letter-spacing:1.5px;margin-bottom:7px">✗ MISSED</div>
+        <div style="font-size:13.5px;line-height:1.65;color:var(--text)">${esc(b.calibration.theyMissed||'—')}</div>
+      </div>
     </div>
-    <button class="btn btn-green btn-full" style="margin-top:14px" onclick="logBriefScore()">✓ LOG BRIEF SCORE</button>
+  </div>`:''}
+  <div class="panel">
+    <div class="panel-h">SESSION GRADE → ALL 5 STATS</div>
+    <div class="chips">${Object.entries(sc).map(([d,v])=>`<span class="chip ${DIM_CHIP[d]||''}">${(DIM_NAME[d]||d.toUpperCase())} ${v}</span>`).join('')}</div>
+  </div>
+  ${b.finalSynthesis?`<div class="panel">
+    <div class="panel-h">YOUR SYNTHESIS (Stage 6)</div>
+    <div class="consult-synthesis">${esc(b.finalSynthesis)}</div>
+  </div>`:''}
+  <div class="panel">
+    <div class="panel-h">PRINCIPLE</div>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px">One sentence that captures what this session taught you. Feeds into your Retrieval queue.</p>
+    <input id="principle-input" placeholder="e.g. every one of these inflection points had a clear early signal that only looked obvious in hindsight" value="${esc(b.principle||'')}">
   </div>
   <div class="panel">
     <div class="btn-row">
-      <button class="btn btn-green" onclick="completeDay()">✓ COMPLETE DAY ${P.day} → ARCHIVE & ADVANCE</button>
-      <button class="btn btn-ghost btn-danger" onclick="discardBrief()">DISCARD BRIEF</button>
+      <button class="btn btn-green" onclick="completeDay()">✓ COMPLETE DAY ${P.day} → ARCHIVE (+150 XP)</button>
+      <button class="btn btn-ghost btn-danger" onclick="discardBrief()">DISCARD</button>
     </div>
   </div>`;
-  activeTagContext='brief';
-  renderPatternChips();
+}
+function toggleBriefMode(mode){
+  const s=$('sprint-area'),c=$('consulting-area');
+  const ms=$('mc-sprint'),mc=$('mc-consulting');
+  if(!s||!c)return;
+  s.style.display=mode==='sprint'?'block':'none';
+  c.style.display=mode==='consulting'?'block':'none';
+  if(ms)ms.classList.toggle('selected',mode==='sprint');
+  if(mc)mc.classList.toggle('selected',mode==='consulting');
+}
+let _selectedCase=null;
+function toggleConsultingMode(mode){
+  const sa=$('c-synthetic-area'),ha=$('c-historical-area');
+  const cs=$('cc-synthetic'),ch=$('cc-historical');
+  if(!sa||!ha)return;
+  sa.style.display=mode==='synthetic'?'block':'none';
+  ha.style.display=mode==='historical'?'block':'none';
+  if(cs)cs.classList.toggle('selected',mode==='synthetic');
+  if(ch)ch.classList.toggle('selected',mode==='historical');
+  if(mode==='historical'&&!_selectedCase)pickHistoricalCase();
+}
+function caseColorFor(domain){const d=CASE_DOMAINS.find(x=>x.id===domain);return d?d.color:'#00f5ff';}
+function pickHistoricalCase(){
+  const dom=$('force-domain-hist')?$('force-domain-hist').value:'';
+  const typ=$('force-type-hist')?$('force-type-hist').value:'';
+  let pool=COMPACT_CASES.filter(c=>{
+    const md=!dom||c.domain===dom;
+    const mt=!typ||c.type===typ;
+    return md&&mt;
+  });
+  // exclude recently used (last 10 consulting sessions if we can detect it)
+  if(pool.length===0)pool=COMPACT_CASES;
+  _selectedCase=pool[Math.floor(Math.random()*pool.length)];
+  const c=_selectedCase;
+  const col=caseColorFor(c.domain);
+  const preview=$('hist-case-preview');
+  if(preview)preview.innerHTML=`<div style="background:var(--bg2);border:1px solid ${col}55;border-left:3px solid ${col};border-radius:9px;padding:13px 16px">
+    <div style="font-family:var(--fm);font-size:9.5px;color:var(--text-faint);letter-spacing:1px;margin-bottom:6px">CASE ${String(c.id).padStart(2,'0')} · ${esc(c.domain.toUpperCase())} · ${esc(c.type.toUpperCase())}</div>
+    <div style="font-weight:600;font-size:14px;margin-bottom:5px;color:${col}">${esc(c.org)}</div>
+    <div style="font-size:13px;color:var(--text-dim);line-height:1.6">${esc(c.headline)}</div>
+  </div>`;
+  const btn=$('gen-hist-btn');if(btn)btn.disabled=false;
+}
+function genConsultingHistorical(){
+  if(!_selectedCase){toast('Pick a case first',true);return;}
+  const c=_selectedCase;
+  const prompt=`You are a senior strategy consultant running a HISTORICAL CASE consulting engagement for COGOS. The operator will work through a real historical decision — but they will NOT know the outcome until Stage 5, which is how the real decision-maker experienced it.
+
+THE REAL CASE:
+Organisation / Context: ${c.org}
+Headline: ${c.headline}
+Situation as it stood at the moment of decision (the outcome is NOT revealed here):
+${c.trigger}
+
+Tell the operator: "Here is the case we are working today. This is a real situation that has already played out — but you don't know the outcome yet. Work through it as if you are the advisor at the moment of decision."
+
+Then run the operator through all 6 stages exactly as follows. Do NOT reveal the outcome until Stage 5. Never hint at what actually happened.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STAGE 1 — FRAME THE REAL PROBLEM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"Before analysis — in one sentence: what is the actual DECISION that needs to be made? Not the situation. The decision."
+Push back if they restate the situation. Accept when they identify a decision with a real owner and real stakes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STAGE 2 — THREE HYPOTHESES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"Give me THREE competing hypotheses about what's driving this. Structurally different — I want three distinct explanatory families, not three versions of one."
+Flag if all three are the same causal type. Hold firm for a third if they give fewer.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STAGE 3 — FRAMEWORK & JUSTIFICATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"Which framework best maps to your chosen hypothesis — and what specific mechanism does it reveal that intuition alone would miss?"
+Challenge generic labels (SWOT, 5 Forces) without specific mechanism. Add a complicating constraint after acceptance.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STAGE 4 — DEEP DRILL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Run the operator three levels deep on their most interesting hypothesis:
+Round 1 — Causal chain: "Walk me through the mechanism — A causes B causes C."
+Round 2 — Weak link: "Which assumption in that chain is weakest? If you're wrong there, what breaks?"
+Round 3 — Decisive evidence: "What single data point would confirm or refute this chain?"
+Push once on any shallow answer before moving on.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STAGE 5 — STRESS TEST (REVEAL THE OUTCOME)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Now reveal what actually happened. Say: "Before we stress-test your thesis — here is what actually happened in this case."
+Then share the real outcome and the portable insight it produced: ${c.insight}
+
+Ask: "Does this change your recommendation — or were you directionally right for the wrong reasons? Where did your thesis hold and where did it miss?"
+Push them to be specific: not "I was close" but exactly which part of their causal chain was vindicated or falsified.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STAGE 6 — SYNTHESISE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"One paragraph: if you had been the advisor at the moment of decision, what would you have recommended — and how close was your actual reasoning to the thinking that produced the right answer?"
+If they hedge: "It always depends. Make the call anyway."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AFTER ALL 6 STAGES — output ONLY this JSON (no preamble, no markdown):
+{"mode":"consulting","domain":"${c.domain}","region":"","era":"","headline":${JSON.stringify(c.headline)},"stagesCompleted":6,"keyMoments":[{"stage":2,"move":"spontaneous or prompted","note":"what the operator did well or poorly"},{"stage":4,"move":"spontaneous or prompted","note":"depth of causal chain and weak-link identification"}],"frameworksDeployed":["frameworks operator actually used"],"finalSynthesis":"operator's one-paragraph synthesis from Stage 6","calibration":{"wasDirectional":true,"theyGotRight":"what part of their reasoning matched the actual solution","theyMissed":"what key insight they didn't surface"},"scores":{"pl":0,"qp":0,"pc":0,"cb":0,"as":0},"coachNote":"two sentences: one strength, one target — specifically about how their reasoning compared to what the real solution required"}
+
+SCORING CALIBRATION (be honest, 7=genuinely good, 5=average):
+pl: Did they identify the structural pattern the case illustrates?
+qp: Were their framings and hypotheses sharp and testable?
+pc: Did thinking sharpen or dissolve when the real outcome was revealed in Stage 5?
+cb: Did they draw on structural analogies outside this industry?
+as: Did they name and test the load-bearing assumptions before Stage 5 revealed them?`;
+  $('consulting-hist-prompt').textContent=prompt;$('consulting-hist-prompt-wrap').style.display='block';
+  copyText(prompt,'Historical case prompt copied — open a fresh Claude conversation');
 }
 function genBrief(){
   const domain=$('force-domain').value,diff=$('force-diff').value;
@@ -1086,12 +1389,122 @@ Respond ONLY with a valid JSON object in exactly this format (no markdown, no ex
   copyText(prompt,'Prompt generated & copied — paste in Claude');
 }
 function extractJSON(text){let t=(text||'').trim().replace(/^```(?:json)?/i,'').replace(/```$/,'').trim();const a=t.indexOf('{'),z=t.lastIndexOf('}');if(a>=0&&z>a)t=t.slice(a,z+1);return JSON.parse(t)}
+
+function genConsulting(){
+  const domain=$('force-domain-c')?$('force-domain-c').value:'';
+  const rd=(P.antiPattern.domains||[]).slice(-14),rr=(P.antiPattern.regions||[]).slice(-7),re=(P.antiPattern.eras||[]).slice(-7);
+  const underused=leastUsedPatterns(3);
+  const patternHint=underused.length?`\nBLIND-SPOT NUDGE (soft preference, let it emerge naturally): the operator rarely deploys these structural patterns — ${underused.map(p=>p.name).join(', ')} — if the case naturally surfaces one, don't force it but don't avoid it either.`:'';
+  const prompt=`You are a senior McKinsey partner running a structured consulting engagement for COGOS, a cognitive training system. Your role: sustained intellectual pressure — not lecture, not Q&A, but genuine back-and-forth dialogue that forces the operator to think through multiple layers without you giving the answer.
+
+FIRST — generate a rich strategic case to anchor the session:
+- Domain: ${domain||`NOT one of these recently used: ${rd.join(', ')||'none'}`}
+- Region NOT in: ${rr.join(', ')||'none'} · Era NOT in: ${re.join(', ')||'none'}
+- REAL organisation, specific numbers, named stakeholders — no famous overused cases (no SpaceX, Apple iPhone, Amazon AWS, McKinsey)
+- 4-6 sentences: a messy real situation with at least 3 specific data points and a non-obvious strategic tension where multiple interpretations are defensible${patternHint}
+
+Then say: "Here is today's case:" and present it clearly. Then immediately begin Stage 1.
+
+RUN ALL 6 STAGES IN SEQUENCE. Do not skip stages. Do not advance until the current stage is genuinely complete. Never reveal your own interpretation until the operator has committed to theirs.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STAGE 1 — FRAME THE REAL PROBLEM (~5-10 min)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Open with: "Before we analyse anything — in one sentence: what is the actual DECISION that needs to be made? Not the situation. The decision."
+- If they restate the situation: push back: "That's what's happening. What decision does someone have to make?"
+- If they name a proximate decision but miss the deeper one: "Is that the real decision, or the symptom of a deeper one?"
+- Accept when they've named a genuine decision with a real owner and real stakes. Then confirm: "Good — so the decision is [restate it]. Let's test that frame."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STAGE 2 — THREE HYPOTHESES, NO FILTERING (~5-10 min)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"Now: give me THREE competing hypotheses about what's driving this. Quantity before quality — no filtering, no ranking. I want three, and I need them to be structurally different."
+- If all three are in the same causal family (all demand-side, all cost-side, all execution): call it out: "All three are variations of the same explanation. I need one from a structurally different category."
+- If they give only two: hold firm. "I need a third, even if it feels speculative."
+- Once you have three genuine hypotheses, briefly name what each one implies about where you'd look for evidence.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STAGE 3 — FRAMEWORK SELECTION AND JUSTIFICATION (~5-10 min)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"Which of those hypotheses would you stress-test first — and which analytical framework would you use to test it? Not just the name — tell me specifically what question the framework lets you answer that you couldn't answer without it."
+- Generic framework without mechanism (SWOT, 5 Forces named without specificity): "That's a label. What's the mechanism? What does this framework see that raw intuition misses?"
+- Good framework, well-justified: accept it, then add one complicating constraint: "Here's a wrinkle: [introduce a real complicating data point that cuts against their framework choice]. Does this change your selection or your application of it?"
+- Weak justification: ask once more — "Why this framework over [name an obvious alternative]?"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STAGE 4 — DEEP DRILL: THREE LEVELS DOWN (~15-20 min — this is the core)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Pick the most interesting hypothesis from Stage 2 (tell the operator which one and why). Then run four rounds:
+
+Round 1 — Causal chain: "Walk me through the mechanism. What causes what, in sequence? I want A → B → C → outcome."
+Round 2 — Weak link: "You've got the chain. Now find its weakest link — the one assumption in that chain where, if you're wrong, the whole thing falls apart."
+Round 3 — Decisive evidence: "What single piece of data — one number, one fact — would either confirm or definitively refute this chain? Be specific."
+Round 4 (use if engagement is strong) — Contradiction: "Here's a real data point that doesn't fit your chain: [introduce a specific contradicting fact]. Incorporate it without abandoning your thesis. If you can't, tell me what that implies."
+
+On any shallow answer: "That's a direction, not a mechanism. What specifically connects those two things? What's the causal link?"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STAGE 5 — STRESS TEST (~5-10 min)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"I'm going to challenge your main conclusion. Here's the challenge: [introduce the sharpest possible counter-evidence — a data point, a structural consideration, or a stakeholder perspective that directly undermines their Stage 4 conclusion]. Does this change your answer — or can you explain it away while keeping your thesis intact?"
+- If they capitulate too quickly: "That's revision, not stress-testing. Defend your original position first — steelman it — then decide if you still want to revise."
+- If they defend well and then refine: "Good. Now steelman the alternative one more time before you commit."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STAGE 6 — SYNTHESISE AND COMMIT (~5-10 min)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"One paragraph. What is your recommendation — and what is the falsifiable prediction it implies? I need to be able to check if you were right in six months. What would have to be true — or false — in the world for you to know you were wrong?"
+- If they hedge ("it depends on…"): "It always depends. Make the call anyway."
+- If they give a recommendation without a falsifiable prediction: "What's the prediction? If you can't say what would prove you wrong, you don't have a recommendation yet — you have a preference."
+- If they go broad: "Name the single most important thing that has to happen for this to work."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AFTER ALL 6 STAGES COMPLETE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Output ONLY this JSON block. No explanation, no preamble, no markdown fences. Just the JSON:
+{"mode":"consulting","domain":"exact domain name","region":"geographic region","era":"Historical/Recent/Current","headline":"10-15 word headline of the case","stagesCompleted":6,"keyMoments":[{"stage":1,"move":"spontaneous","note":"what the operator did well or poorly unprompted"},{"stage":4,"move":"prompted","note":"what required multiple pushes to surface"}],"frameworksDeployed":["frameworks the operator actually named and used"],"finalSynthesis":"the operator's exact one-paragraph synthesis from Stage 6","scores":{"pl":0,"qp":0,"pc":0,"cb":0,"as":0},"coachNote":"two sentences: the single sharpest recurring pattern in their reasoning this session — one strength, one thing to target next time"}
+
+SCORING CALIBRATION — be honest, not generous. 7 is genuinely good. 5 is average. Do not inflate:
+pl (Pattern Library): Did they identify the deep structural pattern or stay at the surface level?
+qp (Question Precision): Were their questions and framings sharp, specific, testable — or vague?
+pc (Pressure Clarity): Did their thinking sharpen or dissolve under sustained challenge?
+cb (Cross-Domain Bridging): Did they reach outside this domain to test the structure — unprompted?
+as (Assumption Surfacing): Did they name and test the load-bearing assumptions — or take them as given?`;
+  $('consulting-prompt').textContent=prompt;$('consulting-prompt-wrap').style.display='block';
+  copyText(prompt,'Consulting prompt copied — paste in a new Claude conversation');
+}
+function parseBriefGrade(){
+  const raw=$('paste-input').value;if(!raw.trim()){toast('Paste the JSON first',true);return}
+  let obj;try{obj=extractJSON(raw)}catch(e){toast('Could not read JSON — check it copied fully',true);return}
+  const sc=obj.scores||{};
+  const dims=['pl','qp','pc','cb','as'];
+  if(!obj.headline||!obj.domain||!dims.every(d=>typeof sc[d]==='number')){
+    toast('Missing fields — need headline, domain, and all 5 scores (pl qp pc cb as)',true);return;
+  }
+  P.currentBrief={
+    mode:'consulting',
+    domain:obj.domain||'—',region:obj.region||'',era:obj.era||'',
+    headline:obj.headline,
+    stagesCompleted:obj.stagesCompleted||6,
+    keyMoments:Array.isArray(obj.keyMoments)?obj.keyMoments:[],
+    frameworksDeployed:Array.isArray(obj.frameworksDeployed)?obj.frameworksDeployed:[],
+    finalSynthesis:obj.finalSynthesis||'',
+    coachNote:obj.coachNote||'',
+    calibration:obj.calibration||null,
+    scores:sc,
+    principle:'',patternTags:[],
+    forDate:todayStr(),storedAt:new Date().toISOString()
+  };
+  save();$('paste-input').value='';closeModal('modal-paste');
+  toast('Engagement graded ✓ — add your principle and complete the day');
+  renderBrief();
+}
 let pasteMode='brief';
 function openPasteModal(mode){
   pasteMode=mode;
-  const titles={dossier:"PASTE CLAUDE'S DOSSIER",brief:"PASTE CLAUDE'S BRIEF",'bf-synth-grade':'PASTE SYNTHESIS GRADE','bf-steelman-grade':'PASTE STEELMAN GRADE','bf-forecast-setup':'PASTE FORECAST SITUATION','bf-forecast-resolve':'PASTE FORECAST RESOLUTION'};
-  const btns={dossier:'⚡ STORE DOSSIER',brief:'⚡ STORE BRIEF','bf-synth-grade':'⚡ STORE GRADE','bf-steelman-grade':'⚡ STORE GRADE','bf-forecast-setup':'⚡ STORE SITUATION','bf-forecast-resolve':'⚡ STORE RESOLUTION'};
-  const placeholders={dossier:'{ "domain": "...", "headline": "...", "metrics": [...], ... }',brief:'{ "domain": "...", "headline": "...", ... }','bf-synth-grade':'{ "scores": {"cb": 7, "pl": 7}, "feedback": "...", "strongerSynthesis": "..." }','bf-steelman-grade':'{ "scores": {"as": 7, "qp": 7}, "feedback": "...", "biggestGap": "..." }','bf-forecast-setup':'{ "situation": "...", "question": "..." }','bf-forecast-resolve':'{ "outcome": "...", "wasCorrect": true, "scores": {"qp": 7, "pc": 7}, "calibrationNote": "..." }'};
+  const titles={dossier:"PASTE CLAUDE'S DOSSIER",brief:"PASTE CLAUDE'S BRIEF",'bf-synth-grade':'PASTE SYNTHESIS GRADE','bf-steelman-grade':'PASTE STEELMAN GRADE','bf-forecast-setup':'PASTE FORECAST SITUATION','bf-forecast-resolve':'PASTE FORECAST RESOLUTION','consulting-grade':'PASTE ENGAGEMENT GRADE JSON'};
+  const btns={dossier:'⚡ STORE DOSSIER',brief:'⚡ STORE BRIEF','bf-synth-grade':'⚡ STORE GRADE','bf-steelman-grade':'⚡ STORE GRADE','bf-forecast-setup':'⚡ STORE SITUATION','bf-forecast-resolve':'⚡ STORE RESOLUTION','consulting-grade':'⚡ STORE ENGAGEMENT GRADE'};
+  const placeholders={dossier:'{ "domain": "...", "headline": "...", "metrics": [...], ... }',brief:'{ "domain": "...", "headline": "...", ... }','bf-synth-grade':'{ "scores": {"cb": 7, "pl": 7}, "feedback": "...", "strongerSynthesis": "..." }','bf-steelman-grade':'{ "scores": {"as": 7, "qp": 7}, "feedback": "...", "biggestGap": "..." }','bf-forecast-setup':'{ "situation": "...", "question": "..." }','bf-forecast-resolve':'{ "outcome": "...", "wasCorrect": true, "scores": {"qp": 7, "pc": 7}, "calibrationNote": "..." }','consulting-grade':'{ "domain": "...", "headline": "...", "stagesCompleted": 6, "keyMoments": [...], "frameworksDeployed": [...], "finalSynthesis": "...", "scores": {"pl":7,"qp":7,"pc":6,"cb":5,"as":8}, "coachNote": "..." }'};
   $('modal-paste-title').textContent=titles[mode]||"PASTE CLAUDE'S BRIEF";
   $('modal-paste-btn').textContent=btns[mode]||'⚡ STORE';
   $('paste-input').placeholder=placeholders[mode]||'{ ... }';
@@ -1103,6 +1516,7 @@ function dispatchPaste(){
   else if(pasteMode==='bf-steelman-grade')parseBossFightGrade('steelman');
   else if(pasteMode==='bf-forecast-setup')parseForecastSetup();
   else if(pasteMode==='bf-forecast-resolve')parseForecastResolution();
+  else if(pasteMode==='consulting-grade')parseBriefGrade();
   else parseBrief();
 }
 function parseBrief(){
@@ -1130,17 +1544,43 @@ function logBriefScore(){
 function discardBrief(){if(!confirm('Discard this brief without logging? Your answer will be lost.'))return;P.currentBrief=null;save();renderBrief();toast('Brief discarded')}
 function completeDay(){
   if(!P.currentBrief)return;
-  const ans=$('answer-input')?$('answer-input').value:(P.currentBrief.answer||'');
-  if(!ans.trim()&&!confirm('No answer written. Archive this day anyway?'))return;
-  const b=P.currentBrief;b.answer=ans;
+  const b=P.currentBrief;
   const principle=($('principle-input')?$('principle-input').value:(b.principle||'')).trim();
+
+  if(b.mode==='consulting'){
+    // Consulting: all 5 stats come from the grade JSON, not manual input
+    const sc=b.scores||{};
+    ['pl','qp','pc','cb','as'].forEach(d=>{if(typeof sc[d]==='number')recordScore(d,sc[d],'consulting');});
+    P.log.unshift({type:'consulting',day:P.day,date:new Date().toISOString(),
+      domain:b.domain,region:b.region,era:b.era,
+      headline:b.headline,
+      stagesCompleted:b.stagesCompleted||0,
+      keyMoments:b.keyMoments||[],
+      frameworksDeployed:b.frameworksDeployed||[],
+      finalSynthesis:b.finalSynthesis||'',
+      coachNote:b.coachNote||'',
+      calibration:b.calibration||null,
+      principle:principle,scores:sc});
+    if(b.domain)P.antiPattern.domains.push(b.domain);
+    if(b.region)P.antiPattern.regions.push(b.region);
+    if(b.era)P.antiPattern.eras.push(b.era);
+    if(principle)addReviewItem('principle',b.headline,principle,b.domain);
+    P.lastCompleted=new Date().toISOString();P.streak=(P.streak||0)+1;P.xp=(P.xp||0)+150;P.day=(P.day||1)+1;P.currentBrief=null;
+    save();updateChrome();
+    toast(principle?'Engagement archived → +150 XP · principle added to Retrieval':'Engagement archived → +150 XP');
+    nav('log');
+    return;
+  }
+
+  // Sprint brief (original path)
+  const ans=$('answer-input')?$('answer-input').value:(b.answer||'');
+  if(!ans.trim()&&!confirm('No answer written. Archive this day anyway?'))return;
+  b.answer=ans;
   P.log.unshift({type:'brief',day:P.day,date:new Date().toISOString(),domain:b.domain,region:b.region,era:b.era,difficulty:b.difficulty,headline:b.headline,hook:b.hook,anchorQuestion:b.anchorQuestion,answer:ans,principle:principle,patternTags:b.patternTags||[],scores:b.scores||null});
   if(b.domain)P.antiPattern.domains.push(b.domain);
   if(b.region)P.antiPattern.regions.push(b.region);
   if(b.era)P.antiPattern.eras.push(b.era);
-  if(principle){
-    addReviewItem('principle', b.headline, principle, b.domain);
-  }
+  if(principle)addReviewItem('principle',b.headline,principle,b.domain);
   P.lastCompleted=new Date().toISOString();P.streak=(P.streak||0)+1;P.xp=(P.xp||0)+100;P.day=(P.day||1)+1;P.currentBrief=null;
   save();updateChrome();toast(principle?`Day archived → +100 XP · principle added to Retrieval`:`Day archived → +100 XP`);nav('log');
 }
@@ -1751,7 +2191,7 @@ function bossCompleteSection(bf){
 function renderLog(){
   const host=$('log-list');const q=($('log-search')?.value||'').toLowerCase();
   let items=P.log||[];
-  if(q)items=items.filter(e=>(e.domain+' '+e.headline+' '+(e.anchorQuestion||'')+' '+(e.challengeQuestion||'')+' '+(e.answer||'')+' '+(e.topic||'')+' '+(e.response||'')+' '+(e.prediction||'')+' '+(e.outcome||'')).toLowerCase().includes(q));
+  if(q)items=items.filter(e=>(e.domain+' '+e.headline+' '+(e.anchorQuestion||'')+' '+(e.challengeQuestion||'')+' '+(e.answer||'')+' '+(e.topic||'')+' '+(e.response||'')+' '+(e.prediction||'')+' '+(e.outcome||'')+' '+(e.finalSynthesis||'')+' '+(e.coachNote||'')).toLowerCase().includes(q));
   if(!items.length){host.innerHTML=`<div class="empty"><div class="empty-ic">≡</div><div class="empty-t">${q?'No matching entries':'No briefs logged yet'}</div><div class="empty-s">${q?'Try a different search.':'Complete your first daily brief and it lands here — question, answer, and the grade you got.'}</div>${q?'':'<button class="btn btn-primary" onclick="nav(\'brief\')">GENERATE TODAY\u2019S BRIEF →</button>'}</div>`;return}
   host.innerHTML=items.map((e,i)=>{
     const kind=e.type||'brief';
@@ -1759,13 +2199,15 @@ function renderLog(){
     const isBossSynth=kind==='boss-synthesis';
     const isBossSteel=kind==='boss-steelman';
     const isBossForecast=kind==='boss-forecast';
+    const isConsulting=kind==='consulting';
     const isBoss=isBossSynth||isBossSteel||isBossForecast;
-    const ans=(e.answer||e.response||e.prediction||'').trim();
+    const ans=(e.answer||e.response||e.prediction||e.finalSynthesis||'').trim();
     let qText;
     if(isDossier)qText=e.challengeQuestion;
     else if(isBossSynth)qText='Find the unifying structural principle';
     else if(isBossSteel)qText=e.topic;
     else if(isBossForecast)qText=(e.setup&&e.setup.question)||'';
+    else if(isConsulting)qText=e.headline;
     else qText=e.anchorQuestion;
     const scores=e.scores||null;
     const grade=scores?`<div class="chips" style="margin-top:10px">${Object.keys(scores).map(d=>`<span class="chip ${DIM_CHIP[d]||''}">${(DIM_NAME[d]||d.toUpperCase())} ${scores[d]}</span>`).join('')}</div>`:'';
@@ -1785,8 +2227,16 @@ function renderLog(){
       :isBossSynth?'<span class="chip" style="color:var(--yellow);border-color:rgba(255,215,0,.4);padding:2px 7px">BOSS·SYNTHESIS</span>'
       :isBossSteel?'<span class="chip" style="color:var(--yellow);border-color:rgba(255,215,0,.4);padding:2px 7px">BOSS·STEELMAN</span>'
       :isBossForecast?'<span class="chip" style="color:var(--yellow);border-color:rgba(255,215,0,.4);padding:2px 7px">BOSS·FORECAST</span>'
+      :isConsulting?'<span class="chip" style="color:var(--purple);border-color:rgba(139,92,246,.4);padding:2px 7px">CONSULTING</span>'
       :'DAY '+e.day;
     const domainLabel=e.domain||(isBoss?'BOSS FIGHT':'');
+    const consultBlock=isConsulting?`
+      ${(e.keyMoments&&e.keyMoments.length)?`<div class="log-section"><div class="log-section-l">KEY MOMENTS</div>${e.keyMoments.map(m=>`<div class="key-moment-item ${m.move==='prompted'?'prompted':''}"><div class="key-moment-stage">Stage ${m.stage} · ${m.move==='spontaneous'?'⚡ SPONTANEOUS':'→ PROMPTED'}</div><div class="key-moment-note">${esc(m.note)}</div></div>`).join('')}</div>`:''}
+      ${(e.frameworksDeployed&&e.frameworksDeployed.length)?`<div class="log-section"><div class="log-section-l">FRAMEWORKS</div><div class="chips">${e.frameworksDeployed.map(f=>`<span class="chip">${esc(f)}</span>`).join('')}</div></div>`:''}
+      ${e.finalSynthesis?`<div class="log-section"><div class="log-section-l">SYNTHESIS (STAGE 6)</div><div class="consult-synthesis" style="font-size:13.5px">${esc(e.finalSynthesis)}</div></div>`:''}
+      ${e.calibration?`<div class="log-section"><div class="log-section-l" style="color:var(--yellow)">CALIBRATION</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px"><div style="background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.2);border-radius:8px;padding:11px 13px"><div style="font-family:var(--fm);font-size:9px;color:var(--green);letter-spacing:1px;margin-bottom:5px">✓ GOT RIGHT</div><div style="font-size:13px;line-height:1.6">${esc(e.calibration.theyGotRight||'—')}</div></div><div style="background:rgba(255,107,53,.06);border:1px solid rgba(255,107,53,.2);border-radius:8px;padding:11px 13px"><div style="font-family:var(--fm);font-size:9px;color:var(--orange);letter-spacing:1px;margin-bottom:5px">✗ MISSED</div><div style="font-size:13px;line-height:1.6">${esc(e.calibration.theyMissed||'—')}</div></div></div></div>`:''}
+      ${e.coachNote?`<div class="log-section"><div class="log-section-l">COACH NOTE</div><div class="coach-note-box" style="font-size:13.5px">${esc(e.coachNote)}</div></div>`:''}
+    `:'';
     return `<div class="log-item" id="logitem-${i}">
       <div class="log-head" onclick="toggleLog(${i})">
         <div class="log-day">${typeChip}</div>
@@ -1800,8 +2250,9 @@ function renderLog(){
         ${narrativesBlock}
         ${sourcesBlock}
         ${forecastBlock}
-        ${(qText&&!isBossForecast)?`<div class="log-section"><div class="log-section-l">${isDossier?'CHALLENGE':isBossSynth?'CHALLENGE':isBossSteel?'POSITION ARGUED':'ANCHOR QUESTION'}</div><div style="font-size:15px">${esc(qText)}</div></div>`:''}
-        ${!isBossForecast?`<div class="log-section"><div class="log-section-l">YOUR ${isBossSynth?'SYNTHESIS':isBossSteel?'STEELMAN':'ANSWER'}</div><div class="log-answer ${ans?'':'empty'}">${ans?esc(ans):'(no answer recorded)'}</div></div>`:''}
+        ${consultBlock}
+        ${(!isBossForecast&&!isConsulting)?`<div class="log-section"><div class="log-section-l">${isDossier?'CHALLENGE':isBossSynth?'CHALLENGE':isBossSteel?'POSITION ARGUED':'ANCHOR QUESTION'}</div><div style="font-size:15px">${esc(qText||'')}</div></div>`:(!isConsulting&&qText)?`<div class="log-section"><div class="log-section-l">QUESTION</div><div style="font-size:15px">${esc(qText)}</div></div>`:''}
+        ${(!isBossForecast&&!isConsulting)?`<div class="log-section"><div class="log-section-l">YOUR ${isBossSynth?'SYNTHESIS':isBossSteel?'STEELMAN':'ANSWER'}</div><div class="log-answer ${ans?'':'empty'}">${ans?esc(ans):'(no answer recorded)'}</div></div>`:''}
         ${e.principle?`<div class="log-section"><div class="log-section-l">PRINCIPLE</div><div style="font-size:13.5px;color:var(--cyan);font-style:italic">"${esc(e.principle)}"</div></div>`:''}
         ${(e.patternTags&&e.patternTags.length)?`<div class="log-section"><div class="log-section-l">PATTERNS TAGGED</div><div class="chips">${e.patternTags.map(id=>{const p=patternById(id);return p?`<span class="chip" style="color:${catColor(p.cat)};border-color:${catColor(p.cat)}55">${esc(p.name)}</span>`:''}).join('')}</div></div>`:''}
         ${feedbackBlock}
@@ -1970,9 +2421,10 @@ function migrate(){
   P.stats=P.stats||{pl:0,qp:0,pc:0,cb:0,as:0};
   if(P.baseline&&!P.origin)P.origin={...P.baseline};
   if(typeof P.xp!=='number')P.xp=0;if(typeof P.day!=='number')P.day=1;if(typeof P.streak!=='number')P.streak=0;
-  P.review=P.review||{items:[],seededPatterns:false,seededReasoners:false};
+  P.review=P.review||{items:[],seededPatterns:false,seededReasoners:false,seededCases:false};
   P.review.items=P.review.items||[];
   if(typeof P.review.seededReasoners!=='boolean')P.review.seededReasoners=false;
+  if(typeof P.review.seededCases!=='boolean')P.review.seededCases=false;
   P.bossFights=P.bossFights||[];
   if(P.currentBossFight===undefined)P.currentBossFight=null;
   P.patternUsage=P.patternUsage||{};
